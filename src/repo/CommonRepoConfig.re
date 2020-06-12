@@ -1,4 +1,4 @@
-open ResponseHandler;
+open ResponseHandlerCommon;
 
 module NoContentConfig = {
   type responseDataType = NoContent.t;

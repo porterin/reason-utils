@@ -52,7 +52,7 @@ let rec promiseWithTimeout =
 
 let resolvePromiseWithTimeout = (promise: Js.Promise.t(Fetch.response)) => {
   promise
-  |> Js.Promise.then_(ResponseHandler.ResponseWrapper.execute)
+  |> Js.Promise.then_(ResponseHandlerCommon.ResponseWrapper.execute)
   |> Js.Promise.catch(error =>
        switch (Exception.PromiseToExceptionMap.getException(error)) {
        | Exception.RequestTimedout =>
