@@ -1,0 +1,36 @@
+####{BSB GENERATED: NO EDIT
+FLG -ppx '/Users/tejesh/Documents/reason-utils/node_modules/bs-platform/darwin/bsc.exe -as-ppx -bs-jsx 3'
+S /Users/tejesh/Documents/reason-utils/node_modules/bs-platform/lib/ocaml
+B /Users/tejesh/Documents/reason-utils/node_modules/bs-platform/lib/ocaml
+FLG -w +a-4-9-20-40-41-42-50-61-102-44
+S /Users/tejesh/Documents/reason-utils/node_modules/bs-fetch/lib/ocaml
+B /Users/tejesh/Documents/reason-utils/node_modules/bs-fetch/lib/ocaml
+S /Users/tejesh/Documents/reason-utils/node_modules/@glennsl/bs-json/lib/ocaml
+B /Users/tejesh/Documents/reason-utils/node_modules/@glennsl/bs-json/lib/ocaml
+S /Users/tejesh/Documents/reason-utils/node_modules/reason-react/lib/ocaml
+B /Users/tejesh/Documents/reason-utils/node_modules/reason-react/lib/ocaml
+S src
+B lib/bs/src
+S src/repo
+B lib/bs/src/repo
+S src/helpers/event-tracking
+B lib/bs/src/helpers/event-tracking
+S src/helpers/event-tracking/google-tag-manager
+B lib/bs/src/helpers/event-tracking/google-tag-manager
+S src/helpers/event-tracking/google-tag-manager/types
+B lib/bs/src/helpers/event-tracking/google-tag-manager/types
+S src/helpers/event-tracking/types
+B lib/bs/src/helpers/event-tracking/types
+S src/mappers
+B lib/bs/src/mappers
+S src/utils
+B lib/bs/src/utils
+S src/network
+B lib/bs/src/network
+S src/types
+B lib/bs/src/types
+S src/types/error
+B lib/bs/src/types/error
+S src/types/api-response
+B lib/bs/src/types/api-response
+####BSB GENERATED: NO EDIT}
