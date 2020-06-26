@@ -1,0 +1,28 @@
+{
+  "name": "porter-reason-utils",
+  "reason": {
+    "react-jsx": 3
+  },
+  "bs-dependencies": [
+    "bs-fetch",
+    "@glennsl/bs-json",
+    "reason-react"
+  ],
+  "bs-dev-dependencies": [],
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "warnings": {
+    "number": "-44",
+    "error": "+27"
+  },
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "refmt": 3
+}
