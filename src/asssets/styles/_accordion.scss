@@ -1,0 +1,39 @@
+@import "variables";
+@import "mixins";
+
+.accordion {
+  @include crm-txt-base-style;
+  position: unset;
+  box-shadow: 0 .2rem .6rem 0 rgba(0, 0, 0, 0.09);
+  margin: 0 .6rem 0.8rem !important;
+  > .header {
+    box-shadow: 0 .2rem .6rem 0 rgba(0, 0, 0, 0.09);
+    font-size: $font-size-base;
+    height: 7rem;
+  }
+  > .expanded-header {
+    background-color: $color-white;
+    font-size: $font-size-base;
+    margin: 0 2.4rem;
+    padding: 0;
+    border-bottom: .01em solid $color-off-white-2;
+    .actions-container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 1em 0 0;
+      > :not(:last-child) {
+        margin-right: .8em !important;
+      }
+    }
+  }
+  .expand-icon {
+    color: $color-black;
+  }
+}
+
+.panel-heading-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}

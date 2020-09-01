@@ -1,0 +1,84 @@
+//Font
+$font-size-base: 1.6rem;
+$font-size-10: 1rem;
+$font-size-12: 1.2rem;
+$font-size-14: 1.4rem;
+$font-size-16: 1.6rem;
+$font-size-18: 1.8rem;
+$font-size-20: 2rem;
+$font-size-24: 2.4rem;
+
+//Font-Weight
+$font-weight-400: 400;
+$font-weight-800: 800;
+
+//Font-Family
+$font-family-primary: Lato;
+
+//DISCARDED-COLORS: Please DON'T USE THESE. THESE WILL BE REMOVED SOON
+// USE  _colorPalette.scss for any color requirement
+
+$color-blue-dark: #2962ff;
+$color-blue-light: #3e8dfb;
+$color-black: #000000;
+$color-black-1: #111111;
+$color-white: #ffffff;
+$color-off-white-1: #f7f7f7;
+$color-off-white-2: #e5e5e5;
+$color-off-white-3: #eeeeee;
+$color-off-white-4: #ebebeb;
+$color-white-opacity-84: rgba(255, 255, 255, 0.84);
+$color-grey: #e2e2e2;
+$color-grey-2: #ccc;
+$color-grey-3: #fafafa;
+$color-dark-grey: #666666;
+$color-dark-grey-1: #f0f0f0;
+$color-dark-grey-2: #e6e6e6;
+$color-red: #ff6961;
+$error-red: #ff4668;
+$color-success-green: #3bc777;
+$color-light-red-1: #fff8f8;
+$color-light-red-2: #ff4e4e;
+$warning-label-yellow: #ff9966;
+$color-black-transparent-1: rgba(0, 0, 0, 0.38);
+$color-black-transparent-2: rgba(0, 0, 0, 0.54);
+$color-black-transparent-3: rgba(0, 0, 0, 0.87);
+$color-black-transparent-4: rgba(0, 0, 0, 0.2);
+$color-positive-green: #28b11f;
+$color-negative-red: #ff3366;
+
+//colors-usecases
+$color-text: #111111;
+$color-btn-text: #2962ff;
+$color-error: #ff6961;
+$color-success: #4f8a10;
+$color-success-bg: #dff2bf;
+$color-background-disabled: #f7f7f7;
+
+//form
+$color-input-text: rgba(17, 17, 17, 0.87);
+$color-submit-error-text: rgba(17, 17, 17, 0.54);
+$color-form-action-btn: $color-success-green;
+$color-form-fields-bg: #fafafa;
+$color-form-label: #949494;
+$color-form-error: #c51244;
+$color-form-error-bg: #fff0f4;
+
+// Table
+$color-table-header: rgba(41, 98, 255, 0.08);
+$color-table-row-hover: #eef2f1;
+
+// Tabs
+$color-tab-container: #eef2f1;
+$color-tab-item: #f8f9f9;
+$color-tab-background: #fcfcfc;
+
+// Accordion
+$accordion-header: #f8f9fa;
+
+$color-button-primary: #2962ff;
+$color-button-secondary: #ff3366;
+$color-bg-button-primary: rgba(41, 98, 255, 0.06);
+$color-bg-button-secondary: rgba(255, 51, 102, 0.06);
+$color-bg-hover-button-primary: #dee6f9;
+$color-bg-hover-button-secondary: #f7dce4;
