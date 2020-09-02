@@ -2,7 +2,7 @@ let getImage = name => {
   let requireImage = [%raw
     {|
       function(name){
-        return require(name).default
+        return require(`./images/${name}`).default
       }
     |}
   ];
