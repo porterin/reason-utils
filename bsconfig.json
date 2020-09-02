@@ -7,7 +7,8 @@
     "bs-fetch",
     "@glennsl/bs-json",
     "reason-react",
-    "@jsiebern/bs-material-ui"
+    "@jsiebern/bs-material-ui",
+    "bs-moment"
   ],
   "bs-dev-dependencies": [],
   "sources": [

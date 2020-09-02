@@ -1,0 +1,18 @@
+@import "../variables";
+@import "../mixins";
+
+.form-input-checkbox-group {
+  .MuiTypography-body1 {
+    @include crm-txt-base-style;
+    font-size: $font-size-12;
+  }
+}
+
+.form-input-checkbox {
+  svg {
+    font-size: $font-size-18;
+  }
+}
+.checked-checkbox {
+  color: $primary !important;
+}

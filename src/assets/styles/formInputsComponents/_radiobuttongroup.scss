@@ -1,0 +1,19 @@
+@import "../variables";
+@import "../mixins";
+
+.form-radio-button-group {
+  display: flex;
+  flex-direction: column;
+  .MuiTypography-body1 {
+    @include crm-txt-base-style;
+    font-size: $font-size-12;
+  }
+  .form-input-radio-button {
+    svg {
+      font-size: $font-size-18;
+    }
+  }
+  .checked-radio-button {
+    color: $primary !important;
+  }
+}

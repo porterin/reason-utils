@@ -1,0 +1,64 @@
+@import "../variables";
+
+@mixin form-font {
+  font-family: $font-family-primary;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.form-input-container {
+  margin: 0.4rem 1rem;
+  width: 17.6rem;
+  min-width: 17.6rem;
+  display: flex;
+  flex-direction: column;
+
+  > .form-input {
+    @include form-font;
+    font-size: $font-size-14;
+    width: 100%;
+    margin: 0;
+
+    > .form-input-label {
+      @include form-font;
+      font-size: 1.2rem;
+    }
+
+    > .form-input-text {
+      @include form-font;
+      font-size: 1.2rem !important;
+    }
+  }
+  .form-input:focus-within {
+    > .form-input-label {
+      color: $primary;
+    }
+    fieldset {
+      border-color: $primary;
+    }
+  }
+
+  > .input-error-container {
+    @include form-font;
+    font-size: 1.2rem;
+    min-height: 1.2rem;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    > .error {
+      color: $status-red;
+    }
+    > .warning {
+      color: $secondary;
+    }
+  }
+}
+
+.max-width {
+  width: unset;
+}
+
+.example-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
