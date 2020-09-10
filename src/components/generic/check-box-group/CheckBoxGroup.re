@@ -35,19 +35,11 @@ let make =
                 key={option.id}
                 value={MaterialUi.Any(option.value)}
                 control={
-                  <MaterialUi.Checkbox
+                  <CheckBox
                     onChange
                     id={option.id}
                     checked={isChecked(selected, option.value)}
-                    classes={MaterialUi.Checkbox.Classes.{
-                    "root": Some("form-input-checkbox"),
-                    "checked": Some("checked-checkbox"),
-                    "colorPrimary": None,
-                    "colorSecondary": None,
-                    "disabled": None,
-                    "indeterminate": None
-                  }}
-                    color=`Primary
+                    rootClassName="form-input-checkbox"
                   />
                 }
                 label={React.string(option.label)}
