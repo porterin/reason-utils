@@ -1,0 +1,82 @@
+type t = Js.Date.t;
+open MomentRe;
+
+let defaultFormat = "DD-MM-YYYY HH:mm";
+
+let now = (): t => {
+  Js.Date.fromFloat(Js.Date.now());
+};
+
+let toMoment = (date: t): Moment.t => {
+  momentWithDate(date);
+};
+
+let fromMoment = (moment: Moment.t): t => {
+  Moment.toDate(moment);
+};
+
+let toString = (~format: string=defaultFormat, date: t) => {
+  Moment.format(format, momentWithDate(date));
+};
+
+let fromString = (~format: string=defaultFormat, dateString: string): t => {
+  Moment.toDate(momentWithFormat(dateString, format));
+};
+
+let toSecond = (date: t): int => {
+  toString(~format="HH:mm:ss", date) -> durationFormat -> Duration.asSeconds -> int_of_float
+};
+
+let toMinute = (date: t): int => {
+  toString(~format="HH:mm", date) -> durationFormat -> Duration.asMinutes -> int_of_float
+};
+
+let fromTimeStamp = (timestamp: int) => {
+  Moment.toDate(momentWithUnix(timestamp));
+};
+
+let toTimeStamp = (date: t) => {
+  Moment.toUnix(momentWithDate(date));
+};
+
+let isSame = (firstDate: t, secondDate: t) => {
+  Moment.isSame(momentWithDate(firstDate), momentWithDate(secondDate));
+};
+
+let isAfter = (firstDate: t, secondDate: t) => {
+  Moment.isAfter(momentWithDate(firstDate), momentWithDate(secondDate));
+};
+
+let isBefore = (firstDate: t, secondDate: t) => {
+  Moment.isBefore(momentWithDate(firstDate), momentWithDate(secondDate));
+};
+
+let getDateTimeAfterElapsedTime =
+    (
+      elapsedTime: float,
+      timeUnit: [
+        | `years
+        | `quarters
+        | `months
+        | `weeks
+        | `days
+        | `hours
+        | `minutes
+        | `seconds
+        | `milliseconds
+      ],
+      initialDate: t,
+    ) => {
+  let toDuration = duration(elapsedTime, timeUnit);
+  let toMoment = Moment.add(~duration=toDuration, momentWithDate(initialDate));
+  Moment.toDate(toMoment);
+};
+
+let tomorrow = () => {
+  getDateTimeAfterElapsedTime(float_of_int(1), `days, Js.Date.fromFloat(Js.Date.now()));
+};
+
+let calculateEndDate = (endTime: t, format: string) => {
+  let effectiveTillYear = endTime |> Js.Date.getFullYear |> int_of_float;
+  effectiveTillYear >= 3100 ? "Lifetime" : toString(endTime, ~format);
+};
