@@ -17,7 +17,7 @@ let getListToString = (a: list(string)): string => {
     };
   };
   let concatString = join(a, "");
-  String.length(concatString) > 10 ? String.sub(concatString, 0, 30) ++ "..." : concatString;
+  String.length(concatString) > 30 ? String.sub(concatString, 0, 30) ++ "..." : concatString;
 };
 
 [@react.component]
