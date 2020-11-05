@@ -30,9 +30,10 @@
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@jsiebern/bs-material-ui/-/bs-material-ui-2.0.2.tgz#e3d32b482c62ae1eded4b418dd2313c25cd73639"
 
-"@material-ui/core@^4.11.0":
+"@material-ui/core@^4.9.1":
   version "4.11.0"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.11.0.tgz#b69b26e4553c9e53f2bfaf1053e216a0af9be15a"
+  integrity sha512-bYo9uIub8wGhZySHqLQ833zi4ZML+XCBE1XwJ8EuUVSpTWWG57Pm+YugQToJNFsEyiKFhPh8DPD0bgupz8n01g==
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@material-ui/styles" "^4.10.0"
@@ -183,9 +184,10 @@ bs-moment@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/bs-moment/-/bs-moment-0.6.0.tgz#b49c5580598ef277696494684fd274ea1f8b1019"
 
-bs-platform@^7.0.1:
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-7.3.2.tgz#301f5c9b4e8cf5713cb60ca22e145e56e793affe"
+bs-platform@^8.0.3:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-8.3.2.tgz#c307f1cc2d2397c3d088c7f3b62e9f493283cdcf"
+  integrity sha512-iOTi5JIlNPoCPq31NS9ET79FLyCpwTL2JZbgHz35LzY9Bch1iDtbBR3FVGhRbjphxelAP4fLlFONfUNp5Y3a5g==
 
 clsx@^1.0.2, clsx@^1.0.4:
   version "1.1.1"
