@@ -39,6 +39,13 @@ let make =
       multiple=true
       value={MaterialUi.Select.Value.arrayOf(selected |> Array.of_list)}
       onChange={(event, _) => onChange(event)}
+      _MenuProps={
+        "anchorOrigin": {
+          "vertical": "bottom",
+          "horizontal": "left",
+        },
+        "getContentAnchorEl": Js.null,
+      }
       renderValue={(selected) =>
         switch (renderValue) {
         | None => getListToString(selected |> MaterialUi.anyUnpack |> Array.to_list) |> React.string

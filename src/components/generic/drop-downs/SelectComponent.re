@@ -25,7 +25,14 @@ let make =
       label={React.string(label)}
       defaultValue={MaterialUi.Any(defaultSelectItem.value)}
       value={MaterialUi.Select.Value.string(selectedValue.value)}
-      onChange={(e, _) => onChange(e)}>
+      onChange={(e, _) => onChange(e)}
+      _MenuProps={
+        "anchorOrigin": {
+          "vertical": "bottom",
+          "horizontal": "left",
+        },
+        "getContentAnchorEl": Js.null,
+      }>
       <MaterialUi.MenuItem value={MaterialUi.MenuItem.Value.string(defaultSelectItem.value)}>
         defaultSelectItem.text->React.string
       </MaterialUi.MenuItem>
