@@ -43,6 +43,11 @@ type formInput =
       renderValue: option(list(string) => string),
     });
 
+  type _inputProps = {
+    className: string,
+    startAdornment: React.element,
+  };
+
 type props('b, 'c) = {
   label: string,
   onChange: ReactEvent.Form.t => unit,
@@ -53,6 +58,7 @@ type props('b, 'c) = {
   onBlur: unit => unit,
   warning: ReactEvent.Form.t => option(string),
   className: string,
+  _inputProps: option(_inputProps)
 };
 
 let make_props =
@@ -66,6 +72,7 @@ let make_props =
       ~result: option(Belt.Result.t('b, 'c)),
       ~warning=_ => None,
       ~className="",
+      ~_inputProps: option(_inputProps)=?,
       (),
     ) => {
   label,
@@ -77,6 +84,7 @@ let make_props =
   result,
   warning,
   className,
+  _inputProps
 };
 
 let getWarningOrError =
@@ -95,6 +103,13 @@ let getWarningOrError =
        }
      }}
   </div>;
+};
+
+let get_InputProps = (_inputProps: option(_inputProps)) => {
+  switch (_inputProps) {
+  | None => {"className": "form-input-text", "startAdornment": React.null}
+  | Some(value) => {"className": value.className, "startAdornment": value.startAdornment}
+  };
 };
 
 [@react.component]
@@ -185,7 +200,7 @@ let make = (~input_props: props('b, 'c)) => {
          variant=`Outlined
          className="form-input"
          _InputLabelProps={"className": "form-input-label"}
-         _InputProps={"className": "form-input-text"}
+         _InputProps={get_InputProps(input_props._inputProps)}
        />
      }}
     {getWarningOrError(warning, input_props.result)}
