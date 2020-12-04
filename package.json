@@ -1,7 +1,7 @@
 {
   "name": "porter-reason-utils",
   "version": "0.0.1",
-  "description": "common reason utils",
+  "description": "common frontend modules",
   "main": "index.js",
   "scripts": {
     "bs:build": "bsb -make-world",
