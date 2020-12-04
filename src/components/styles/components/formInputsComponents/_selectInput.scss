@@ -1,0 +1,45 @@
+.form-input-select {
+  width: 100%;
+
+  .MuiSelect-root {
+    padding: 1.2rem;
+  }
+
+  svg {
+    margin-top: 0.4rem;
+  }
+
+  label {
+    font-size: 1.2rem;
+    transform: translate(1.4rem, 1.2rem) scale(1);
+    background-color: $white;
+  }
+  .select-checkbox-label {
+    input {
+      width: fit-content;
+    }
+  }
+}
+.form-input-select:focus-within {
+  > label {
+    color: $primary;
+  }
+  fieldset {
+    border-color: $primary !important;
+  }
+}
+
+.form-input-select:focus {
+  fieldset {
+    border-color: $primary !important;
+  }
+}
+
+.form-input-checkbox {
+  svg {
+    font-size: $font-size-18;
+  }
+}
+.checked-checkbox {
+  color: $primary !important;
+}

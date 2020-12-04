@@ -1,0 +1,28 @@
+.form-input-date-time {
+  width: 100%;
+  input {
+    padding: 1.05rem;
+    font-size: $font-size-12;
+  }
+
+  label {
+    font-size: 1.2rem;
+    transform: translate(1.4rem, 1.2rem) scale(1);
+    background-color: $white;
+  }
+}
+
+.form-input-date-time:focus-within {
+  > label {
+    color: $primary;
+  }
+  fieldset {
+    border-color: $primary !important;
+  }
+}
+
+.form-input-date-time:focus {
+  fieldset {
+    border-color: $primary !important;
+  }
+}

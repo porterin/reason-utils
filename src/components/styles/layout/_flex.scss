@@ -1,0 +1,36 @@
+.u-flex {
+  display: flex;
+  &__row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  &__col {
+    display: flex;
+    flex-direction: column;
+  }
+  &__space-between {
+    justify-content: space-between;
+  }
+}
+
+.u-flex-wrap {
+  @extend .u-flex;
+  flex-wrap: wrap;
+}
+
+.u-flex-50 {
+  flex: 0 0 50%;
+}
+
+.u-flex-justify-center {
+  justify-content: center;
+}
+
+.u-flex-align-start {
+  align-items: flex-start;
+}
+
+.u-flex-align-center {
+  align-items: center;
+}

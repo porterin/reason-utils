@@ -1,0 +1,39 @@
+.accordion {
+  @include crm-txt-base-style;
+  position: unset;
+  box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.09);
+  margin: 0 0.6rem 0.8rem !important;
+  > .header {
+    box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.09);
+    font-size: $font-size-base;
+    height: 5.2rem;
+    min-height: 4.8rem !important;
+  }
+  > .expanded-header {
+    box-shadow: none;
+    padding: 0;
+    margin: 0 2.4rem;
+    border-bottom: 0.01em solid $color-off-white-2;
+  }
+  .expand-icon {
+    color: $black;
+  }
+  .actions-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1.2rem 0;
+    margin: 0 2.4rem;
+    border-top: 0.01em solid $color-off-white-2;
+    > :not(:last-child) {
+      margin-right: 0.8em !important;
+    }
+  }
+}
+
+.panel-heading-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}

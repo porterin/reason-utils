@@ -1,0 +1,45 @@
+.slider-container {
+  width: 100%;
+  .slider-root {
+    color: $border-dark;
+    height: 0.2rem;
+    padding: 1.5rem 0;
+  }
+  .slider-thumb {
+    height: 1.4rem;
+    width: 1.4rem;
+    background-color: $white;
+    margin-top: -1.4rem;
+    margin-left: -1.4rem;
+    background-image: url("../../../../common/assets/images/slider-truck.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 0.1rem 0.6rem rgba(0, 0, 0, 0.17);
+    padding: 1.4rem;
+    &:focus,
+    &:hover {
+      box-shadow: 0 0.3rem 0.1rem rgba(0, 0, 0, 0.1),
+        0 0.4rem 0.8rem rgba(0, 0, 0, 0.3), 0 0 0 0.1rem rgba(0, 0, 0, 0.02);
+    }
+  }
+
+  .slider-track {
+    height: 0.2rem;
+  }
+  .slider-rail {
+    height: 0.2rem;
+    opacity: 0.5;
+    background-color: #bfbfbf;
+  }
+  .slider-mark {
+    background-color: #bfbfbf;
+    height: 0.8rem;
+    width: 0.1rem;
+    margin-top: -0.3rem;
+  }
+  .slider-markActive {
+    opacity: 1;
+    background-color: black;
+    color: black;
+  }
+}

@@ -1,10 +1,12 @@
 {
-  "name": "reason-utils",
+  "name": "porter-reason-utils",
   "version": "0.0.1",
   "description": "common reason utils",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bs:build": "bsb -make-world",
+    "bs:watch": "bsb -make-world -w",
+    "bs:clean": "bsb -clean-world"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,24 @@
   "bugs": {
     "url": "https://github.com/porterin/reason-utils/issues"
   },
-  "homepage": "https://github.com/porterin/reason-utils#readme"
+  "homepage": "https://github.com/porterin/reason-utils#readme",
+  "dependencies": {
+    "@date-io/moment": "1.x",
+    "@glennsl/bs-json": "^3.0.0",
+    "@jsiebern/bs-material-ui": "^1.3.0",
+    "@material-ui/core": "4.9.1",
+    "@material-ui/icons": "4.9.1",
+    "@material-ui/pickers": "^3.2.10",
+    "@sentry/browser": "^5.3.0",
+    "bs-fetch": "^0.3.0",
+    "bs-moment": "^0.4.4",
+    "bs-platform": "^7.0.1",
+    "re-formality": "^4.0.0-beta.7",
+    "reason-urql": "^1.5.0",
+    "decco": "^1.1.1",
+    "bs-webapi": "^0.17.1"
+  },
+  "devDependencies": {
+    "reason-react": "^0.9.0"
+  }
 }

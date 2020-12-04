@@ -1,0 +1,16 @@
+.primary-card {
+  border: .01rem solid $color-off-white-2;
+  
+  > .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.6rem 2.4rem;
+    
+    > .title {
+      @include crm-txt-base-style;
+      font-size: $font-size-base;
+    }
+  }
+}
