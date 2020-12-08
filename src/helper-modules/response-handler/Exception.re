@@ -1,17 +1,10 @@
-exception Empty_List;
-exception InternalServerError;
-exception NotAuthenticated;
-exception Forbidden;
-exception UnprocessedEntity;
 exception RequestTimedout;
+exception FailedToFetch;
+exception RequestCancelled;
+exception PromiseException(Js.Promise.error);
 
 let fromString = (exn: string) => {
   switch (exn) {
-  | "Exception.Empty_List" => Empty_List
-  | "Exception.InternalServerError" => InternalServerError
-  | "Exception.NotAuthenticated" => NotAuthenticated
-  | "Exception.Forbidden" => Forbidden
-  | "Exception.UnprocessedEntity" => UnprocessedEntity
   | "Exception.RequestTimedout" => RequestTimedout
   | _ =>
     ErrorUtils.raiseError(
@@ -22,28 +15,34 @@ let fromString = (exn: string) => {
   };
 };
 
-module ExceptionToErrorTextMap = {
-  let getErrorMessage = (exn: exn) => {
-    switch (exn) {
-    | Empty_List => "The list is empty"
-    | InternalServerError => "Something went wrong"
-    | NotAuthenticated => "Authentication Failure"
-    | Forbidden => "The requested resource is not available for the user to view"
-    | UnprocessedEntity => "Please check your form inputs and try again"
-    | _ =>
-      ErrorUtils.raiseError(
-        ~path="Exception.ExceptionToErrorTextMap.getErrorMessage",
-        ~message="No foreseeable Exception found",
-        ~value="",
-      )
+module UnhandledExceptionHandler = {
+  [@bs.send] external toString: Js.Promise.error => string = "toString";
+
+  let resolveException = (error: Js.Promise.error): exn => {
+    //Fetch throws the following exceptions when it fails to make network
+    //calls. Failed to fetch is thrown in Chrome whereas NetworkError
+    //when attempting to fetch resource is thrown in Firefox.
+    //Reference: https://github.com/github/fetch/issues/310
+    switch (error |> toString) {
+    | "TypeError: Failed to fetch" // Chrome
+    | "TypeError: NetworkError when attempting to fetch resource." // Firefox
+    | "TypeError: A server with the specified hostname could not be found." // Safari
+    | "TypeError: Network request failed" // Windows
+      => FailedToFetch
+    | "TypeError: cancelled" => RequestCancelled
+    | _ => PromiseException(error)
     };
   };
 };
 
-module PromiseToExceptionMap = {
+module ExceptionHandler = {
   external errorToPair: Js.Promise.error => (string, int) = "%identity";
 
-  let getException = (error: Js.Promise.error): exn => {
-    error |> errorToPair |> fst |> fromString;
+  let resolveException = (error: Js.Promise.error): exn => {
+    let errorString = error |> errorToPair |> fst;
+    switch (Js.typeof(errorString)) {
+    | "undefined" => UnhandledExceptionHandler.resolveException(error)
+    | _ => fromString(errorString)
+    };
   };
 };

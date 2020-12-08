@@ -7,4 +7,7 @@ type t =
   | Forbidden
   | InternalServerError
   | DataConflict
-  | TimedoutError;
+  | TimedoutError
+  | FailedToFetch
+  | RequestCancelled
+  ;

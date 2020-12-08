@@ -27,8 +27,6 @@ module ResponseWrapper = {
   };
 
   let execute = (response: Fetch.response): Js.Promise.t(ResponseType.t) => {
-    Js.log("hello world from response handler");
-    Js.log("status code: " ++ string_of_int(Fetch.Response.status(response)));
     ResponseType.(
       switch (Fetch.Response.status(response)) {
       | 200
@@ -122,13 +120,14 @@ module DefaultErrorConverter = {
               |> (() => None)
           )
       )
-
     | Forbidden(data)
     | InternalServerError(data) =>
       Some(GenericResponseMapper.ForbiddenErrorHandler.execute(~json=data))
     | DataConflict(data) =>
       Some(GenericResponseMapper.DataConflictErrorHandler.execute(~json=data))
     | TimedoutError => Some(GenericResponseMapper.TimedoutErrorHandler.execute())
+    | FailedToFetch => Some(GenericResponseMapper.FailedToFetchErrorHandler.execute())
+    | RequestCancelled => Some(GenericResponseMapper.RequestCancelledErrorHandler.execute())
     | _ => None
     };
   };

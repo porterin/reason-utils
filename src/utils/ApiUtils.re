@@ -1,5 +1,3 @@
-exception PromiseException(Js.Promise.error);
-
 let handleAPIRequest =
     (
       apiRequest: _ => Js.Promise.t(Belt.Result.t('a, 'b)),
@@ -17,8 +15,8 @@ let handleAPIRequest =
          )
        })
     |> catch(err => {
-         let _ = SentryRe.capturePromiseError(err);
-         reject(PromiseException(err))
+         SentryRe.capturePromiseError(err) |> ignore;
+         reject(Exception.PromiseException(err))
        })
     |> ignore
   );

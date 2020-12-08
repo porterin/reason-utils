@@ -1,4 +1,4 @@
-let closeIcon = CommonAssetsManager.getImage("close.svg");
+let closeIcon = AssetsManager.getImage("close.svg");
 
 [@react.component]
 let make = (~title: string, ~onCloseCb: _ => _) => {

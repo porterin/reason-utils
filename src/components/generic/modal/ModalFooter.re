@@ -1,4 +1,4 @@
-let closeIcon = CommonAssetsManager.getImage("ic-info-outline.svg");
+let closeIcon = AssetsManager.getImage("ic-info-outline.svg");
 
 [@react.component]
 let make = (~label: string, ~cb: _ => unit, ~error=None) => {

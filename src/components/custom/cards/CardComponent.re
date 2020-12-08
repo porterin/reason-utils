@@ -1,4 +1,4 @@
-let toggleLogo = CommonAssetsManager.getImage("card-btn-arrow.svg");
+let toggleLogo = AssetsManager.getImage("card-btn-arrow.svg");
 
 [@react.component]
 let make =

@@ -3,7 +3,7 @@ module OptionMomentToMomentMap = {
 };
 
 module ClearButton = {
-  let closeIcon = CommonAssetsManager.getImage("close-icon-round.svg");
+  let closeIcon = AssetsManager.getImage("close-icon-round.svg");
 
   [@react.component]
   let make = (~className: string="", ~cb: unit => unit): React.element => {

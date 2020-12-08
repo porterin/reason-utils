@@ -63,3 +63,23 @@ module TimedoutErrorHandler = {
     });
   };
 };
+
+module FailedToFetchErrorHandler = {
+  let execute = (): Error.t => {
+    Error.DefaultError({
+      type_: ErrorType.TimedoutError,
+      title: "Failed to fetch",
+      message: "Failed to fetch.",
+    });
+  };
+};
+
+module RequestCancelledErrorHandler = {
+  let execute = (): Error.t => {
+    Error.DefaultError({
+      type_: ErrorType.TimedoutError,
+      title: "Request Cancelled",
+      message: "Request Cancelled",
+    });
+  };
+};
