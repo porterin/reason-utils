@@ -1,5 +1,5 @@
 {
-    "name": "porter-reason-utils",
+    "name": "p-lib",
     "reason": {
       "react-jsx": 3
     },

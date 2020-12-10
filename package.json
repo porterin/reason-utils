@@ -1,5 +1,5 @@
 {
-  "name": "porter-reason-utils",
+  "name": "p-lib",
   "version": "0.0.1",
   "description": "common frontend modules",
   "main": "index.js",

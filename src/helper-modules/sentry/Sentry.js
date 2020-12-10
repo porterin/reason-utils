@@ -1,11 +1,20 @@
 import * as Sentry from '@sentry/browser';
 var SENTRY_FRONTEND_DSN = 'https://4ce8c888a1d349428e0dfeb0cb325a71@sentry.io/1408218';
+let ignoreErrors = [
+  /Cannot read property 'getReadModeExtract' of undefined/i,
+  /Cannot read property 'getReadModeRender' of undefined/i,
+  /Cannot read property 'getReadModeConfig' of undefined/i,
+  /ResizeObserver loop limit exceeded/i,
+  /Unexpected end of input/i,
+  /Cannot read property \'\d+\' of null/i
+]
 
 export function init(env) {
   if (env == "production") {
     Sentry.init({
       dsn: SENTRY_FRONTEND_DSN,
-      attachStackTrace: true
+      attachStackTrace: true,
+      ignoreErrors
     })
   }
 }
