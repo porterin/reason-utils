@@ -2,7 +2,7 @@ let getImage = name => {
   let requireImage = [%raw
     {|
       function(name){
-        return require(`CommonAssets/images/${name}`).default
+        return require(`./images/${name}`).default
       }
     |}
   ];
@@ -11,5 +11,5 @@ let getImage = name => {
 
 let importFavicon = () => {
   %bs.raw
-  {|require('CommonAssets/favicon.ico').default|};
+  {|require('./favicon.ico').default|};
 };
