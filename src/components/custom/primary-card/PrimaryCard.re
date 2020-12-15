@@ -13,7 +13,7 @@ let getHeader =
 let make =
     (
       ~title: string,
-      ~action: option(ButtonTypes.buttonProps)=?,
+      ~action: option(ButtonTypes.buttonProps),
       ~className: string="",
       ~children,
     ) => {
