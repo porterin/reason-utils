@@ -404,18 +404,6 @@ prop-types@^15.6.2, prop-types@^15.7.2:
     object-assign "^4.1.1"
     react-is "^16.8.1"
 
-re-debouncer@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/re-debouncer/-/re-debouncer-2.1.0.tgz#2eaf7994ba41590f4f80d4a363ae8905156b7dc1"
-  integrity sha512-Iy9BecWF9X4V6zXfL3ROZpKGkCnpzYdjG/j6NIBxQn7gEwO2DzED5BsbfRUiPeqr7C0tAD0HPHF6tYIcQFEnyA==
-
-re-formality@^4.0.0-beta.7:
-  version "4.0.0-beta.9"
-  resolved "https://registry.yarnpkg.com/re-formality/-/re-formality-4.0.0-beta.9.tgz#d9682ab7bee13373eec4a0c349cebf4a0dbb72e6"
-  integrity sha512-3kRhLG4HuRcwhRKRG/D/Z2NiQE2TcLfgCJ0wdRYHT8bjjLsF3rrC5ScO+VNP/6TNbh3pU0DcgmDc8hSfS8WQ2w==
-  dependencies:
-    re-debouncer "2.1.0"
-
 react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"

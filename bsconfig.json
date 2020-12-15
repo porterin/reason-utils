@@ -11,11 +11,9 @@
       "bs-moment",
       "reason-urql",
       "decco",
-      "bs-webapi",
-      "re-formality"
+      "bs-webapi"
     ],
     "ppx-flags": [
-      "re-formality/ppx",
       "decco/ppx"
     ],
     "bs-dev-dependencies": [],

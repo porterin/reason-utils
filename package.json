@@ -37,13 +37,11 @@
   },
   "devDependencies": {
     "bs-platform": "^7.0.1",
-    "re-formality": "^4.0.0-beta.7",
     "reason-react": "^0.9.0"
   },
   "peerDependencies": {
     "bs-platform": "^7.0.1",
     "decco": "^1.1.1",
-    "reason-react": "^0.9.0",
-    "re-formality": "^4.0.0-beta.7"
+    "reason-react": "^0.9.0"
   }
 }
