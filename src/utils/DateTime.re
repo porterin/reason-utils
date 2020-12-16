@@ -1,5 +1,8 @@
 type t = Js.Date.t;
+
 open MomentRe;
+
+type moment = Moment.t;
 
 let largeYear = 3100;
 let defaultFormat = "DD-MM-YYYY HH:mm";
@@ -18,6 +21,10 @@ let fromMoment = (moment: Moment.t): t => {
 
 let toString = (~format: string=defaultFormat, date: t) => {
   Moment.format(format, momentWithDate(date));
+};
+
+let toMomentWithFormat = (date: t, format: string): Moment.t => {
+  date -> toString |> momentWithFormat(format)
 };
 
 let fromString = (~format: string=defaultFormat, dateString: string): t => {
@@ -108,3 +115,27 @@ let diffDates =
     )
     : float =>
   diff(momentWithDate(endDate), momentWithDate(startDate), timeUnit);
+
+let startOf = (date: Js.Date.t, scale) => {
+  date |> toMoment |> Moment.startOf(scale) |> fromMoment
+};
+
+let endOf = (date: Js.Date.t, scale) => {
+  date |> toMoment |> Moment.endOf(scale) |> fromMoment
+};
+
+let toUtc = (date: string) => {
+  date -> momentUtc |> fromMoment
+};
+
+let isValid = (date: Js.Date.t) => {
+  date |> toMoment |> Moment.isValid
+};
+
+let format = (date: Js.Date.t, format: string) => {
+  date |> toMoment |> Moment.format(format)
+}
+
+let day = (date: Js.Date.t) => {
+  date -> toMoment -> Moment.day
+}
