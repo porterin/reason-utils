@@ -2,10 +2,28 @@ module type ResponseWrapperConfig = {let execute: Fetch.response => Js.Promise.t
 };
 
 module ResponseWrapper = {
-  let parseSuccess = (response: Fetch.response) => {
+
+let parseSuccess = (response: Fetch.response) => {
     response
-    |> Fetch.Response.json
-    |> Js.Promise.then_(result => Js.Promise.resolve(ResponseType.Success(result)));
+    |> Fetch.Response.text
+    |> Js.Promise.then_((result) => {
+         switch(result) {
+           | "{}" => {
+              Js.Promise.resolve(ResponseType.UnprocessedEntity(
+                [%bs.raw
+                  {|
+                    {
+                      "type": "Success with empty body",
+                      "message": "200 with empty body"
+                    }
+                  |}
+                ]
+              ))
+            } 
+           | _ => result |> Js.Json.parseExn |> payload => Js.Promise.resolve(ResponseType.Success(payload))
+         }
+      }
+    );
   };
 
   let parseUnprocessedError = (response: Fetch.response) => {
