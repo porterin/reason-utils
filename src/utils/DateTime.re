@@ -23,9 +23,9 @@ let toString = (~format: string=defaultFormat, date: t) => {
   Moment.format(format, momentWithDate(date));
 };
 
-let toMomentWithFormat = (date: t, format: string): Moment.t => {
-  date -> toString |> momentWithFormat(format)
-};
+let momentWithFormat = (date: string, format: string) => {
+  date -> momentWithFormat(format)
+}
 
 let fromString = (~format: string=defaultFormat, dateString: string): t => {
   Moment.toDate(momentWithFormat(dateString, format));
