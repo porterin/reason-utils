@@ -8,6 +8,7 @@ let parseSuccess = (response: Fetch.response) => {
     |> Fetch.Response.text
     |> Js.Promise.then_((result) => {
          switch(result) {
+           //handle Unexpected end of JSON input This happens due to empty response body.
            | "{}" => {
               Js.Promise.resolve(ResponseType.UnprocessedEntity(
                 [%bs.raw
