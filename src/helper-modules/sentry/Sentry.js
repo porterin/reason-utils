@@ -3,10 +3,7 @@ var SENTRY_FRONTEND_DSN = 'https://4ce8c888a1d349428e0dfeb0cb325a71@sentry.io/14
 let ignoreErrors = [
   /Cannot read property 'getReadModeExtract' of undefined/i,
   /Cannot read property 'getReadModeRender' of undefined/i,
-  /Cannot read property 'getReadModeConfig' of undefined/i,
-  /ResizeObserver loop limit exceeded/i,
-  /Unexpected end of input/i,
-  /Cannot read property \'\d+\' of null/i
+  /Cannot read property 'getReadModeConfig' of undefined/i
 ]
 
 export function init(env) {
