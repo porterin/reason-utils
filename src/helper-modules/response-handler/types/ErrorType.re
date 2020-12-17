@@ -10,4 +10,5 @@ type t =
   | TimedoutError
   | FailedToFetch
   | RequestCancelled
-  ;
+  | OperationAborted
+  | Cors;

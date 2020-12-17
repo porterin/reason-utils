@@ -2,7 +2,7 @@ exception RequestTimedout;
 exception FailedToFetch;
 exception RequestCancelled;
 exception OperationAborted;
-exception Cors;
+exception Cors(string);
 exception PromiseException(Js.Promise.error);
 
 let fromString = (exn: string) => {
@@ -53,7 +53,7 @@ module UnhandledExceptionHandler = {
       | "AbortError: The operation was aborted" //Firefox
       | "TypeError: The operation couldn’t be completed. Software caused connection abort"  //Safari
       => OperationAborted
-      | _ => isCors(error |> toString) ? Cors : PromiseException(error)
+      | _ => isCors(error |> toString) ? Cors(error |> toString) : PromiseException(error)
       };
   };
 };

@@ -9,4 +9,6 @@ type t =
   | DataConflict(Js.Json.t)
   | TimedoutError
   | FailedToFetch
-  | RequestCancelled ;
+  | RequestCancelled
+  | Cors(string)
+  | OperationAborted;

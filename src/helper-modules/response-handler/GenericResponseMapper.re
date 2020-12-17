@@ -67,7 +67,7 @@ module TimedoutErrorHandler = {
 module FailedToFetchErrorHandler = {
   let execute = (): Error.t => {
     Error.DefaultError({
-      type_: ErrorType.TimedoutError,
+      type_: ErrorType.FailedToFetch,
       title: "Failed to fetch",
       message: "Failed to fetch.",
     });
@@ -77,10 +77,37 @@ module FailedToFetchErrorHandler = {
 module RequestCancelledErrorHandler = {
   let execute = (): Error.t => {
     Error.DefaultError({
-      type_: ErrorType.TimedoutError,
+      type_: ErrorType.RequestCancelled,
       title: "Request Cancelled",
       message: "Request Cancelled",
     });
+  };
+};
+
+module OperationAbortedHandler = {
+  let execute = (): Error.t => {
+    Error.DefaultError({
+      type_: ErrorType.OperationAborted,
+      title: "Operation Aborted",
+      message: "Operation Aborted"
+    });
+  };
+};
+
+module CorsHandler = {
+  let execute = (data: string): Error.t => {
+    switch(Env.getWorkingEnv()) {
+      | Production => Error.DefaultError({
+            type_: ErrorType.FailedToFetch,
+            title: "Failed to fetch",
+            message: "Failed to fetch.",
+          })
+      | _  => Error.DefaultError({
+            type_: ErrorType.Cors,
+            title: "Cors Error",
+            message: data,
+        })
+    }
   };
 };
 

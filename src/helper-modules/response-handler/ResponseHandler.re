@@ -3,28 +3,10 @@ module type ResponseWrapperConfig = {let execute: Fetch.response => Js.Promise.t
 
 module ResponseWrapper = {
 
-let parseSuccess = (response: Fetch.response) => {
+ let parseSuccess = (response: Fetch.response) => {
     response
-    |> Fetch.Response.text
-    |> Js.Promise.then_((result) => {
-         switch(result) {
-           //handle Unexpected end of JSON input This happens due to empty response body.
-           | "{}" => {
-              Js.Promise.resolve(ResponseType.UnprocessedEntity(
-                [%bs.raw
-                  {|
-                    {
-                      "type": "Success with empty body",
-                      "message": "200 with empty body"
-                    }
-                  |}
-                ]
-              ))
-            } 
-           | _ => result |> Js.Json.parseExn |> payload => Js.Promise.resolve(ResponseType.Success(payload))
-         }
-      }
-    );
+    |> Fetch.Response.json
+    |> Js.Promise.then_(result => Js.Promise.resolve(ResponseType.Success(result)));
   };
 
   let parseUnprocessedError = (response: Fetch.response) => {
@@ -145,8 +127,10 @@ module DefaultErrorConverter = {
     | DataConflict(data) =>
       Some(GenericResponseMapper.DataConflictErrorHandler.execute(~json=data))
     | TimedoutError => Some(GenericResponseMapper.TimedoutErrorHandler.execute())
+    | OperationAborted => Some(GenericResponseMapper.OperationAbortedHandler.execute())
     | FailedToFetch => Some(GenericResponseMapper.FailedToFetchErrorHandler.execute())
     | RequestCancelled => Some(GenericResponseMapper.RequestCancelledErrorHandler.execute())
+    | Cors(data) => Some(GenericResponseMapper.CorsHandler.execute(data))
     | _ => None
     };
   };

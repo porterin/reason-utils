@@ -43,6 +43,8 @@ module PromiseHandler: PromiseHandler = {
     | Exception.RequestTimedout => Js.Promise.resolve(ResponseType.TimedoutError)
     | Exception.FailedToFetch => Js.Promise.resolve(ResponseType.FailedToFetch)
     | Exception.RequestCancelled => Js.Promise.resolve(ResponseType.RequestCancelled)
+    | Exception.OperationAborted => Js.Promise.resolve(ResponseType.OperationAborted)
+    | Exception.Cors(data) => Js.Promise.resolve(ResponseType.Cors(data))
     | _ => raise(exp)
     };
   };
