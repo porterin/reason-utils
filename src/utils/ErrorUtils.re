@@ -1,7 +1,7 @@
 let getDefaultErrorEntity =
     (
       ~message: string,
-      ~title=ErrorType.Default,
+      ~title=ErrorType.Custom("Default Error"),
       (),
     ) => {
   Error.DefaultError(DefaultErrorPayload.{title, message});

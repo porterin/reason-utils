@@ -94,7 +94,7 @@ module CorsHandler = {
             message: "Failed to fetch.",
           })
       | _  => Error.DefaultError({
-            title: Cors,
+            title: CorsError,
             message: data,
         })
     }
