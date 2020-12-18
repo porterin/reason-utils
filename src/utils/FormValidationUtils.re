@@ -25,8 +25,8 @@ let validateMsisdn = (msisdn: string): Belt.Result.t(string, string) => {
     ? Belt.Result.Ok(msisdn) : Belt.Result.Error("Enter valid msisdn");
 };
 
-let validateCallerNumber = (caller_number: string): Belt.Result.t(string, string) => {
-  Js_re.test_([%re "/^[6-9](\d{9})$/i"], caller_number)
+let validateMobileNumber = (caller_number: string): Belt.Result.t(string, string) => {
+  ValidationHelper.MobileNumber.isValid(caller_number) 
     ? Belt.Result.Ok(caller_number) : Belt.Result.Error("Enter valid caller number");
 };
 
