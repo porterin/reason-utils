@@ -10,4 +10,4 @@ type t =
   | FailedToFetch
   | RequestCancelled
   | OperationAborted
-  | Cors;
+  | CorsError;
