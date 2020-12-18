@@ -29,7 +29,7 @@ let make =
           Js.Global.setTimeout(() => setIsError(_ => true), timeout);
         <CircularLoader className=loaderclassName />;
       | true =>
-        <ReloadableErrorDisplayComponent
+        <ErrorDisplayComponent
           error={ErrorUtils.getDefaultErrorEntity(
             ~message="The component failed to load",
             (),

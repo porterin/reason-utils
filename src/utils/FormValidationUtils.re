@@ -26,7 +26,7 @@ let validateMsisdn = (msisdn: string): Belt.Result.t(string, string) => {
 };
 
 let validateMobileNumber = (caller_number: string): Belt.Result.t(string, string) => {
-  ValidationHelper.MobileNumber.isValid(caller_number) 
+  ValidationHelper.MobileNumber.isValid(caller_number)
     ? Belt.Result.Ok(caller_number) : Belt.Result.Error("Enter valid caller number");
 };
 

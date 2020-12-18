@@ -1,5 +1,5 @@
 module MultiHolder = {
-  let holderImage = AssetsManager.getImage("multi-holder.svg");
+  let holderImage = MmiAssetsManager.getImage("multi-holder.svg");
   [@react.component]
   let make = () => {
     <img src=holderImage />;
@@ -7,7 +7,7 @@ module MultiHolder = {
 };
 
 module TruckIcon = {
-  let truckImage = AssetsManager.getImage("truck.svg");
+  let truckImage = MmiAssetsManager.getImage("truck.svg");
   [@react.component]
   let make = () => {
     <img src=truckImage />;
@@ -15,7 +15,7 @@ module TruckIcon = {
 };
 
 module BikeIcon = {
-  let bikeImage = AssetsManager.getImage("bike.svg");
+  let bikeImage = MmiAssetsManager.getImage("bike.svg");
   [@react.component]
   let make = () => {
     <img src=bikeImage />;
@@ -23,7 +23,7 @@ module BikeIcon = {
 };
 
 module StartTrip = {
-  let icon = AssetsManager.getImage("start-trip-icon.svg");
+  let icon = MmiAssetsManager.getImage("start-trip-icon.svg");
   [@react.component]
   let make = () => {
     <img src=icon />;
@@ -31,7 +31,7 @@ module StartTrip = {
 };
 
 module AcceptTrip = {
-  let icon = AssetsManager.getImage("accept-trip-icon.svg");
+  let icon = MmiAssetsManager.getImage("accept-trip-icon.svg");
   [@react.component]
   let make = () => {
     <img src=icon />;
@@ -39,7 +39,7 @@ module AcceptTrip = {
 };
 
 module PickupLocation = {
-  let icon = AssetsManager.getImage("pickup-location-icon.svg");
+  let icon = MmiAssetsManager.getImage("pickup-location-icon.svg");
   [@react.component]
   let make = () => {
     <img src=icon />;
@@ -54,7 +54,7 @@ module Waypoint = {
 };
 
 module CancelTrip = {
-  let icon = AssetsManager.getImage("cancel-trip-icon.svg");
+  let icon = MmiAssetsManager.getImage("cancel-trip-icon.svg");
   [@react.component]
   let make = () => {
     <img src=icon />;
@@ -62,7 +62,7 @@ module CancelTrip = {
 };
 
 module DropLocation = {
-  let icon = AssetsManager.getImage("drop-location-icon.svg");
+  let icon = MmiAssetsManager.getImage("drop-location-icon.svg");
   [@react.component]
   let make = () => {
     <img src=icon />;
@@ -70,7 +70,7 @@ module DropLocation = {
 };
 
 module EndTrip = {
-  let endTripIcon = AssetsManager.getImage("end-trip-icon.svg");
+  let endTripIcon = MmiAssetsManager.getImage("end-trip-icon.svg");
   [@react.component]
   let make = () => {
     <img src=endTripIcon />;
@@ -78,7 +78,7 @@ module EndTrip = {
 };
 
 module SingleHolder = {
-  let holder = AssetsManager.getImage("single-holder.svg");
+  let holder = MmiAssetsManager.getImage("single-holder.svg");
   [@react.component]
   let make = () => {
     <img src=holder />;
@@ -86,7 +86,7 @@ module SingleHolder = {
 };
 
 module SliderTruck = {
-  let truck = AssetsManager.getImage("slider-truck-thumb.svg");
+  let truck = MmiAssetsManager.getImage("slider-truck-thumb.svg");
   [@react.component]
   let make = () => {
     <img src=truck />;
@@ -94,7 +94,7 @@ module SliderTruck = {
 };
 
 module SliderTruckLive = {
-  let truck = AssetsManager.getImage("slider-truck-live-thumb.svg");
+  let truck = MmiAssetsManager.getImage("slider-truck-live-thumb.svg");
   [@react.component]
   let make = () => {
     <img src=truck />;

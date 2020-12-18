@@ -8,6 +8,6 @@ let make =
   switch (loadableData) {
   | Loading(_data) => loadingData
   | Live(data) => children(data)
-  | Error(error) => <ReloadableErrorDisplayComponent error />
+  | Error(error) => <ErrorDisplayComponent error />
   };
 };

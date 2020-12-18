@@ -100,7 +100,7 @@ module Make = (Cmp: Record) => {
            <TableComponent columns className="order-table" rowData={data.recs} />
          </Scrollable>
        | Loading(_data) => <LoadingViewComponent />
-       | Error(error) => <ReloadableErrorDisplayComponent error />
+       | Error(error) => <ErrorDisplayComponent error />
        }}
     </>;
   };
