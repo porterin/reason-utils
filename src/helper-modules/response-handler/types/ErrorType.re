@@ -1,13 +1,12 @@
 type t =
-  | Success
-  | SuccessWithNoContent
+  | Custom(string)
   | UnprocessedEntity
   | NotAcceptableEntity
   | Unauthorized
   | Forbidden
   | InternalServerError
   | DataConflict
-  | TimedoutError
+  | RequestTimeout
   | FailedToFetch
   | RequestCancelled
   | OperationAborted

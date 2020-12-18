@@ -40,7 +40,7 @@ module PromiseHandler: PromiseHandler = {
 
   let mapExceptionsToErrors = (exp: exn) => {
     switch (exp) {
-    | Exception.RequestTimedout => Js.Promise.resolve(ResponseType.TimedoutError)
+    | Exception.RequestTimedout => Js.Promise.resolve(ResponseType.RequestTimeout)
     | Exception.FailedToFetch => Js.Promise.resolve(ResponseType.FailedToFetch)
     | Exception.RequestCancelled => Js.Promise.resolve(ResponseType.RequestCancelled)
     | Exception.OperationAborted => Js.Promise.resolve(ResponseType.OperationAborted)

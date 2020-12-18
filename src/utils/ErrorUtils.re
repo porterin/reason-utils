@@ -1,11 +1,10 @@
 let getDefaultErrorEntity =
     (
       ~message: string,
-      ~errorType: ErrorType.t=ErrorType.UnprocessedEntity,
-      ~title: string="Error",
+      ~title=ErrorType.Default,
       (),
     ) => {
-  Error.DefaultError(DefaultErrorPayload.{type_: errorType, title, message});
+  Error.DefaultError(DefaultErrorPayload.{title, message});
 };
 
 let resolveError = (~error: Error.t) => {

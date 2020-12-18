@@ -2,8 +2,7 @@ module UnprocessedErrorHandler = {
   let execute = (~json: Js.Json.t): Error.t => {
     Error.DefaultError(
       Json.Decode.{
-        type_: ErrorType.UnprocessedEntity,
-        title: json |> field("type", string),
+        title: UnprocessedEntity,
         message:
           Belt.Option.getWithDefault(
             json |> optional(field("message", string)),
@@ -18,8 +17,7 @@ module NotAcceptableErrorHandler = {
   let execute = (~json: Js.Json.t): Error.t => {
     Error.DefaultError(
       Json.Decode.{
-        type_: ErrorType.NotAcceptableEntity,
-        title: "Not Acceptable",
+        title: NotAcceptableEntity,
         message:
           Belt.Option.getWithDefault(
             json |> optional(field("error", string)),
@@ -34,8 +32,7 @@ module ForbiddenErrorHandler = {
   let execute = (~json: Js.Json.t): Error.t => {
     Error.DefaultError(
       Json.Decode.{
-        type_: ErrorType.Forbidden,
-        title: json |> field("title", string),
+        title: Forbidden,
         message: json |> field("message", string),
       },
     );
@@ -46,19 +43,17 @@ module DataConflictErrorHandler = {
   let execute = (~json: Js.Json.t): Error.t => {
     Error.DefaultError(
       Json.Decode.{
-        type_: ErrorType.DataConflict,
-        title: json |> field("title", string),
+        title: DataConflict,
         message: json |> field("message", string),
       },
     );
   };
 };
 
-module TimedoutErrorHandler = {
+module RequestTimeoutHandler = {
   let execute = (): Error.t => {
     Error.DefaultError({
-      type_: ErrorType.TimedoutError,
-      title: "Timeout error",
+      title: RequestTimeout,
       message: "Request timed out",
     });
   };
@@ -67,8 +62,7 @@ module TimedoutErrorHandler = {
 module FailedToFetchErrorHandler = {
   let execute = (): Error.t => {
     Error.DefaultError({
-      type_: ErrorType.FailedToFetch,
-      title: "Failed to fetch",
+      title: FailedToFetch,
       message: "Failed to fetch.",
     });
   };
@@ -77,8 +71,7 @@ module FailedToFetchErrorHandler = {
 module RequestCancelledErrorHandler = {
   let execute = (): Error.t => {
     Error.DefaultError({
-      type_: ErrorType.RequestCancelled,
-      title: "Request Cancelled",
+      title: RequestCancelled,
       message: "Request Cancelled",
     });
   };
@@ -87,8 +80,7 @@ module RequestCancelledErrorHandler = {
 module OperationAbortedHandler = {
   let execute = (): Error.t => {
     Error.DefaultError({
-      type_: ErrorType.OperationAborted,
-      title: "Operation Aborted",
+      title: OperationAborted,
       message: "Operation Aborted"
     });
   };
@@ -98,13 +90,11 @@ module CorsHandler = {
   let execute = (data: string): Error.t => {
     switch(Env.getWorkingEnv()) {
       | Production => Error.DefaultError({
-            type_: ErrorType.FailedToFetch,
-            title: "Failed to fetch",
+            title: FailedToFetch,
             message: "Failed to fetch.",
           })
       | _  => Error.DefaultError({
-            type_: ErrorType.Cors,
-            title: "Cors Error",
+            title: Cors,
             message: data,
         })
     }
