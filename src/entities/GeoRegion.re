@@ -8,7 +8,7 @@ type t =
   | Pune
   | Surat;
 
-let cities: list(t) = [Mumbai, Bangalore, Delhi, Hyderabad, Chennai, Ahmedabad, Pune];
+let cities: list(t) = [Mumbai, Bangalore, Delhi, Hyderabad, Chennai, Ahmedabad, Pune, Surat];
 
 let toString = (region: t): string =>
   switch (region) {

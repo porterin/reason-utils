@@ -1,7 +1,7 @@
 let closeIcon = AssetsManager.getImage("ic-info-outline.svg");
 
 [@react.component]
-let make = (~label: string, ~cb: _ => unit, ~error=None) => {
+let make = (~label: string, ~isDisabled: bool=false, ~cb: _ => unit, ~error=None) => {
   switch (error) {
   | Some(error) =>
     <div className="porter-form__section">
@@ -16,7 +16,9 @@ let make = (~label: string, ~cb: _ => unit, ~error=None) => {
     </div>
   | None =>
     <div className="porter-form__section">
-      <button className="btn-primary--green" onClick={_ => cb()}> {React.string(label)} </button>
+      <button disabled=isDisabled className="btn-primary--green" onClick={_ => cb()}>
+        {React.string(label)}
+      </button>
     </div>
   };
 };

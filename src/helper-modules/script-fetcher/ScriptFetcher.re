@@ -28,7 +28,8 @@ let make =
         let _timeoutId =
           Js.Global.setTimeout(() => setIsError(_ => true), timeout);
         <CircularLoader className=loaderclassName />;
-      | true =>
+      | true => {
+        Js.log("Map load fail");
         <ErrorDisplayComponent
           error={ErrorUtils.getDefaultErrorEntity(
             ~message="The component failed to load",
@@ -36,6 +37,7 @@ let make =
           )}
           className=errorclassName
         />
+        }
       }
     }
     scripts
