@@ -1,6 +1,22 @@
 [@bs.val] external node_env: string = "process.env.NODE_ENV";
 [@bs.val] external oms_url: string = "process.env.OMS_URL";
 [@bs.val] external crm_url: string = "window.location.origin";
+
+
+module Environment = {
+  type t =
+    | Production
+    | Staging
+    | Development
+
+  let fromString :(string) => t =
+    fun
+    | "production" => Production
+    | "staging" => Staging
+    | _ => Development
+}
+
+
 let getCrmBaseUrl = (): string => crm_url;
 
 let getHostName = (): string => {
@@ -9,3 +25,7 @@ let getHostName = (): string => {
   | _ => oms_url
   };
 };
+
+let getWorkingEnv= () => {
+  Environment.fromString(node_env)
+}

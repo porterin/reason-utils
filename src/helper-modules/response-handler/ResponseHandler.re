@@ -2,7 +2,8 @@ module type ResponseWrapperConfig = {let execute: Fetch.response => Js.Promise.t
 };
 
 module ResponseWrapper = {
-  let parseSuccess = (response: Fetch.response) => {
+
+ let parseSuccess = (response: Fetch.response) => {
     response
     |> Fetch.Response.json
     |> Js.Promise.then_(result => Js.Promise.resolve(ResponseType.Success(result)));
@@ -125,9 +126,11 @@ module DefaultErrorConverter = {
       Some(GenericResponseMapper.ForbiddenErrorHandler.execute(~json=data))
     | DataConflict(data) =>
       Some(GenericResponseMapper.DataConflictErrorHandler.execute(~json=data))
-    | TimedoutError => Some(GenericResponseMapper.TimedoutErrorHandler.execute())
+    | RequestTimeout => Some(GenericResponseMapper.RequestTimeoutHandler.execute())
+    | OperationAborted => Some(GenericResponseMapper.OperationAbortedHandler.execute())
     | FailedToFetch => Some(GenericResponseMapper.FailedToFetchErrorHandler.execute())
     | RequestCancelled => Some(GenericResponseMapper.RequestCancelledErrorHandler.execute())
+    | Cors(data) => Some(GenericResponseMapper.CorsHandler.execute(data))
     | _ => None
     };
   };

@@ -29,8 +29,7 @@ let resolveRepoResponse = (handleResponse: _ => option(Js.Promise.t(Belt.Result.
     Js.Promise.resolve(
       Belt.Result.Error(
         Error.DefaultError({
-          type_: ErrorType.InternalServerError,
-          title: "Internal Server Error",
+          title: InternalServerError,
           message: "Something went wrong",
         }),
       ),

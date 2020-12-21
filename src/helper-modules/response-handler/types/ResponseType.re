@@ -7,6 +7,8 @@ type t =
   | Forbidden(Js.Json.t)
   | InternalServerError(Js.Json.t)
   | DataConflict(Js.Json.t)
-  | TimedoutError
+  | RequestTimeout
   | FailedToFetch
-  | RequestCancelled ;
+  | RequestCancelled
+  | OperationAborted
+  | Cors(string);

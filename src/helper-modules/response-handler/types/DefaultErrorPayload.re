@@ -1,5 +1,4 @@
 type t = {
-  type_: ErrorType.t,
-  title: string,
+  title: ErrorType.t,
   message: string,
 };
