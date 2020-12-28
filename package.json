@@ -33,8 +33,7 @@
     "bs-moment": "^0.4.4",
     "bs-webapi": "^0.17.1",
     "decco": "^1.1.1",
-    "papaparse": "5.1.0",
-    "reason-urql": "^1.5.0"
+    "papaparse": "5.1.0"
   },
   "devDependencies": {
     "bs-platform": "^7.0.1",

@@ -9,7 +9,6 @@
       "reason-react",
       "@jsiebern/bs-material-ui",
       "bs-moment",
-      "reason-urql",
       "decco",
       "bs-webapi"
     ],
