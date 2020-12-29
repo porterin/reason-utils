@@ -1,0 +1,22 @@
+.header {
+  &-container {
+    @include porter-header-background;
+    display: flex; 
+    padding-left: 2rem;
+    padding-top: 1.2rem;
+    &__user-profile {
+      margin-left: auto;
+      padding-right: 2rem;
+    }
+  }
+}
+
+.header__h3 {
+  text-align: center;
+  font-size: $font-size-base;
+}
+
+.porter-logo {
+  height: 1.6rem;
+  margin-bottom: 1.2rem;
+}

@@ -1,0 +1,28 @@
+.error-message {
+  margin: 0.8rem 0;
+  padding: 1.6rem 0.8rem;
+  text-align: center;
+  line-height: 2rem;
+  font-size: $font-size-base;
+  color: $color-form-error;
+  background: $color-form-error-bg;
+}
+
+.error-container {
+  @include crm-txt-base-style;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1em 0;
+  background-color: $color-white;
+  width: 100%;
+  > .error-message {
+    padding: 0.8rem;
+    margin: 0;
+    text-align: center;
+    font-size: $font-size-base;
+    color: $color-black;
+    background-color: inherit;
+  }
+}

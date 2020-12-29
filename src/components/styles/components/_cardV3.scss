@@ -1,0 +1,11 @@
+.card-v3 {
+  width: 100%;
+  > .header {
+    margin-bottom: 1rem;
+    > .title {
+      @include crm-txt-base-style;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+  }
+}

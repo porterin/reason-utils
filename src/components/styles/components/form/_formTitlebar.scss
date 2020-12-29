@@ -1,0 +1,18 @@
+.titlebar {
+  @include crm-txt-base-style;
+  @include porter-header-background;
+  font-size: $font-size-base;
+  height: 5rem;
+  padding: 0 1.6rem;
+  box-shadow: 0 1px 4px 0 $color-black-transparent-4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__title {
+    color: $color-white;
+  }
+  &__close {
+    margin-left: auto;
+    cursor: pointer;
+  }
+}

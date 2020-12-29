@@ -1,0 +1,284 @@
+//fonts
+.font-size-12 {
+  font-size: 1.2rem;
+}
+.font-size-14 {
+  font-size: 1.4rem;
+}
+.font-size-16 {
+  font-size: 1.6rem;
+}
+.font-size-18 {
+  font-size: 1.8rem;
+}
+.font-size-20 {
+  font-size: 2rem;
+}
+
+//margins
+.u-margin-no-bottom {
+  margin-bottom: 0;
+}
+.u-margin-right-xs {
+  margin-right: 0.4rem;
+}
+.u-margin-right-small {
+  margin-right: 0.8rem;
+}
+.u-margin-left-xs {
+  margin-left: 0.4rem;
+}
+
+.u-margin-vertical-xs {
+  margin: 0.4rem 0;
+}
+.u-margin-left-small {
+  margin-left: 0.8rem;
+}
+.u-margin-left-xxl {
+  margin-left: 2.4rem;
+}
+.u-margin-bottom-small {
+  margin-bottom: 0.8rem;
+}
+.u-margin-vertical-small {
+  margin: 0.8rem 0;
+}
+.u-margin-top-small {
+  margin-top: 0.8rem;
+}
+.u-margin-bottom-medium {
+  margin-bottom: 1.2rem;
+}
+.u-margin-bottom-large {
+  padding-bottom: 1.6rem;
+}
+.u-margin-right-large {
+  margin-right: 1.6rem;
+}
+.u-margin-horizontal-large {
+  margin: 0 1.6rem;
+}
+.u-margin-large {
+  margin: 1.6rem;
+}
+.u-margin-xl {
+  margin: 2rem;
+}
+.u-margin-right-xxl {
+  margin-right: 3rem
+}s
+.u-margin-left-2px {
+  margin-left: 2px;
+}
+
+//paddings
+.u-padding-bottom-small {
+  padding-bottom: 0.8rem;
+}
+.u-padding-top-small {
+  padding-top: 0.8rem;
+}
+.u-padding-horizontal-small {
+  padding: 0 0.8rem;
+}
+.u-padding-vertical-small {
+  padding: 0.8rem 0;
+}
+.u-padding-xs {
+  padding: 0.8rem 0.4rem;
+}
+
+.u-padding-small {
+  padding: 1.5rem 1rem;
+}
+
+//positioning
+.u-text-centre {
+  text-align: center;
+}
+.u-text-left {
+  text-align: left;
+}
+.u-text-right {
+  text-align: right;
+}
+.u-float-right {
+  float: right;
+}
+.u-margin-left-auto {
+  margin-left: auto;
+}
+.u-align-self-flex-end {
+  align-self: flex-end;
+}
+.u-margin-0-auto {
+  margin: 0 auto;
+}
+.u-position-relative {
+  position: relative;
+}
+
+//display
+.u-display--block {
+  display: block;
+}
+
+//text
+.u-text-transform {
+  text-transform: capitalize;
+}
+.u-text-bold {
+  font-weight: bold;
+}
+
+//color
+.u-color-error {
+  color: $color-error;
+}
+.u-color-success {
+  color: $color-success;
+}
+.u-color-white {
+  color: $color-white;
+}
+.u-color-black {
+  color: $color-black;
+}
+.u-color-dark-blue {
+  color: $color-blue-dark;
+}
+.u-color-red {
+  color: $color-red;
+}
+.u-color-dark-grey {
+  color: $color-dark-grey;
+}
+
+//porter-color-palette
+
+//colors
+.u-color-p-red-dark {
+  color: $red-dark;
+}
+.u-color-p-blue-dark {
+  color: $blue-dark;
+}
+.u-color-p-grey-dark {
+  color: $grey-dark;
+}
+.u-color-p-amber-dark {
+  color: $amber-dark;
+}
+.u-color-p-green-dark {
+  color: $green-dark;
+}
+.u-color-txt-semi-dark {
+  color: $txt-semi-dark
+}
+
+//background-colors
+.u-bg-color-p-red-light {
+  background-color: $red-light;
+}
+.u-bg-color-p-blue-light {
+  background-color: $blue-light;
+}
+.u-bg-color-p-grey-light {
+  background-color: $grey-light;
+}
+.u-bg-color-p-amber-light {
+  background-color: $amber-light;
+}
+.u-bg-color-p-green-light {
+  background-color: $green-light;
+}
+
+//font-styling
+.font-weight-bold {
+  font-weight: bold;
+}
+
+//display
+.u-display-inline-block {
+  display: inline-block;
+}
+
+//widths
+.u-width-100-perc {
+  width: 100%;
+}
+.u-width-50-perc {
+  width: 50%;
+}
+.u-width-40-perc {
+  width: 40%;
+}
+.u-width-35-perc {
+  width: 35%;
+}
+.u-width-30-perc {
+  width: 30%;
+}
+
+.u-width-10-perc {
+  width: 10%;
+}
+//background-colors
+.u-background-color-disabled {
+  background-color: $color-background-disabled;
+}
+
+//opacity
+.u-opacity-light {
+  opacity: 0.38;
+}
+.u-opacity-medium {
+  opacity: 0.54;
+}
+.u-opacity-dark {
+  opacity: 0.87;
+}
+
+//box-shadow
+.u-box-shadow {
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+//border
+.u-top-border {
+  border-top: 1px solid $color-off-white-2;
+}
+.u-bottom-border {
+  border-bottom: 1px solid $color-off-white-2;
+}
+
+.u-left-border {
+  border-left: 1px solid $color-off-white-2;
+}
+
+.u-right-border {
+  border-right: 1px solid $color-off-white-2;
+}
+
+//position
+// deprecated
+.u-position-sticky {
+  position: sticky;
+  top: 0px;
+  z-index: 3;
+}
+
+//scroll
+.u-scrollable-y {
+  overflow-y: scroll;
+}
+.u-max-height-55 {
+  max-height: 55rem;
+}
+.u-form-body-height {
+  height: calc(100% - 5rem);
+}
+.u-form-full-height {
+  height: 100%;
+}

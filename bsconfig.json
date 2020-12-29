@@ -1,0 +1,37 @@
+{
+    "name": "catalyst",
+    "reason": {
+      "react-jsx": 3
+    },
+    "bs-dependencies": [
+      "bs-fetch",
+      "@glennsl/bs-json",
+      "reason-react",
+      "@jsiebern/bs-material-ui",
+      "bs-moment",
+      "decco",
+      "bs-webapi"
+    ],
+    "ppx-flags": [
+      "decco/ppx"
+    ],
+    "bs-dev-dependencies": [],
+    "sources": [
+      {
+        "dir": "src",
+        "subdirs": true
+      }
+    ],
+    "warnings": {
+      "number": "-44",
+      "error": "+27"
+    },
+    "package-specs": {
+      "module": "commonjs",
+      "in-source": true
+    },
+    "namespace": true,
+    "suffix": ".bs.js",
+    "refmt": 3
+  }
+  

@@ -1,0 +1,99 @@
+.porter-form {
+  @include crm-txt-base-style;
+  font-size: $font-size-14;
+
+  &__section {
+    border: solid 1px $color-off-white-3;
+    background-color: $color-white;
+    margin: 1.6rem;
+    padding: 1.6rem;
+  }
+
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    margin: 0.6rem 0;
+    height: 100%;
+  }
+
+  &__row-with-title {
+    padding: 0.4rem 0;
+  }
+  &__row > div:not(:last-child) {
+    margin-right: 1rem;
+  }
+
+  &__hr {
+    height: 1px;
+    flex: 0 0 80%;
+    border: none;
+    background-color: $color-off-white-2;
+  }
+  &__hr--2 {
+    height: 2px;
+    flex: 0 0 80%;
+    border: none;
+    background-color: $color-off-white-2;
+  }
+  &__label {
+    @include crm-txt-base-style;
+    text-decoration: none;
+    font-size: $font-size-12;
+    color: $color-form-label;
+  }
+
+  &__modal-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: $bg-transparent;
+    z-index: 2;
+  }
+  &__modal {
+    position: absolute;
+    top: 0 !important;
+    bottom: 0 !important;
+    transform: translate(50%, 20%);
+    background-color: $color-off-white-1;
+    box-shadow: 0 0 6px 0 $color-black-transparent-4;
+    margin: 1rem;
+    min-width: 40vw !important;
+    outline: none;
+  }
+  &__modal-size-70 {
+    transform: translate(30vw, 20vh);
+    height: 70vh;
+  }
+  &__modal-size-70-surge {
+    transform: translate(30vw, 20vh);
+    height: 70vh;
+    width: 750px;
+  }
+  &__modal-body {
+    height: 100%;
+  }
+  &__error {
+    background: $color-form-error-bg;
+    color: $color-form-error;
+    padding: 1rem 2rem;
+    text-align: center;
+    font-size: $font-size-base;
+  }
+  &__submitError {
+    padding: 0.2rem 0.4rem;
+    font-size: $font-size-12;
+    color: $color-submit-error-text;
+    font-weight: $font-weight-400;
+  }
+  &__success {
+    margin: 1rem 0;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    line-height: 2rem;
+    font-size: $font-size-base;
+    color: $color-success;
+    background: $color-success-bg;
+  }
+}

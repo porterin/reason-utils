@@ -1,0 +1,34 @@
+.text-styling-cat-items {
+  @include crm-txt-base-style;
+  color: $color-blue-dark;
+  text-decoration: none;
+  font-size: $font-size-14;
+}
+.text-styling-action-btn {
+  @include crm-txt-base-style;
+  @include cursor(pointer);
+  font-weight: bold;
+  color: $color-blue-dark;
+  text-decoration: none;
+  font-size: $font-size-base;
+}
+.text-styling-header {
+  @include crm-txt-base-style;
+  font-weight: bold;
+  color: $color-text;
+  text-decoration: none;
+}
+.text-styling-text {
+  @include crm-txt-base-style;
+  color: $color-text;
+  text-decoration: none;
+  font-size: $font-size-14;
+}
+
+.text-positive {
+  color: $color-positive-green;
+}
+
+.text-negative {
+  color: $color-negative-red;
+}

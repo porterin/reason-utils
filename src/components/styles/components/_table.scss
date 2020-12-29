@@ -1,0 +1,49 @@
+.table-wrapper {
+  font-family: $font-family-primary;
+  font-size: $font-size-12;
+  margin: 0.8rem auto;
+}
+
+.table {
+  table-layout: "fixed";
+  white-space: "nowrap";
+  &-header {
+    background-color: $color-table-header;
+    color: $color-black-1;
+    th {
+      font-weight: bold;
+      font-size: $font-size-12;
+      padding: 1.2rem 1rem;
+      color: $color-black-1;
+      min-width: 100px !important;
+      max-width: 200px !important;
+    }
+  }
+  &-body {
+    > tr:hover {
+      background-color: $color-table-row-hover;
+    }
+    td {
+      font-size: $font-size-12;
+      padding: 1.2rem 1.6rem;
+      color: $color-black-1;
+      min-width: 100px !important;
+      max-width: 200px !important;
+    }
+  }
+  &__row-header {
+    display: table-row;
+  }
+
+  &__row-header-title {
+    font-size: $font-size-16;
+    font-weight: 900;
+    padding: 2.4rem 1.6rem 0;
+  }
+}
+
+.ellipsis-container {
+  min-width: 100px !important;
+  max-width: 200px !important;
+  word-break: break-all;
+}

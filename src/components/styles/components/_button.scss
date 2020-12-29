@@ -1,0 +1,117 @@
+.action-btn-form {
+  color: $color-white;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 1rem 2rem;
+  min-width: 8rem;
+  background-color: $color-form-action-btn;
+  &-text {
+    @include crm-txt-base-style;
+    color: $color-white;
+    font-size: $font-size-base;
+  }
+  &:focus,&:active {
+    outline: none !important;
+    box-shadow: none;
+  }
+}
+
+.btn-primary {
+  @include crm-txt-base-style;
+  font-size: $font-size-14;
+  color: $color-white;
+  cursor: pointer;
+  width: 472px;
+  height: 36px;
+  border-radius: 4px;
+  width: 100%;
+  &:focus,&:active {
+    outline: none !important;
+    box-shadow: none;
+  }
+}
+.btn-primary--green {
+  @extend .btn-primary;
+  background-color: $color-form-action-btn;
+}
+
+.btn-primary-small--green {
+  @extend .btn-primary;
+  background-color: $color-form-action-btn;
+  height: 100%;
+  width: 100%;
+  margin: 0.8rem 0.4rem;
+  padding: 1.2rem;
+}
+
+.btn-secondary {
+  @include crm-txt-base-style;
+  font-size: $font-size-14;
+  border-radius: 4px;
+  background-color: $color-white;
+  padding: 0.8rem 1.6rem;
+}
+
+.btn-secondary--blue {
+  @extend .btn-secondary;
+  color: $color-blue-dark;
+  border: solid 1px $color-blue-dark;
+}
+
+.btn-tertiary {
+  @include crm-txt-base-style;
+  font-size: $font-size-14;
+  padding: 0.8rem 0;
+}
+
+.btn-tertiary--blue {
+  @extend .btn-tertiary;
+  color: $color-blue-dark;;
+}
+
+.btn-tertiary--red {
+  @extend .btn-tertiary;
+  color: $color-red !important;
+}
+
+.button {
+  font-size: $font-size-12;
+  text-transform: capitalize;
+  padding: .1rem .6rem 0 !important;
+  white-space: nowrap;
+  :not(:last-child) {
+    margin-right: .4em !important;
+  }
+}
+
+.button-label-decorator {
+  text-decoration: none;
+}
+
+.round-button {
+  font-size: $font-size-12 !important;
+  text-transform: capitalize !important;
+  padding: 0 1.6rem !important;
+  white-space: nowrap;
+  :not(:last-child) {
+    margin-right: 0.4em !important;
+  }
+}
+
+.primary-button {
+  color: $primary !important;
+  background-color: $bg-blue !important;
+  box-shadow: none !important;
+  &:hover {
+    background-color: $color-bg-hover-button-primary !important;
+  }
+}
+
+.secondary-button {
+  color: $red-dark !important;
+  background-color: $red-light !important;
+  box-shadow: none !important;
+  &:hover {
+    background-color: $color-bg-hover-button-secondary !important;
+  }
+}
