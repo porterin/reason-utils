@@ -52,10 +52,10 @@ let make =
       content={popoverState.view}
       onClose={_ => togglePopover(_ => {...popoverState, anchor_el: None})}
       anchor_el={popoverState.anchor_el}
-      horizontal_position=`Right
-      vertical_position=`Bottom
-      horizontal_transform=`Right
-      vertical_transform=`Top
+      horizontal_position=Right
+      vertical_position=Bottom
+      horizontal_transform=Right
+      vertical_transform=Top
     />
   </>;
 };

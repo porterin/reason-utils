@@ -37,20 +37,30 @@ let make =
       labelId="select-checkbox-label-id"
       label={React.string(label)}
       multiple=true
-      value={`Array(selected |> Array.of_list)}
+      value={MaterialUi.Select.Value.arrayOf(selected |> Array.of_list)}
       onChange={(event, _) => onChange(event)}
-      renderValue={(selected: array(string)) =>
+      renderValue={(selected: MaterialUi_Types.any) =>
         switch (renderValue) {
-        | None => getListToString(selected |> Array.to_list)
-        | Some(fn) => fn(selected |> Array.to_list)
+        | None =>
+          selected
+          |> MaterialUi_Types.anyUnpack
+          |> Array.to_list
+          |> getListToString
+          |> React.string
+        | Some(fn) => fn(selected |> MaterialUi_Types.anyUnpack |> Array.to_list) |> React.string
         }
       }>
       {items
        |> List.map(item =>
-            <MaterialUi.MenuItem key={item.key} value={`String(item.value)}>
+            <MaterialUi.MenuItem
+              key={item.key} value={MaterialUi.MenuItem.Value.string(item.value)}>
               <MaterialUi.Checkbox
-                classes=[Root("form-input-checkbox"), Checked("checked-checkbox")]
-                value={item.value}
+                classes={MaterialUi.Checkbox.Classes.make(
+                  ~root="form-input-checkbox",
+                  ~checked="checked-checkbox",
+                  (),
+                )}
+                value={MaterialUi_Types.Any(item.value)}
                 checked={isChecked(selected, item.value)}
               />
               <MaterialUi.ListItemText primary={React.string(item.text)} />

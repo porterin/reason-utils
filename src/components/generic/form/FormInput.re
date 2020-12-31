@@ -195,7 +195,7 @@ let make = (~input_props: props('b, 'c)) => {
          label={React.string(input_props.label)}
          margin=`Dense
          size=`Medium
-         value={`String(value)}
+         value={MaterialUi.TextField.Value.string(value)}
          onBlur={_ => input_props.onBlur()}
          disabled={input_props.isDisabled}
          onChange={event => {

@@ -23,15 +23,16 @@ let make =
     <MaterialUi.Select
       labelId="select-label-id"
       label={React.string(label)}
-      defaultValue={defaultSelectItem.value}
-      value={`String(selectedValue.value)}
+      defaultValue={MaterialUi_Types.Any(defaultSelectItem.value)}
+      value={MaterialUi.Select.Value.string(selectedValue.value)}
       onChange={(e, _) => onChange(e)}>
-      <MaterialUi.MenuItem value={`String(defaultSelectItem.value)}>
+      <MaterialUi.MenuItem value={MaterialUi_MenuItem.Value.string(defaultSelectItem.value)}>
         defaultSelectItem.text->React.string
       </MaterialUi.MenuItem>
       {items
        |> List.map(item =>
-            <MaterialUi.MenuItem key={item.key} value={`String(item.value)}>
+            <MaterialUi.MenuItem
+              key={item.key} value={MaterialUi_MenuItem.Value.string(item.value)}>
               {React.string(item.text)}
             </MaterialUi.MenuItem>
           )
