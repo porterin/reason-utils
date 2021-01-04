@@ -5,18 +5,6 @@ exception OperationAborted;
 exception Cors(string);
 exception PromiseException(Js.Promise.error);
 
-let fromString = (exn: string) => {
-  switch (exn) {
-  | "Exception.RequestTimedout" => RequestTimedout
-  | _ =>
-    ErrorUtils.raiseError(
-      ~path="Exception.fromString",
-      ~message="No predefined Exception string found: ",
-      ~value=exn,
-    )
-  };
-};
-
 module type UnhandledExceptionHandler = {
     let resolveException: (Js.Promise.error) => exn
 };
@@ -58,8 +46,29 @@ module UnhandledExceptionHandler = {
   };
 };
 
+module type ExceptionHandler = {
+    let resolveException: (Js.Promise.error) => exn
+};
+
 module ExceptionHandler = {
   external errorToPair: Js.Promise.error => (string, int) = "%identity";
+
+  let getExnString = (exn: string) => {
+    exn
+      |> Js.String.split(".")
+      |> (arr) => arr[ArrayLabels.length(arr)-1]   
+  }
+
+  let fromString = (exn: string) => {
+    switch (exn -> getExnString) {
+      | "RequestTimedout" => RequestTimedout
+      | _ => ErrorUtils.raiseError(
+        ~path="Exception.fromString",
+        ~message="No predefined Exception string found: ",
+        ~value=exn,
+      )
+    };
+  };
 
   let resolveException = (error: Js.Promise.error): exn => {
     let errorString = error |> errorToPair |> fst;
