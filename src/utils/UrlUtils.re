@@ -70,3 +70,16 @@ let getCrmUrl = (url: ReasonReact.Router.url): string => {
 let getCurrentPageHost = () => {
   JsBindings.location(Webapi.Dom.window) |> JsBindings.host;
 };
+
+let getCrmUrlWithoutHash = (url: ReasonReact.Router.url): string => {
+  let baseUrl = Env.getCrmBaseUrl();
+  let path = url.path |> List.fold_left((a: string, b: string) => a ++ "/" ++ b, "");
+  let search = url.search !== "" ? "?" ++ url.search : "";
+  baseUrl ++ path ++ search;
+};
+
+let isURLSame = (~url1: ReasonReact.Router.url, ~url2: ReasonReact.Router.url, ~withoutHash: bool) => {
+  withoutHash
+    ? getCrmUrlWithoutHash(url1) === getCrmUrlWithoutHash(url2)
+    : getCrmUrl(url1) === getCrmUrl(url2);
+};

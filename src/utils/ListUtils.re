@@ -72,3 +72,20 @@ let unique = (list_input: list('a)): list('a) => {
   };
   list_input |> uniqueList(~new_list=[]);
 };
+
+let rec prev = (value: 't, list: list('t)): option('a) => {
+  switch (list) {
+  | [] => None
+  | [prev_val, head, ...tail] => head == value ? Some(prev_val) : prev(value, [head, ...tail])
+  | [_] => None
+  };
+};
+
+let rec pop = (value: 't, list: list('t)): list('t) => {
+  switch (list) {
+  | [] => []
+  | [prev_val, head, ...tail] =>
+    head == value ? [prev_val, ...tail] : pop(value, [head, ...tail])
+  | [head] => [head]
+  };
+};
