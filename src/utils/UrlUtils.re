@@ -58,3 +58,15 @@ let getPathSplitParts = (url: string): array(string) => {
 let getSearchParams = (url: string) => {
   Js.String.substr(~from=1, JsBindings.search(getAnchorElement(url)));
 };
+
+let getCrmUrl = (url: ReasonReact.Router.url): string => {
+  let baseUrl = Env.getCrmBaseUrl();
+  let path = url.path |> List.fold_left((a: string, b: string) => a ++ "/" ++ b, "");
+  let search = url.search !== "" ? "?" ++ url.search : "";
+  let hash = url.hash !== "" ? "#" ++ url.hash : "";
+  baseUrl ++ path ++ search ++ hash;
+};
+
+let getCurrentPageHost = () => {
+  JsBindings.location(Webapi.Dom.window) |> JsBindings.host;
+};
