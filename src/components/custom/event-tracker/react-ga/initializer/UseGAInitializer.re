@@ -9,6 +9,7 @@ let gtagExecCommand: string => unit = [%bs.raw
 |}
 ];
 
+
 let useGaInitializer = (~load_ga_script: bool=false, ~measurement_id: string) => {
   let (state, setState) = React.useState(_ => React.null);
 
