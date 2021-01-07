@@ -20,11 +20,7 @@ let getQueryParameterString = (urlParams: Js.Dict.t(string)): option(string) => 
          })
       |> (
         params_list =>
-          Array.fold_left(
-            (query_param, param) => {query_param ++ "&" ++ param},
-            params_list[0],
-            params_list,
-          )
+          Array.fold_left((query_param, param) => {query_param ++ param ++ "&"}, "", params_list)
           |> (query_param => Some("?" ++ query_param))
       )
     : None;
