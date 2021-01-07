@@ -1,3 +1,8 @@
+type postfixIcon =
+  | Caret
+  | Hamburger
+  | None;
+
 type menu_item = {
   item_label: ButtonLabel.t,
   item_cb: unit => unit,
@@ -28,12 +33,29 @@ let buildMenuList =
 
 [@react.component]
 let make =
-    (~menuButtonTitle: string, ~_caret: bool=true, ~menuItems: list(menu_item)): React.element => {
+    (
+      ~menuButtonTitle: option(string)=?,
+      ~className="",
+      ~postfixIcon: postfixIcon=None,
+      ~menuItems: list(menu_item),
+    )
+    : React.element => {
   let (popoverState, togglePopover) = PopoverStateManager.usePopover();
   <>
     <PrimaryButton
       buttonProps={ButtonUtils.getDefaultButtonProps(
-        ~label=Text(menuButtonTitle),
+        ~label=
+          {menuButtonTitle->Belt.Option.mapWithDefault(
+             ButtonLabel.(Custom(_ => React.null)), title =>
+             Text(title)
+           )},
+        ~className,
+        ~postfixIcon=
+          {switch (postfixIcon) {
+           | Caret => <Icon.ExpandMoreIcon />
+           | Hamburger => <Icon.MoreVertIcon fontSize=`Large />
+           | None => React.null
+           }},
         ~onSelectCB=
           (event: ReactEvent.Mouse.t) =>
             togglePopover(_ =>

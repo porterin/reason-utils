@@ -33,13 +33,17 @@ let make =
          |> List.map((option: t) => {
               <MaterialUi.FormControlLabel
                 key={option.id}
-                value={option.value}
+                value={MaterialUi_Types.Any(option.value)}
                 control={
                   <MaterialUi.Checkbox
                     onChange
                     id={option.id}
                     checked={isChecked(selected, option.value)}
-                    classes=[Root("form-input-checkbox"), Checked("checked-checkbox")]
+                    classes={MaterialUi.Checkbox.Classes.make(
+                      ~root="form-input-checkbox",
+                      ~checked="checked-checkbox",
+                      (),
+                    )}
                     color=`Primary
                   />
                 }
