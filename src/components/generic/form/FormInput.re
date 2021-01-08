@@ -37,6 +37,7 @@ type formInput =
   | Select({
       value: option(SelectComponent.t),
       items: list(SelectComponent.t),
+      isNoneRequired: bool
     })
   | CheckBox({
       selected: list(string),
@@ -174,6 +175,7 @@ let make = (~input_props: props('b, 'c)) => {
          value={params.value}
          onChange={input_props.onChange}
          items={params.items}
+         isNoneRequired={params.isNoneRequired}
        />
      | CheckBox(params) =>
        <CheckBoxGroup
