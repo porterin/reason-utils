@@ -14,15 +14,20 @@ let make =
     ) => {
   <>
     <LabelV4 text=label />
-    <MaterialUi.RadioGroup row className="form-radio-button-group" value onChange>
+    <MaterialUi.RadioGroup
+      row className="form-radio-button-group" value={MaterialUi_Types.Any(value)} onChange>
       {options
        |> List.mapi((index: int, button: t) => {
             <MaterialUi.FormControlLabel
               key={string_of_int(index)}
-              value={button.value}
+              value={MaterialUi_Types.Any(button.value)}
               control={
                 <MaterialUi.Radio
-                  classes=[Root("form-input-radio-button"), Checked("checked-radio-button")]
+                  classes={MaterialUi.Radio.Classes.make(
+                    ~root="form-input-radio-button",
+                    ~checked="checked-radio-button",
+                    (),
+                  )}
                   color=`Primary
                 />
               }
