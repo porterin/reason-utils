@@ -10,13 +10,13 @@ let gtagExecCommand: string => unit = [%bs.raw
 ];
 
 
-let useGaInitializer = (~load_ga_script: bool=false, ~measurement_id: string) => {
+let useGaInitializer = (~load_ga_script: bool=false, ~debug: bool=false, ~measurement_id: string, ) => {
   let (state, setState) = React.useState(_ => React.null);
 
   let script_url = "https://www.googletagmanager.com/gtag/js?id=" ++ measurement_id;
   React.useEffect0(() => {
     let initializeOptions: GaInitializer.initializeOptions = {
-      debug: true,
+      debug,
       titleCase: true,
       gaOptions: None,
     };
