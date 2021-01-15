@@ -58,9 +58,12 @@ module ExceptionHandler = {
 
   external deserialzeErr: Js.Promise.error => exnPayload= "%identity";
 
+  // the regex here extracts the exception name from the whole pattern 
+  // for e.g RequestTimedout is extracted from the expresssion "Exception-Catalyst.RequestTimedout/3".
+
   let getExnString = (exn: string) => { 
       exn 
-      |> Js.String.match([%re "/(?<=\.)(.*?)(?=\/)/"])
+      |> Js.String.match([%re "/(?<=\.)(.*?)(?=\/)/"]) 
       |> result => switch(result) {
         | None => "not_found"
         | Some(result) => result[0]
