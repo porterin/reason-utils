@@ -7,6 +7,7 @@
       "bs-fetch",
       "@glennsl/bs-json",
       "reason-react",
+      "reason-promise",
       "@jsiebern/bs-material-ui",
       "bs-moment",
       "decco",
