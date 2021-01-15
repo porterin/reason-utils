@@ -4,6 +4,7 @@ let error = err => Result.Error(err);
 
 type formInput =
   | Input(string)
+  | NativeField(string,string)
   | Date({
       value: Js.Date.t,
       minDate: option(Js.Date.t),
@@ -227,6 +228,26 @@ let make = (~input_props: props('b, 'c)) => {
          _InputLabelProps={"className": "form-input-label"}
          _InputProps={get_InputProps(input_props._inputProps)}
        />
+      | NativeField(value,type_)  => 
+        <MaterialUi.TextField
+          label={React.string(input_props.label)}
+          margin=`Dense
+          size=`Medium
+          value={`String(value)}
+          onBlur={_ => input_props.onBlur()}
+          disabled={input_props.isDisabled}
+          type_
+          onChange={event => {
+            ReactEvent.Form.persist(event);
+            setWarning(_ => input_props.warning(event));
+            input_props.onChange(event);
+          }}
+          placeholder={input_props.placeholder}
+          variant=`Outlined
+          className="form-input"
+          _InputLabelProps={"className": "form-input-label"}
+          _InputProps={get_InputProps(input_props._inputProps)}
+        />
      }}
     {getWarningOrError(warning, input_props.result)}
   </div>;
