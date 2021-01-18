@@ -13,3 +13,7 @@
   *Bug Fixes*
   + Missing packages react-ga and react-dependent-scripts added
   + SelectWithCheckBoxes component bug fix
+
++ **2.0.1**
+  + Bug fix for change in Js encoding of exceptions for bs-platoform version 8.0.0
+

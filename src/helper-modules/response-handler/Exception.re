@@ -6,7 +6,7 @@ exception Cors(string);
 exception PromiseException(Js.Promise.error);
 
 module type UnhandledExceptionHandler = {
-    let resolveException: (Js.Promise.error) => exn
+  let resolveException: (Js.Promise.error) => exn
 };
 
 module UnhandledExceptionHandler = {
@@ -51,12 +51,23 @@ module type ExceptionHandler = {
 };
 
 module ExceptionHandler = {
-  external errorToPair: Js.Promise.error => (string, int) = "%identity";
+  type exnPayload = {
+     [@bs.as("RE_EXN_ID")]
+     _RE_EXN_ID: string
+  };
 
-  let getExnString = (exn: string) => {
-    exn
-      |> Js.String.split(".")
-      |> (arr) => arr[ArrayLabels.length(arr)-1]   
+  external deserialzeErr: Js.Promise.error => exnPayload= "%identity";
+
+  // the regex here extracts the exception name from the whole pattern 
+  // for e.g RequestTimedout is extracted from the expresssion "Exception-Catalyst.RequestTimedout/3".
+
+  let getExnString = (exn: string) => { 
+      exn 
+      |> Js.String.match([%re "/(?<=\.)(.*?)(?=\/)/"]) 
+      |> result => switch(result) {
+        | None => "not_found"
+        | Some(result) => result[0]
+      }
   }
 
   let fromString = (exn: string) => {
@@ -71,10 +82,12 @@ module ExceptionHandler = {
   };
 
   let resolveException = (error: Js.Promise.error): exn => {
-    let errorString = error |> errorToPair |> fst;
-    switch (Js.typeof(errorString)) {
+    let exnPayload = error |> deserialzeErr
+    Js.log("-----exception-payload------")
+    Js.log(exnPayload)
+    switch (Js.typeof(exnPayload._RE_EXN_ID)) {
     | "undefined" => UnhandledExceptionHandler.resolveException(error)
-    | _ => fromString(errorString)
+    | _ => fromString(exnPayload._RE_EXN_ID)
     };
   };
 };
