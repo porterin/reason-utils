@@ -27,7 +27,7 @@
       "error": "+27"
     },
     "package-specs": {
-      "module": "commonjs",
+      "module": "es6-global",
       "in-source": true
     },
     "namespace": true,
