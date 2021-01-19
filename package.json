@@ -1,6 +1,6 @@
 {
   "name": "catalyst",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "description": "common frontend modules",
   "keywords": [
     "reason"
@@ -34,16 +34,18 @@
     "bs-moment": "^0.4.4",
     "bs-webapi": "^0.17.1",
     "decco": "^1.1.1",
-    "moment": "^2.24.0",
     "papaparse": "5.1.0",
+    "react-dependent-script": "^1.1.2",
+    "react-ga": "^3.3.0",
+    "moment": "^2.24.0",
     "reason-promise": "^1.1.2"
   },
   "devDependencies": {
-    "bs-platform": "^8.2.0",
+    "bs-platform": "^8.4.2",
     "reason-react": "^0.9.0"
   },
   "peerDependencies": {
-    "bs-platform": "^8.2.0",
+    "bs-platform": "^8.4.2",
     "decco": "^1.1.1",
     "reason-react": "^0.9.1"
   }
