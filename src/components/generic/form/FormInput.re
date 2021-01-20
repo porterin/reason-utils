@@ -2,6 +2,99 @@ open Belt;
 type result('a, 'b) = Result.t('a, 'b);
 let error = err => Result.Error(err);
 
+type _inputProps = {
+  className: string,
+  startAdornment: React.element,
+};
+
+type props('b, 'c) = {
+  label: string,
+  onChange: ReactEvent.Form.t => unit,
+  isDisabled: bool,
+  placeholder: string,
+  result: option(Belt.Result.t('b, 'c)),
+  onBlur: unit => unit,
+  warning: ReactEvent.Form.t => option(string),
+  className: string,
+  _inputProps: option(_inputProps),
+};
+
+let make_props =
+    (
+      ~label: string,
+      ~onChange: ReactEvent.Form.t => unit,
+      ~isDisabled: bool=false,
+      ~placeholder="",
+      ~onBlur: unit => unit=() => (),
+      ~result: option(Belt.Result.t('b, 'c)),
+      ~warning=_ => None,
+      ~className="",
+      ~_inputProps: option(_inputProps)=?,
+      (),
+    )
+    : props('b, 'c) => {
+  label,
+  onChange,
+  isDisabled,
+  placeholder,
+  onBlur,
+  result,
+  warning,
+  className,
+  _inputProps,
+};
+
+let getWarningOrError =
+    (warning: option(string), result: option(result('a, 'b))): React.element => {
+  <div className="input-error-container">
+    {switch (result) {
+     | None =>
+       switch (warning) {
+       | None => React.null
+       | Some(warning) => <div className="warning"> {React.string(warning)} </div>
+       }
+     | Some(result) =>
+       switch (result) {
+       | Error(err) => <div className="error"> {React.string(err)} </div>
+       | _ => React.null
+       }
+     }}
+  </div>;
+};
+
+module Date = {
+  type t =
+    | Date({
+        value: Js.Date.t,
+        minDate: option(Js.Date.t),
+        maxDate: option(Js.Date.t),
+        onChange: Js.Date.t => unit,
+        format: string,
+      });
+  [@react.component]
+  let make = (~input_props: props('b, 'c), ~value: t) => {
+    <div className={"form-input-container " ++ input_props.className}>
+      {switch (value) {
+       | Date(date_params) =>
+         <DatePicker
+           label={input_props.label}
+           disabled={input_props.isDisabled}
+           onChange={date => date_params.onChange(date |> MomentRe.Moment.toDate)}
+           value={date_params.value |> MomentRe.momentWithDate}
+           minDate={Belt.Option.mapWithDefault(date_params.minDate, None, v =>
+             Some(v |> MomentRe.momentWithDate)
+           )}
+           maxDate={Belt.Option.mapWithDefault(date_params.maxDate, None, v =>
+             Some(v |> MomentRe.momentWithDate)
+           )}
+           format={date_params.format}
+         />
+       }}
+      {getWarningOrError(None, input_props.result)}
+    </div>;
+  };
+};
+
 type formInput =
   | Input(string)
   | Date({
@@ -49,50 +142,6 @@ type formInput =
       renderValue: option(list(string) => string),
     });
 
-type _inputProps = {
-  className: string,
-  startAdornment: React.element,
-};
-
-type props('b, 'c) = {
-  label: string,
-  onChange: ReactEvent.Form.t => unit,
-  isDisabled: bool,
-  placeholder: string,
-  value: formInput,
-  result: option(Belt.Result.t('b, 'c)),
-  onBlur: unit => unit,
-  warning: ReactEvent.Form.t => option(string),
-  className: string,
-  _inputProps: option(_inputProps)
-};
-
-let make_props =
-    (
-      ~label: string,
-      ~onChange: ReactEvent.Form.t => unit,
-      ~isDisabled: bool=false,
-      ~placeholder="",
-      ~value: formInput,
-      ~onBlur: unit => unit=() => (),
-      ~result: option(Belt.Result.t('b, 'c)),
-      ~warning=_ => None,
-      ~className="",
-      ~_inputProps: option(_inputProps)=?,
-      (),
-    ) => {
-  label,
-  onChange,
-  isDisabled,
-  placeholder,
-  onBlur,
-  value,
-  result,
-  warning,
-  className,
-  _inputProps
-};
-
 let getWarningOrError =
     (warning: option(string), result: option(result('a, 'b))): React.element => {
   <div className="input-error-container">
@@ -119,10 +168,10 @@ let get_InputProps = (_inputProps: option(_inputProps)) => {
 };
 
 [@react.component]
-let make = (~input_props: props('b, 'c)) => {
+let make = (~input_props: props('b, 'c), ~value: formInput) => {
   let (warning, setWarning) = React.useState(_ => None);
   <div className={"form-input-container " ++ input_props.className}>
-    {switch (input_props.value) {
+    {switch (value) {
      | Date(date_params) =>
        <DatePicker
          label={input_props.label}
