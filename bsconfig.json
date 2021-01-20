@@ -15,11 +15,17 @@
     "ppx-flags": [
       "decco/ppx"
     ],
-    "bs-dev-dependencies": [],
+    "bs-dev-dependencies": [
+      "reason-react"
+    ],
     "sources": [
       {
         "dir": "src",
         "subdirs": true
+      },
+      {
+        "dir": "examples",
+        "type": "dev"
       }
     ],
     "warnings": {
