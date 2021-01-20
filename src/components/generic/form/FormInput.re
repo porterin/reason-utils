@@ -63,14 +63,15 @@ let getWarningOrError =
 };
 
 module Date = {
+  type date_props = {
+      value: Js.Date.t,
+      minDate: option(Js.Date.t),
+      maxDate: option(Js.Date.t),
+      onChange: Js.Date.t => unit,
+      format: string,
+    };
   type t =
-    | Date({
-        value: Js.Date.t,
-        minDate: option(Js.Date.t),
-        maxDate: option(Js.Date.t),
-        onChange: Js.Date.t => unit,
-        format: string,
-      });
+    | Date(date_props);
   [@react.component]
   let make = (~input_props: props('b, 'c), ~value: t) => {
     <div className={"form-input-container " ++ input_props.className}>
@@ -97,13 +98,7 @@ module Date = {
 
 type formInput =
   | Input(string)
-  | Date({
-      value: Js.Date.t,
-      minDate: option(Js.Date.t),
-      maxDate: option(Js.Date.t),
-      onChange: Js.Date.t => unit,
-      format: string,
-    })
+  | Date(Date.date_props)
   | DateTime({
       value: option(Js.Date.t),
       minDate: option(Js.Date.t),
@@ -173,19 +168,7 @@ let make = (~input_props: props('b, 'c), ~value: formInput) => {
   <div className={"form-input-container " ++ input_props.className}>
     {switch (value) {
      | Date(date_params) =>
-       <DatePicker
-         label={input_props.label}
-         disabled={input_props.isDisabled}
-         onChange={date => date_params.onChange(date |> MomentRe.Moment.toDate)}
-         value={date_params.value |> MomentRe.momentWithDate}
-         minDate={Belt.Option.mapWithDefault(date_params.minDate, None, v =>
-           Some(v |> MomentRe.momentWithDate)
-         )}
-         maxDate={Belt.Option.mapWithDefault(date_params.maxDate, None, v =>
-           Some(v |> MomentRe.momentWithDate)
-         )}
-         format={date_params.format}
-       />
+       <Date input_props value={Date(date_params)} />
      | DateTime(date_params) =>
        <DateTimePicker
          label={input_props.label}
