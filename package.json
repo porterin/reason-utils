@@ -34,11 +34,10 @@
     "bs-moment": "^0.4.4",
     "bs-webapi": "^0.17.1",
     "decco": "^1.1.1",
+    "moment": "^2.24.0",
     "papaparse": "5.1.0",
     "react-dependent-script": "^1.1.2",
-    "react-ga": "^3.3.0",
-    "moment": "^2.24.0",
-    "reason-promise": "^1.1.2"
+    "react-ga": "^3.3.0"
   },
   "devDependencies": {
     "bs-platform": "^8.4.2",
