@@ -71,7 +71,7 @@ module ExnHandler = {
     };
   };
 
-  let mapErrorsToExn = (error: Js.Promise.error): exn => {
+  let mapErrorToExn = (error: Js.Promise.error): exn => {
     let exnPayload = error |> deserialzeErr
     Js.log("-----exception-payload------")
     Js.log(exnPayload)

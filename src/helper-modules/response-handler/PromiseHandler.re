@@ -32,7 +32,7 @@ module PromiseHandler: PromiseHandler = {
     let finalPromise = promiseWithTimeout(promiseGenerator(), timeoutMs);
     finalPromise
     |> Js.Promise.catch(error =>
-         switch (retryCount, ExnHandler.mapErrorsToExn(error)) {
+         switch (retryCount, ExnHandler.mapErrorToExn(error)) {
          | (count, Exception.RequestTimedout) when count > 0 =>
            promiseWithTimeoutAndRetry(promiseGenerator, timeoutMs, count - 1)
          | _ => finalPromise
@@ -59,7 +59,7 @@ module PromiseHandler: PromiseHandler = {
     |> Js.Promise.then_(ResponseHandler.ResponseWrapper.execute)
     |> Js.Promise.catch((error) => {
         error
-        |> ExnHandler.mapErrorsToExn
+        |> ExnHandler.mapErrorToExn
         |> mapExnToResponseType(error)
     });
   };
