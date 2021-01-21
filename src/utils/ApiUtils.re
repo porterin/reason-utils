@@ -4,22 +4,22 @@ let handleAPIRequest =
       onSuccess: 'a => unit,
       onError: 'b => unit,
     ) => {
-  Js.Promise.(
-    apiRequest()
-    |> then_((result: Belt.Result.t('a, 'b)) => {
-         Belt.Result.(
-           switch (result) {
-           | Ok(data) => resolve(onSuccess(data))
-           | Error(err) => resolve(onError(err))
-           }
-         )
-       })
-    |> catch(err => {
-         SentryRe.capturePromiseError(err) |> ignore;
-         reject(Exception.PromiseException(err))
-       })
-    |> ignore
-  );
+    Js.Promise.(
+      apiRequest()
+      |> then_((result: Belt.Result.t('a, 'b)) => {
+          Belt.Result.(
+            switch (result) {
+            | Ok(data) => resolve(onSuccess(data))
+            | Error(err) => resolve(onError(err))
+            }
+          )
+        })
+      |> catch(err => {
+          //the rejected promise from here is caught in sentry
+          reject(Exception.UnhandledError(err))
+      })
+      |> ignore
+    );
 };
 
 let resolveRepoResponse = (handleResponse: _ => option(Js.Promise.t(Belt.Result.t('a, 'b)))) => {

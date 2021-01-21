@@ -1,15 +1,10 @@
-exception RequestTimedout;
-exception FailedToFetch;
-exception RequestCancelled;
-exception OperationAborted;
-exception Cors(string);
-exception PromiseException(Js.Promise.error);
+open Exception;
 
-module type UnhandledExceptionHandler = {
-  let resolveException: (Js.Promise.error) => exn
+module type UndefinedErrorHandler = {
+  let mapErrorsToExn: (Js.Promise.error) => exn
 };
 
-module UnhandledExceptionHandler = {
+module UndefinedErrorHandler = {
   [@bs.send] external toString: Js.Promise.error => string = "toString";
 
   let isCors = (errorString) => {
@@ -23,7 +18,7 @@ module UnhandledExceptionHandler = {
     }
   }
 
-  let resolveException = (error: Js.Promise.error): exn => {
+  let mapErrorsToExn = (error: Js.Promise.error): exn => {
     //Fetch throws the following exceptions when it fails to make network
     //calls. Failed to fetch is thrown in Chrome whereas NetworkError
     //when attempting to fetch resource is thrown in Firefox.
@@ -41,16 +36,16 @@ module UnhandledExceptionHandler = {
       | "AbortError: The operation was aborted" //Firefox
       | "TypeError: The operation couldn’t be completed. Software caused connection abort"  //Safari
       => OperationAborted
-      | _ => isCors(error |> toString) ? Cors(error |> toString) : PromiseException(error)
+      | _ => isCors(error |> toString) ? Cors(error |> toString) : UnhandledError(error)
       };
   };
 };
 
-module type ExceptionHandler = {
-    let resolveException: (Js.Promise.error) => exn
+module type ExnHandler = {
+    let mapErrorsToExn: (Js.Promise.error) => exn
 };
 
-module ExceptionHandler = {
+module ExnHandler = {
   type exnPayload = {
      [@bs.as("RE_EXN_ID")]
      _RE_EXN_ID: string
@@ -60,7 +55,6 @@ module ExceptionHandler = {
 
   // the regex here extracts the exception name from the whole pattern 
   // for e.g RequestTimedout is extracted from the expresssion "Exception-Catalyst.RequestTimedout/3".
-
   let getExnString = (exn: string) => { 
       exn 
       |> Js.String.match([%re "/(?<=\.)(.*?)(?=\/)/"]) 
@@ -70,24 +64,20 @@ module ExceptionHandler = {
       }
   }
 
-  let fromString = (exn: string) => {
+  let mapErrorStrToExn = (error: Js.Promise.error, exn: string) => {
     switch (exn -> getExnString) {
       | "RequestTimedout" => RequestTimedout
-      | _ => ErrorUtils.raiseError(
-        ~path="Exception.fromString",
-        ~message="No predefined Exception string found: ",
-        ~value=exn,
-      )
+      | _ => UnhandledError(error)
     };
   };
 
-  let resolveException = (error: Js.Promise.error): exn => {
+  let mapErrorsToExn = (error: Js.Promise.error): exn => {
     let exnPayload = error |> deserialzeErr
     Js.log("-----exception-payload------")
     Js.log(exnPayload)
     switch (Js.typeof(exnPayload._RE_EXN_ID)) {
-    | "undefined" => UnhandledExceptionHandler.resolveException(error)
-    | _ => fromString(exnPayload._RE_EXN_ID)
+    | "undefined" => UndefinedErrorHandler.mapErrorsToExn(error)
+    | _ => mapErrorStrToExn(error, exnPayload._RE_EXN_ID)
     };
   };
 };
