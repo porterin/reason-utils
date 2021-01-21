@@ -14,10 +14,6 @@ let handleAPIRequest =
           }
         )
       })
-    |> catch(err => {
-        //the rejected promise from here is caught in sentry
-        reject(Exception.UnhandledError(err))
-    })
     |> ignore
   );
 };
