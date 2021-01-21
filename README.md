@@ -20,3 +20,6 @@
 + **2.0.2**
   + Compilation to es6-global
 
++ **2.0.3**
+  + Fix for Invalid Syntax issue in Sentry -> "Invalid regular expression: /(?<=\.)(.*?)(?=\/)/: Invalid group"
+

@@ -57,10 +57,10 @@ module ExnHandler = {
   // for e.g RequestTimedout is extracted from the expresssion "Exception-Catalyst.RequestTimedout/3".
   let getExnString = (exn: string) => { 
       exn 
-      |> Js.String.match([%re "/(?<=\.)(.*?)(?=\/)/"]) 
+      |> Js.String.match([%re "/(\.)(.*?)(?=\/)/"]) 
       |> result => switch(result) {
         | None => "not_found"
-        | Some(result) => result[0]
+        | Some(result) => result[2]
       }
   }
 
