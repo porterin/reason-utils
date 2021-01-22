@@ -19,6 +19,10 @@ module UndefinedErrorHandler = {
   }
 
   let mapErrorsToExn = (error: Js.Promise.error): exn => {
+    Js.log("------undefined-error-handler------")
+    Js.log("------js.promise.error |> toString------")
+    Js.log(error |> toString)
+
     //Fetch throws the following exceptions when it fails to make network
     //calls. Failed to fetch is thrown in Chrome whereas NetworkError
     //when attempting to fetch resource is thrown in Firefox.
@@ -72,9 +76,13 @@ module ExnHandler = {
   };
 
   let mapErrorToExn = (error: Js.Promise.error): exn => {
+    Js.log("------Js.promise.error------")
+    Js.log(error)
     let exnPayload = error |> deserialzeErr
     Js.log("-----exception-payload------")
     Js.log(exnPayload)
+    Js.log("-----Js.typeof-----")
+    Js.log(Js.typeof(exnPayload._RE_EXN_ID))
     switch (Js.typeof(exnPayload._RE_EXN_ID)) {
     | "undefined" => UndefinedErrorHandler.mapErrorsToExn(error)
     | _ => mapErrorStrToExn(error, exnPayload._RE_EXN_ID)
