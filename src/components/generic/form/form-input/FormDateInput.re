@@ -1,4 +1,4 @@
-type date_props = {
+type t = {
   value: Js.Date.t,
   minDate: option(Js.Date.t),
   maxDate: option(Js.Date.t),
@@ -7,7 +7,7 @@ type date_props = {
 };
 
 [@react.component]
-let make = (~input_props: FormInputProps.t('b, 'c), ~date_props: date_props) => {
+let make = (~input_props: FormInputProps.t('b, 'c), ~date_props: t) => {
   <FormInputWrapper className={input_props.className}>
     <DatePicker
       label={input_props.label}
@@ -22,6 +22,6 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~date_props: date_props) => 
       )}
       format={date_props.format}
     />
-    {FormInputWrapper.getWarningOrError(None, input_props.result)}
+    {FormInputHelper.getWarningOrError(None, input_props.result)}
   </FormInputWrapper>;
 };

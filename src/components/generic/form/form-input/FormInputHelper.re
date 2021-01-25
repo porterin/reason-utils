@@ -16,7 +16,9 @@ let getWarningOrError =
   </div>;
 };
 
-[@react.component]
-let make = (~className: string, ~children: React.element) => {
-  <div className={"form-input-container " ++ className}> children </div>;
+let get_InputProps = (_inputProps: option(FormInputProps._inputProps)) => {
+  switch (_inputProps) {
+  | None => {"className": "form-input-text", "startAdornment": React.null}
+  | Some(value) => {"className": value.className, "startAdornment": value.startAdornment}
+  };
 };

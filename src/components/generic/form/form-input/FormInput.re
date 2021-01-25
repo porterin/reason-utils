@@ -1,32 +1,4 @@
-open Belt;
-open FormInputProps;
-type result('a, 'b) = Result.t('a, 'b);
-let error = err => Result.Error(err);
-
-let make_props =
-    (
-      ~label: string,
-      ~onChange: ReactEvent.Form.t => unit,
-      ~isDisabled: bool=false,
-      ~placeholder="",
-      ~onBlur: unit => unit=() => (),
-      ~result: option(Belt.Result.t('b, 'c)),
-      ~warning=_ => None,
-      ~className="",
-      ~_inputProps: option(_inputProps)=?,
-      (),
-    )
-    : FormInputProps.t('b, 'c) => {
-  label,
-  onChange,
-  isDisabled,
-  placeholder,
-  onBlur,
-  result,
-  warning,
-  className,
-  _inputProps,
-};
+include FormInputProps;
 
 module Date = {
   include FormDateInput;
@@ -34,7 +6,7 @@ module Date = {
 
 type formInput =
   | Input(string)
-  | Date(Date.date_props)
+  | Date(Date.t)
   | DateTime({
       value: option(Js.Date.t),
       minDate: option(Js.Date.t),
@@ -72,31 +44,6 @@ type formInput =
       options: list(SelectWithCheckBoxes.t),
       renderValue: option(list(string) => string),
     });
-
-let getWarningOrError =
-    (warning: option(string), result: option(result('a, 'b))): React.element => {
-  <div className="input-error-container">
-    {switch (result) {
-     | None =>
-       switch (warning) {
-       | None => React.null
-       | Some(warning) => <div className="warning"> {React.string(warning)} </div>
-       }
-     | Some(result) =>
-       switch (result) {
-       | Error(err) => <div className="error"> {React.string(err)} </div>
-       | _ => React.null
-       }
-     }}
-  </div>;
-};
-
-let get_InputProps = (_inputProps: option(_inputProps)) => {
-  switch (_inputProps) {
-  | None => {"className": "form-input-text", "startAdornment": React.null}
-  | Some(value) => {"className": value.className, "startAdornment": value.startAdornment}
-  };
-};
 
 [@react.component]
 let make = (~input_props: FormInputProps.t('b, 'c), ~value: formInput) => {
@@ -190,9 +137,9 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~value: formInput) => {
          variant=`Outlined
          className="form-input"
          _InputLabelProps={"className": "form-input-label"}
-         _InputProps={get_InputProps(input_props._inputProps)}
+         _InputProps={FormInputHelper.get_InputProps(input_props._inputProps)}
        />
      }}
-    {getWarningOrError(warning, input_props.result)}
+    {FormInputHelper.getWarningOrError(warning, input_props.result)}
   </div>;
 };
