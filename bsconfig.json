@@ -13,10 +13,12 @@
       "bs-webapi"
     ],
     "ppx-flags": [
-      "decco/ppx"
+      "decco/ppx",
+      "re-formality/ppx"
     ],
     "bs-dev-dependencies": [
-      "reason-react"
+      "reason-react",
+      "re-formality"
     ],
     "sources": [
       {
