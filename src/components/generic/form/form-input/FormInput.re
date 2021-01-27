@@ -1,40 +1,22 @@
 include FormInputProps;
 
-module Date = {
-  include FormDateInput;
-};
+module Date = FormDateInput;
 
-module DateTime = {
-  include FormDateTimeInput;
-};
+module DateTime = FormDateTimeInput;
 
-module Time = {
-  include FormTimeInput;
-};
+module Time = FormTimeInput;
 
-module KeyInputTime = {
-  include FormKeyInputTime;
-};
+module KeyInputTime = FormKeyInputTime;
 
-module RadioGroup = {
-  include FormRadioGroupInput;
-};
+module RadioGroup = FormRadioGroupInput;
 
-module Select = {
-  include FormSelectInput;
-};
+module Select = FormSelectInput;
 
-module CheckBox = {
-  include FormCheckBoxInput;
-};
+module CheckBox = FormCheckBoxInput;
 
-module SelectCheckBoxes = {
-  include FormSelectWithCheckboxInput;
-};
+module SelectCheckBoxes = FormSelectWithCheckboxInput;
 
-module TextInput = {
-  include FormTextInput;
-};
+module TextInput = FormTextInput;
 
 type formInput =
   | Input(string)

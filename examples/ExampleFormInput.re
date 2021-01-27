@@ -3,23 +3,23 @@ open PrimitiveFormTypes;
 module ExampleForm = [%form
   type input = {
     amount: string,
-    comment: string,
+/*     comment: string,
     date: Js.Date.t,
     time: Js.Date.t,
     radio: string,
     select: option(SelectComponent.t),
     check: list(string),
-    selectCheck: list(string),
+    selectCheck: list(string), */
   };
   type output = {
     amount: int,
-    comment: string,
+    /* comment: string,
     date: Js.Date.t,
     time: Js.Date.t,
     radio: string,
     select: string,
     check: list(string),
-    selectCheck: list(string),
+    selectCheck: list(string), */
   };
   let validators = {
     amount: {
@@ -38,7 +38,7 @@ module ExampleForm = [%form
             }
           );
       },
-    },
+    }/* ,
     comment: None,
     date: None,
     time: None,
@@ -61,11 +61,11 @@ module ExampleForm = [%form
       },
     },
     check: None,
-    selectCheck: None,
+    selectCheck: None, */
   }
 ];
 
-let radioItems: list(SelectComponent.t) = [
+/* let radioItems: list(SelectComponent.t) = [
   {key: "key", value: "value", text: "text"},
   {key: "key2", value: "value2", text: "text2"},
 ];
@@ -97,7 +97,7 @@ let isChecked = (selected: list(string), currentValue: string) => {
   | Some(_isSelected) => true
   | None => false
   };
-};
+}; */
 
 [@react.component]
 let make = () => {
@@ -106,13 +106,13 @@ let make = () => {
       ~initialInput=
         ExampleForm.{
           amount: "",
-          comment: "",
+/*           comment: "",
           date: Js.Date.fromFloat(Js.Date.now()),
           time: Js.Date.fromFloat(Js.Date.now()),
           radio: "",
           select: None,
           check: [],
-          selectCheck: [],
+          selectCheck: [], */
         },
       ~onSubmit=(
                   output: ExampleForm.output,
@@ -137,7 +137,7 @@ let make = () => {
             ~onChange=
               event =>
                 form.updateAmount(
-                  (input, value) => {...input, amount: value},
+                  (_input, value) => { amount: value},
                   event->FormHelper.TargetEventWrapper.value,
                 ),
             ~placeholder="Enter amount",
@@ -154,7 +154,7 @@ let make = () => {
             ~onChange=
               event =>
                 form.updateAmount(
-                  (input, value) => {...input, amount: value},
+                  (_input, value) => {amount: value},
                   event->FormHelper.TargetEventWrapper.value,
                 ),
             ~placeholder="Enter amount",
@@ -163,7 +163,7 @@ let make = () => {
           )}
           value={form.input.amount}
         />
-        <FormInput
+  /*       <FormInput
           input_props={FormInput.make_props(
             ~label="Date",
             ~onChange=_ => (),
@@ -443,7 +443,7 @@ let make = () => {
             format: "hh:mm a",
             invalidDateMessage: Some("Invalid time"),
           }
-        />
+        /> */
       </Row>
       <button> {React.string("Submit")} </button>
     </div>
