@@ -18,7 +18,8 @@
       "re-formality/ppx"
     ],
     "bs-dev-dependencies": [
-      "reason-react"
+      "reason-react",
+      "@glennsl/bs-jest"
     ],
     "sources": [
       {
@@ -27,6 +28,10 @@
       },
       {
         "dir": "examples",
+        "type": "dev"
+      },
+      {
+        "dir": "__tests__",
         "type": "dev"
       }
     ],
