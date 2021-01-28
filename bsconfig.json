@@ -10,10 +10,12 @@
       "@jsiebern/bs-material-ui",
       "bs-moment",
       "decco",
-      "bs-webapi"
+      "bs-webapi",
+      "re-formality"
     ],
     "ppx-flags": [
-      "decco/ppx"
+      "decco/ppx",
+      "re-formality/ppx"
     ],
     "bs-dev-dependencies": [
       "reason-react"
