@@ -11,4 +11,5 @@ type t =
   | FailedToFetch
   | RequestCancelled
   | OperationAborted
-  | Cors(string);
+  | Cors(string)
+  | UnhandledError(Js.Promise.error);
