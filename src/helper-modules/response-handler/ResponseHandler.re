@@ -127,6 +127,13 @@ module DefaultErrorConverter = {
       Some(GenericResponseMapper.DataConflictErrorHandler.execute(~json=data))
     | FailedToFetch => Some(GenericResponseMapper.FailedToFetchErrorHandler.execute())
     | RequestCancelled => Some(GenericResponseMapper.RequestCancelledErrorHandler.execute())
+    | UnhandledError(error) => {
+      //we ensure that all the unhandled errors come here
+      Js.log("---response-handler---")
+      Js.log(error)
+      SentryRe.capturePromiseError(error) |> ignore
+      None
+    }
     | _ => None
     };
   };
