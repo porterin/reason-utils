@@ -15,9 +15,7 @@
     "ppx-flags": [
       "decco/ppx"
     ],
-    "bs-dev-dependencies": [
-      "reason-react"
-    ],
+    "bs-dev-dependencies": [],
     "sources": [
       {
         "dir": "src",

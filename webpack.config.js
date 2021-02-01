@@ -1,7 +1,7 @@
 var path = require("path");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = (env) => {
+module.exports = () => {
   return {
     mode: "development",
     devServer: {

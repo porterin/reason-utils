@@ -58,6 +58,8 @@ module PromiseHandler: PromiseHandler = {
     promise
     |> Js.Promise.then_(ResponseHandler.ResponseWrapper.execute)
     |> Js.Promise.catch((error) => {
+        Js.log("----error-logging-Promise-Handler-catch---");
+        Js.log(error);
         error
         |> ExnHandler.mapErrorToExn
         |> mapExnToResponseType(error)

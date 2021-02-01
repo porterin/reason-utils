@@ -26,3 +26,5 @@
 + **2.0.4**
   + Fix for Non-Error exception captured with keys. All the raise exn(s) are converted to UnhandledError ResponseType"
 
++ **2.1.0**
+  + Form Input code revamp. Tree shaking supported now.
