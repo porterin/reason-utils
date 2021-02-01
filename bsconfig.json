@@ -13,9 +13,13 @@
       "bs-webapi"
     ],
     "ppx-flags": [
-      "decco/ppx"
+      "decco/ppx",
+      "re-formality/ppx"
     ],
-    "bs-dev-dependencies": [],
+    "bs-dev-dependencies": [
+      "reason-react",
+      "@glennsl/bs-jest"
+    ],
     "sources": [
       {
         "dir": "src",
@@ -23,6 +27,10 @@
       },
       {
         "dir": "examples",
+        "type": "dev"
+      },
+      {
+        "dir": "__tests__",
         "type": "dev"
       }
     ],
