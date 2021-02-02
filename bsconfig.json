@@ -20,6 +20,10 @@
       {
         "dir": "src",
         "subdirs": true
+      },
+      {
+        "dir": "examples",
+        "type": "dev"
       }
     ],
     "warnings": {
