@@ -28,3 +28,6 @@
 
 + **2.1.0**
   + Form Input code revamp. Tree shaking supported now.
+
++ **2.1.1**
+  + [MOBILE] Stepper component added.
