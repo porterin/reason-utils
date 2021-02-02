@@ -50,7 +50,7 @@ module.exports = () => {
       ],
     },
     output: {
-      path: path.resolve("/"),
+      path: path.resolve("./"),
       filename: "bundle.js",
     },
     plugins: [
