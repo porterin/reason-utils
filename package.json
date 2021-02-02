@@ -1,6 +1,6 @@
 {
   "name": "catalyst",
-  "version": "2.0.0",
+  "version": "2.2.0",
   "description": "common frontend modules",
   "keywords": [
     "reason"
@@ -30,18 +30,18 @@
     "@material-ui/icons": "4.9.1",
     "@material-ui/pickers": "^3.2.10",
     "@sentry/browser": "^5.3.0",
+    "react-ga": "^3.3.0",
     "bs-fetch": "^0.6.2",
     "bs-moment": "^0.4.4",
+    "moment": "^2.24.0",
+    "react-dependent-script": "^1.1.2",
     "bs-webapi": "^0.17.1",
     "decco": "^1.1.1",
-    "moment": "^2.24.0",
-    "papaparse": "5.1.0",
-    "react-dependent-script": "^1.1.2",
-    "react-ga": "^3.3.0"
+    "papaparse": "5.1.0"
   },
   "devDependencies": {
     "bs-platform": "^8.4.2",
-    "reason-react": "^0.9.0"
+    "reason-react": "^0.9.1"
   },
   "peerDependencies": {
     "bs-platform": "^8.4.2",
