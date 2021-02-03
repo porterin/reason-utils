@@ -38,3 +38,9 @@ module EditIcon =
     [@bs.module "@material-ui/icons/EditOutlined"]
     external reactClass: React.component('a) = "default";
   });
+
+module MoreVertIcon =
+  Make({
+    [@bs.module "@material-ui/icons/MoreVert"]
+    external reactClass: React.component('a) = "default";
+  });

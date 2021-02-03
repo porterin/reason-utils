@@ -21,7 +21,7 @@ let getTab = (tab: t('a), index: int, setActiveTab: ('a => 'a) => unit) => {
       </Row>
     }
     disabled={tab.disabled}
-    classes=[Root("mui-tab-root"), Selected("mui-tab-selected")]
+    classes={MaterialUi.Tab.Classes.make(~root="mui-tab-root", ~selected="mui-tab-selected", ())}
   />;
 };
 
@@ -43,7 +43,12 @@ let useTabs = (~tabs: list(t('a)), ~defaultActive: 'a) => {
   let (activeTab, setActiveTab) = React.useState(_ => defaultActive);
   let tabComponent =
     <MaterialUi.Tabs
-      value=activeTab classes=[Root("mui-tabs-root"), Indicator("mui-tabs-indicator")]>
+      value={MaterialUi_Types.Any(activeTab)}
+      classes={MaterialUi.Tabs.Classes.make(
+        ~root="mui-tabs-root",
+        ~indicator="mui-tabs-indicator",
+        (),
+      )}>
       {createTabs(tabs, setActiveTab)}
     </MaterialUi.Tabs>;
 
