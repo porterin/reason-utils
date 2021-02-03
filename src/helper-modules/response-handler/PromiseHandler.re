@@ -11,6 +11,8 @@ module type PromiseHandler = {
 };
 
 module PromiseHandler: PromiseHandler = {
+  open ExnHandler;
+
   let promiseWithTimeout = (promise: Js.Promise.t('a), timeoutMs: int): Js.Promise.t('a) => {
     let timeoutPromise =
       Js.Promise.make((~resolve as _, ~reject) => {
@@ -30,7 +32,7 @@ module PromiseHandler: PromiseHandler = {
     let finalPromise = promiseWithTimeout(promiseGenerator(), timeoutMs);
     finalPromise
     |> Js.Promise.catch(error =>
-         switch (retryCount, Exception.ExceptionHandler.resolveException(error)) {
+         switch (retryCount, ExnHandler.mapErrorToExn(error)) {
          | (count, Exception.RequestTimedout) when count > 0 =>
            promiseWithTimeoutAndRetry(promiseGenerator, timeoutMs, count - 1)
          | _ => finalPromise
@@ -38,23 +40,30 @@ module PromiseHandler: PromiseHandler = {
        );
   };
 
-  let mapExceptionsToErrors = (exp: exn) => {
+   //we ensure that all the unhandled errors are captured as ResponseType.UnhandledError 
+   //so that the original Js.Promise.error is intact
+  let mapExnToResponseType = (error: Js.Promise.error, exp: exn) => {
     switch (exp) {
     | Exception.RequestTimedout => Js.Promise.resolve(ResponseType.RequestTimeout)
     | Exception.FailedToFetch => Js.Promise.resolve(ResponseType.FailedToFetch)
     | Exception.RequestCancelled => Js.Promise.resolve(ResponseType.RequestCancelled)
     | Exception.OperationAborted => Js.Promise.resolve(ResponseType.OperationAborted)
     | Exception.Cors(data) => Js.Promise.resolve(ResponseType.Cors(data))
-    | _ => raise(exp)
+    | Exception.UnhandledError(promiseError) => Js.Promise.resolve(ResponseType.UnhandledError(promiseError))
+    | _ => Js.Promise.resolve(ResponseType.UnhandledError(error))
     };
   };
 
   let resolveResponse = (promise: Js.Promise.t(Fetch.response)) => {
     promise
     |> Js.Promise.then_(ResponseHandler.ResponseWrapper.execute)
-    |> Js.Promise.catch(error =>
-         Exception.ExceptionHandler.resolveException(error)->mapExceptionsToErrors
-       );
+    |> Js.Promise.catch((error) => {
+        Js.log("----error-logging-Promise-Handler-catch---");
+        Js.log(error);
+        error
+        |> ExnHandler.mapErrorToExn
+        |> mapExnToResponseType(error)
+    });
   };
 
   let resolvePromise = (~promise: Js.Promise.t(Fetch.response), ~timeoutMs) => {

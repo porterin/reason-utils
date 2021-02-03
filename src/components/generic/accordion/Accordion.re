@@ -1,7 +1,7 @@
 open AccordionTypes;
 
 let getAccordionHeader = (expanded: bool, panel: t) => {
-  <MaterialUi.ExpansionPanelSummary
+  <MaterialUi.AccordionSummary
     className={"header " ++ (expanded ? "expanded-header" : "")}
     expandIcon={
       <Icon.ExpandMoreIcon className="expand-icon" fontSize=`Large />
@@ -10,11 +10,11 @@ let getAccordionHeader = (expanded: bool, panel: t) => {
      | Text(title) => <div> {React.string(title)} </div>
      | Custom(fn) => fn()
      }}
-  </MaterialUi.ExpansionPanelSummary>;
+  </MaterialUi.AccordionSummary>;
 };
 
 let getAccordionBody = (body: React.element) => {
-  <MaterialUi.ExpansionPanelDetails> body </MaterialUi.ExpansionPanelDetails>;
+  <MaterialUi.AccordionDetails> body </MaterialUi.AccordionDetails>;
 };
 
 [@react.component]
@@ -34,7 +34,7 @@ let make =
   <div className>
     {panels
      |> List.mapi((index, panel) =>
-          <MaterialUi.ExpansionPanel
+          <MaterialUi.Accordion
             key={string_of_int(index)}
             className="accordion"
             expanded={index == expanded}
@@ -42,7 +42,7 @@ let make =
             {getAccordionHeader(index == expanded, panel)}
             {getAccordionBody(panel.body)}
             {panel.footer}
-          </MaterialUi.ExpansionPanel>
+          </MaterialUi.Accordion>
         )
      |> ReasonReactUtils.listToReactArray}
   </div>;

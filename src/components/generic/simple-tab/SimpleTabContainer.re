@@ -6,12 +6,14 @@ let make = (~tabs: list(tab)) => {
 
   <div className="tabs__container">
     <MaterialUi.Tabs
-      value=currentIndex className="simple-tab u-position-sticky" indicatorColor=`Primary>
+      value={MaterialUi_Types.Any(currentIndex)}
+      className="simple-tab u-position-sticky"
+      indicatorColor=`Primary>
       {tabs
        |> List.mapi((index, tab: tab) =>
             <MaterialUi.Tab
               key={string_of_int(index)}
-              classes=[Root("MuiTab-fullWidth tabs_min_width")]
+              classes={MaterialUi.Tab.Classes.make(~root="MuiTab-fullWidth tabs_min_width", ())}
               label={React.string(tab.label)}
               onClick={_e => setCurrentIndex(_ => index)}
             />
