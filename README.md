@@ -31,3 +31,6 @@
 
 + **2.2.0**
   + [MOBILE] Stepper component added.
+
++ **2.2.1**
+  + Sentry Error Fixes
