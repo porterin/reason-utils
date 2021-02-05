@@ -17,6 +17,7 @@ module UndefinedErrorHandler = {
       | None => false
     }
   }
+  // /Preflight response is not successful
 
   let mapErrorsToExn = (error: Js.Promise.error): exn => {
     Js.log("------undefined-error-handler------")
@@ -32,12 +33,12 @@ module UndefinedErrorHandler = {
       | "TypeError: Failed to fetch" // Chrome
       | "TypeError: NetworkError when attempting to fetch resource." // Firefox
       | "TypeError: A server with the specified hostname could not be found." // Safari
-      | "TypeError: The Internet connection appears to be offline" //Safari
-      | "TypeError: The network connection was lost" //Safari and Firefox
+      | "TypeError: The Internet connection appears to be offline." //Safari
+      | "TypeError: The network connection was lost." //Safari and Firefox
       | "TypeError: Network request failed" // Windows
         => FailedToFetch
       | "TypeError: cancelled" => RequestCancelled
-      | "AbortError: The operation was aborted" //Firefox
+      | "AbortError: The operation was aborted." //Firefox
       | "TypeError: The operation couldn’t be completed. Software caused connection abort"  //Safari
       => OperationAborted
       | _ => isCors(error |> toString) ? Cors(error |> toString) : UnhandledError(error)
