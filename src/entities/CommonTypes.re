@@ -22,4 +22,4 @@ type viewText =
   | Text(string)
   | NoText
   | Custom(unit => React.element);
-type timestamp = int64;
+type timestamp = float;
