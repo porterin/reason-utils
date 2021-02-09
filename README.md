@@ -37,3 +37,6 @@
 
 + **2.3.0**
   + Refresh tab changes for CRM
+
++ **2.3.1**
+  + Bug fix - routing

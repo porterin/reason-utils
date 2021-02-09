@@ -25,7 +25,7 @@ let getQueryParameterString = (urlParams: Js.Dict.t(string)): option(string) => 
             params_list[0],
             params_list,
           )
-          |> (query_param => Some("?" ++ query_param))
+          |> (query_param => Some(query_param))
       )
     : None;
 };
