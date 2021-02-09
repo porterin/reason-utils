@@ -37,6 +37,13 @@ let rec calculateSum = (l: list(int)) =>
   | [head, ...tail] => head + calculateSum(tail)
   };
 
+let rec calculateSumForFloats = (l: list(float)) =>
+  switch (l) {
+  | [] => 0.
+  | [head, ...tail] => head +. calculateSumForFloats(tail);
+  };
+
+
 /* changing lists */
 let rec removeItem = (~value: 'a, l: list('a)) =>
   switch (l) {

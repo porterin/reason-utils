@@ -22,4 +22,5 @@ type viewText =
   | Text(string)
   | NoText
   | Custom(unit => React.element);
+[@decco]
 type timestamp = float;
