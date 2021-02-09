@@ -16,9 +16,6 @@ module Environment = {
     | _ => Development
 }
 
-
-let getCrmBaseUrl = (): string => crm_url;
-
 let getHostName = (): string => {
   switch (node_env) {
   | "development" => "http://localhost:3000"

@@ -8,10 +8,10 @@
 .menu-list {
   min-width: 14rem;
   > .menu-item {
-      @include crm-txt-base-style;
-      font-size: $font-size-12;
-      padding: .8rem 0.8rem .8rem 1.6rem;
-      color: $color-blue-dark;
+    @include crm-txt-base-style;
+    font-size: $font-size-12;
+    padding: 0.8rem 0.8rem 0.8rem 1.6rem;
+    color: $color-blue-dark;
   }
 }
 
@@ -19,5 +19,15 @@
   > .MuiPopover-paper {
     margin-left: 8px;
     margin-top: 0px;
+  }
+}
+
+.custom-menu-button {
+  padding: 0 !important;
+  min-width: 0 !important;
+  background: none !important;
+  color: black !important;
+  &:hover {
+    background-color: $border-light !important;
   }
 }

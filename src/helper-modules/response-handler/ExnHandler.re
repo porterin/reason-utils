@@ -33,7 +33,7 @@ module UndefinedErrorHandler = {
       | "TypeError: Failed to fetch" // Chrome
       | "TypeError: NetworkError when attempting to fetch resource." // Firefox
       | "TypeError: A server with the specified hostname could not be found." // Safari
-      | "TypeError: The Internet connection appears to be offline." //Safari
+      | "TypeError: The internet connection appears to be offline." //Safari
       | "TypeError: The network connection was lost." //Safari and Firefox
       | "TypeError: Network request failed" // Windows
         => FailedToFetch
