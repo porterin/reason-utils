@@ -33,7 +33,7 @@ let getQueryParameterString = (urlParams: Js.Dict.t(string)): option(string) => 
 let createRequestURLfrmParams =
     (hostName: string, requestUrl: string, urlParams: Js.Dict.t(string)) => {
   switch (getQueryParameterString(urlParams)) {
-  | Some(args) => hostName ++ requestUrl ++ args
+  | Some(args) => hostName ++ requestUrl ++ "?" ++ args
   | None => hostName ++ requestUrl
   };
 };
