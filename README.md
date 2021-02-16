@@ -44,3 +44,6 @@
 
 + **2.3.2**
   + Hot fix - routing
+
++ **2.3.3**
+  + Hot fix - List Utils
