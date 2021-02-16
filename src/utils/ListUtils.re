@@ -83,11 +83,10 @@ let rec prev = (value: 't, list: list('t)): option('a) => {
 
 let rec pop = (~returnlst: list('t)=[], value: 't, list: list('t)): list('t) => {
   switch (list) {
-  | [] => []
-  | [head] => List.append(List.rev(returnlst), [head])
-  | [prev_val, head, ...tail] =>
+  | [] => List.rev(returnlst)
+  | [head, ...tail] =>
     head == value
-      ? List.append(List.rev(returnlst), [prev_val, ...tail])
-      : pop(~returnlst=[prev_val, ...returnlst], value, [head, ...tail])
+      ? List.append(List.rev(returnlst), tail)
+      : pop(~returnlst=[head, ...returnlst], value, tail)
   };
 };
