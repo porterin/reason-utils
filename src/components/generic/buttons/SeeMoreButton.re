@@ -18,10 +18,12 @@ let make = (~className="", ~msg: string, ~length: int) => {
   let (isOpen, setIsOpen) = React.useState(_ => false);
   <>
     {React.string(msgString(~length, ~msg, ~isOpen))}
-    <a
-      className={"link " ++ className}
-      onClick={event => handleClick(event, setIsOpen(_ => !isOpen))}>
-      {React.string(isOpen ? " See Less" : " See More")}
-    </a>
+    {msg |> String.length > length
+       ? <a
+           className={"link " ++ className}
+           onClick={event => handleClick(event, setIsOpen(_ => !isOpen))}>
+           {React.string(isOpen ? " See Less" : " See More")}
+         </a>
+       : React.null}
   </>;
 };

@@ -5,3 +5,7 @@ let checkForEmptyString = (string: string): bool =>
   };
 
 let nbsp = [%bs.raw {|'\u0020'|}];
+
+let ignoreUnused = (value: 'a) => {
+  let _ = value;
+};

@@ -44,3 +44,15 @@ module MoreVertIcon =
     [@bs.module "@material-ui/icons/MoreVert"]
     external reactClass: React.component('a) = "default";
   });
+
+module VisibilityIcon =
+  Make({
+    [@bs.module "@material-ui/icons/Visibility"]
+    external reactClass: React.component('a) = "default";
+  });
+
+module VisibilityOffIcon =
+  Make({
+    [@bs.module "@material-ui/icons/VisibilityOff"]
+    external reactClass: React.component('a) = "default";
+  });
