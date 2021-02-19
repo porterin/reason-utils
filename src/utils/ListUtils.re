@@ -72,3 +72,36 @@ let unique = (list_input: list('a)): list('a) => {
   };
   list_input |> uniqueList(~new_list=[]);
 };
+
+let rec prev = (value: 't, list: list('t), comparisonFunction: ('t, 't) => bool): option('a) => {
+  switch (list) {
+  | [] => None
+  | [prev_val, head, ...tail] =>
+    comparisonFunction(head, value)
+      ? Some(prev_val) : prev(value, [head, ...tail], comparisonFunction)
+  | [_] => None
+  };
+};
+
+let pop = (value: 't, lst: list('t), comparisonFunction: ('t, 't) => bool): list('t) => {
+  let rec popItem =
+          (
+            ~returnlst: list('t)=[],
+            value: 't,
+            list: list('t),
+            comparisonFunction: ('t, 't) => bool,
+          )
+          : list('t) => {
+    switch (list) {
+    | [] => List.rev(returnlst)
+    | [head] =>
+      comparisonFunction(head, value) ? List.rev(returnlst) : List.rev([head, ...returnlst])
+    | [head, ...tail] =>
+      comparisonFunction(head, value)
+        ? List.append(List.rev(returnlst), tail)
+        : popItem(~returnlst=[head, ...returnlst], value, tail, comparisonFunction)
+    };
+  };
+
+  popItem(value, lst, comparisonFunction);
+};

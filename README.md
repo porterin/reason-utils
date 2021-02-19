@@ -28,3 +28,22 @@
 
 + **2.1.0**
   + Form Input code revamp. Tree shaking supported now.
+
++ **2.2.0**
+  + [MOBILE] Stepper component added.
+
++ **2.2.1**
+  + Sentry Error Fixes
+
++ **2.3.0**
+  + Refresh tab changes for CRM
+
++ **2.3.1**
+  + Bug fix - routing
+
+
++ **2.3.2**
+  + Hot fix - routing
+
++ **2.3.3**
+  + Hot fix - List Utils
