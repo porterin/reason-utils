@@ -4,8 +4,30 @@ type t = {
   isNoneRequired: bool
 };
 
+module SelectProps = {
+  type t= {
+    value: option(SelectComponent.t),
+    items: list(SelectComponent.t),
+    isNoneRequired: bool
+  };
+
+  let make_props =
+    (
+      ~value: option(SelectComponent.t),
+      ~items: list(SelectComponent.t),
+      ~isNoneRequired=true,
+      (),
+    )
+      : t => {
+      value,
+      items,
+      isNoneRequired
+    };
+}
+
+
 [@react.component]
-let make = (~input_props: FormInputProps.t('b, 'c), ~select_props: t) => {
+let make = (~input_props: FormInputProps.t('b, 'c), ~select_props: SelectProps.t) => {
   <FormInputWrapper className={input_props.className}>
     <SelectComponent
       label={input_props.label}
