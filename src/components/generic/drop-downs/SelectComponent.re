@@ -19,7 +19,6 @@ let make =
       ~value: option(t),
       ~items: list(t),
       ~isNoneRequired: bool=true,
-      (),
     ) => {
   let selectedValue = Belt.Option.getWithDefault(value, defaultSelectItem);
 
