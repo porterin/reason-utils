@@ -18,7 +18,7 @@ let make =
       ~onChange: ReactEvent.Form.t => unit,
       ~value: option(t),
       ~items: list(t),
-      ~isNoneRequired: bool=true,
+      ~isNoneRequired: bool,
     ) => {
   let selectedValue = Belt.Option.getWithDefault(value, defaultSelectItem);
 
