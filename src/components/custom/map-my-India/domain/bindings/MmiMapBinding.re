@@ -44,6 +44,8 @@ external on:
       | `zoomend(_ => _)
       | `zoomstart(_ => _)
       | `zoom(_ => _)
+      | `movestart(_ => _)
+      | `moveend(_ => _)
       | `move(_ => _)
       | `click(_ => _)
       | `dblclick(_ => _)
