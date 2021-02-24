@@ -47,3 +47,7 @@
 
 + **2.3.3**
   + Hot fix - List Utils
+
++ **2.4.0**
+  - isNoneRequired added for Select dropdowns. defaults to true.
+  - Support for native input components added as 'NativeField'
