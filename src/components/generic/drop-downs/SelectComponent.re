@@ -11,6 +11,34 @@ let getSelectedItem = (value: string, options: list(t)): option(t) => {
     ? Some(options |> List.find((item: t) => {item.value === value})) : None;
 };
 
+let getSelectComponentItem = (typeItem: option('a), conv: 'a => string): option(t) => {
+  Belt.Option.flatMap(
+    typeItem,
+    item => {
+      let typeString = item->conv;
+      Some({
+        key: Js.String.toLowerCase(typeString),
+        value: typeString,
+        text: typeString |> Js.String.toUpperCase,
+      });
+    },
+  );
+};
+
+let getTypeItems = (typeList: list('a), conv: 'a => string) => {
+  let typeDropdownItems =
+    typeList
+    |> List.map(variant => {
+         let typeString = variant->conv;
+         {
+           key: Js.String.toLowerCase(typeString),
+           value: typeString,
+           text: typeString |> Js.String.toUpperCase,
+         };
+       });
+  typeDropdownItems;
+};
+
 [@react.component]
 let make =
     (
@@ -33,16 +61,14 @@ let make =
       value={MaterialUi.Select.Value.string(selectedValue.value)}
       onChange={(e, _) => onChange(e)}>
       {isNoneRequired
-         ? <MaterialUi.MenuItem
-             value={MaterialUi_MenuItem.Value.string(defaultSelectItem.value)}>
+         ? <MaterialUi.MenuItem value={MaterialUi_MenuItem.Value.string(defaultSelectItem.value)}>
              defaultSelectItem.text->React.string
            </MaterialUi.MenuItem>
          : React.null}
       {items
        |> List.map(item =>
             <MaterialUi.MenuItem
-              key={item.key}
-              value={MaterialUi_MenuItem.Value.string(item.value)}>
+              key={item.key} value={MaterialUi_MenuItem.Value.string(item.value)}>
               {React.string(item.text)}
             </MaterialUi.MenuItem>
           )
