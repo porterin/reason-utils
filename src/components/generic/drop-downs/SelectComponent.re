@@ -11,34 +11,6 @@ let getSelectedItem = (value: string, options: list(t)): option(t) => {
     ? Some(options |> List.find((item: t) => {item.value === value})) : None;
 };
 
-let getSelectComponentItem = (typeItem: option('a), conv: 'a => string): option(t) => {
-  Belt.Option.flatMap(
-    typeItem,
-    item => {
-      let typeString = item->conv;
-      Some({
-        key: Js.String.toLowerCase(typeString),
-        value: typeString,
-        text: typeString |> Js.String.toUpperCase,
-      });
-    },
-  );
-};
-
-let getTypeItems = (typeList: list('a), conv: 'a => string) => {
-  let typeDropdownItems =
-    typeList
-    |> List.map(variant => {
-         let typeString = variant->conv;
-         {
-           key: Js.String.toLowerCase(typeString),
-           value: typeString,
-           text: typeString |> Js.String.toUpperCase,
-         };
-       });
-  typeDropdownItems;
-};
-
 [@react.component]
 let make =
     (
