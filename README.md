@@ -51,3 +51,8 @@
 + **2.4.0**
   - isNoneRequired added for Select dropdowns. defaults to true.
   - Support for native input components added as 'NativeField'
+
++ **2.4.1**
+  - Updated GA initializer
+  - Updated GA event publisher
+  - Added mmi map events
