@@ -34,3 +34,25 @@
 
 + **2.2.1**
   + Sentry Error Fixes
+
++ **2.3.0**
+  + Refresh tab changes for CRM
+
++ **2.3.1**
+  + Bug fix - routing
+
+
++ **2.3.2**
+  + Hot fix - routing
+
++ **2.3.3**
+  + Hot fix - List Utils
+
++ **2.4.0**
+  - isNoneRequired added for Select dropdowns. defaults to true.
+  - Support for native input components added as 'NativeField'
+
++ **2.4.1**
+  - Updated GA initializer
+  - Updated GA event publisher
+  - Added mmi map events

@@ -17,3 +17,5 @@ module CheckBox = FormCheckBoxInput;
 module SelectCheckBoxes = FormSelectWithCheckboxInput;
 
 module TextInput = FormTextInput;
+
+module NativeField = FormNativeTextField;
