@@ -47,14 +47,6 @@ let toTimeStamp = (date: t) => {
   Moment.toUnix(momentWithDate(date));
 };
 
-let fromMilliTimestamp = (timestamp: float) => {
-  let toUnixTimestamp = (timestamp) => timestamp/.1000.;
-  timestamp
-    -> toUnixTimestamp
-    -> int_of_float 
-    -> fromTimeStamp 
-}
-
 let isSame = (firstDate: t, secondDate: t) => {
   Moment.isSame(momentWithDate(firstDate), momentWithDate(secondDate));
 };
