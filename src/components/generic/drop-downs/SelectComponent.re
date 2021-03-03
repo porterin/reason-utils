@@ -33,16 +33,14 @@ let make =
       value={MaterialUi.Select.Value.string(selectedValue.value)}
       onChange={(e, _) => onChange(e)}>
       {isNoneRequired
-         ? <MaterialUi.MenuItem
-             value={MaterialUi_MenuItem.Value.string(defaultSelectItem.value)}>
+         ? <MaterialUi.MenuItem value={MaterialUi_MenuItem.Value.string(defaultSelectItem.value)}>
              defaultSelectItem.text->React.string
            </MaterialUi.MenuItem>
          : React.null}
       {items
        |> List.map(item =>
             <MaterialUi.MenuItem
-              key={item.key}
-              value={MaterialUi_MenuItem.Value.string(item.value)}>
+              key={item.key} value={MaterialUi_MenuItem.Value.string(item.value)}>
               {React.string(item.text)}
             </MaterialUi.MenuItem>
           )

@@ -10,23 +10,23 @@ let getURLParams = (searchStr: string): Js.Dict.t(string) => {
   urlParams;
 };
 
-let getQueryParameterString = (urlParams: Js.Dict.t(string)): option(string) => {
-  let keys = Js.Dict.keys(urlParams);
+let rec fold = (~lst: list(string), ~value: string="", ()): string => {
+  switch (lst) {
+  | [] => value
+  | [head] => value ++ head
+  | [head, ...tail] => head ++ "&" ++ fold(~lst=tail, ~value, ())
+  };
+};
 
-  Array.length(keys) > 0
+let getQueryParameterString = (urlParams: Js.Dict.t(string)): option(string) => {
+  let keys = Js.Dict.keys(urlParams) |> Array.to_list;
+
+  List.length(keys) > 0
     ? keys
-      |> Array.map(key => {
+      |> List.map(key => {
            key ++ "=" ++ urlParams->Js.Dict.get(key)->Belt.Option.getWithDefault("")
          })
-      |> (
-        params_list =>
-          Array.fold_left(
-            (query_param, param) => {query_param ++ "&" ++ param},
-            params_list[0],
-            params_list,
-          )
-          |> (query_param => Some(query_param))
-      )
+      |> (params_list => fold(~lst=params_list, ()) |> (query_param => Some(query_param)))
     : None;
 };
 

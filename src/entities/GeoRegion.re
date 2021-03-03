@@ -39,3 +39,7 @@ let fromString = (region: string): t =>
 let getList = (): list(string) => {
   cities |> List.map((region: t) => toString(region));
 };
+
+let t_decode = json => json->Decco.stringFromJson->Belt.Result.map(fromString);
+
+let t_encode = v => Json.Encode.string(v->toString);

@@ -25,7 +25,6 @@ let make =
       ~onClear: unit => unit,
     )
     : React.element => {
-  Js.log(onClear);
   <MuiPickersUtilsProvider utils=MuiPickersUtilsProvider.utils>
     <ClearButton className="date-time-picker-cross-btn" cb={_ => onClear()} />
     <MUIDateTimePicker

@@ -24,9 +24,43 @@ module SelectProps = {
   };
 };
 
+module SelectUtils = {
+  let getSelectComponentItem =
+      (typeItem: option('a), conv: 'a => string): option(SelectComponent.t) => {
+    Belt.Option.flatMap(
+      typeItem,
+      item => {
+        let typeString = item->conv;
+        Some(
+          {
+            key: Js.String.toLowerCase(typeString),
+            value: typeString,
+            text: typeString |> Js.String.toUpperCase,
+          }: SelectComponent.t,
+        );
+      },
+    );
+  };
+
+  let getTypeItems = (typeList: list('a), conv: 'a => string): list(SelectComponent.t) => {
+    typeList
+    |> List.map((variant) =>
+         (
+           {
+             let typeString = variant->conv;
+             {
+               key: Js.String.toLowerCase(typeString),
+               value: typeString,
+               text: typeString |> Js.String.toUpperCase,
+             };
+           }: SelectComponent.t
+         )
+       );
+  };
+};
+
 [@react.component]
-let make =
-    (~input_props: FormInputProps.t('b, 'c), ~select_props: SelectProps.t) => {
+let make = (~input_props: FormInputProps.t('b, 'c), ~select_props: SelectProps.t) => {
   <FormInputWrapper className={input_props.className}>
     <SelectComponent
       label={input_props.label}
