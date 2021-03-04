@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/browser';
-var SENTRY_FRONTEND_DSN = 'https://4ce8c888a1d349428e0dfeb0cb325a71@sentry.io/1408218';
+
 let ignoreErrors = [
   /Cannot read property 'getReadModeExtract' of undefined/i,
   /Cannot read property 'getReadModeRender' of undefined/i,
@@ -7,10 +7,10 @@ let ignoreErrors = [
   /ibFindAllVideos is not defined/i,
 ]
 
-export function init(env) {
-  if (env == "production") {
+export function init(environment, dsn) {
+  if (environment == "production") {
     Sentry.init({
-      dsn: SENTRY_FRONTEND_DSN,
+      dsn,
       attachStackTrace: true,
       ignoreErrors
     })
