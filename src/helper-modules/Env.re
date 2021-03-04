@@ -9,6 +9,6 @@ let getHostName = (): string => {
   };
 };
 
-let getWorkingEnv=() => {
+let getWorkingEnv = () => {
   Environment.fromString(node_env)
 }
