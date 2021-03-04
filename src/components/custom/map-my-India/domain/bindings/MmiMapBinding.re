@@ -40,7 +40,16 @@ external getBoundsZoom: (MmiBaseType.map, LatLng.bounds, bool) => int =
 external on:
   (
     MmiBaseType.map,
-    [@bs.string] [ | `zoomend(_ => _) | `zoomstart(_ => _)]
+    [@bs.string] [
+      | `zoomend(_ => _)
+      | `zoomstart(_ => _)
+      | `zoom(_ => _)
+      | `moveend(_ => _)
+      | `movestart(_ => _)
+      | `move(_ => _)
+      | `click(_ => _)
+      | `dblclick(_ => _)
+    ]
   ) =>
   MmiBaseType.map =
   "on";

@@ -20,6 +20,10 @@
       {
         "dir": "src",
         "subdirs": true
+      },
+      {
+        "dir": "examples",
+        "type": "dev"
       }
     ],
     "warnings": {
@@ -27,11 +31,10 @@
       "error": "+27"
     },
     "package-specs": {
-      "module": "commonjs",
+      "module": "es6-global",
       "in-source": true
     },
     "namespace": true,
     "suffix": ".bs.js",
     "refmt": 3
   }
-  

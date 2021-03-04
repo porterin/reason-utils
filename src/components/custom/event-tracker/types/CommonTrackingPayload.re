@@ -1,12 +1,12 @@
 type event = {
   category: string,
   action: string,
+  label: option(string),
   value: option(int),
-  extra_params: option(Js.Json.t),
+  nonInteraction: option(bool),
 };
 
 type pageview = {
   path: string,
-  title: option(string),
-  extra_params: option(Js.Json.t),
+  title: string,
 };

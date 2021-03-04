@@ -48,3 +48,10 @@ let toAmountString = (amt: float) => {
   |> Js.String.replaceByRe([%re "/\B(?=(\d{3})+(?!\d))/g"], ",")
   |> (value => prefix ++ {j| ₹|j} ++ value);
 };
+
+let toAmountStringWithPrecision = (~digits=2, amt: float, ) => {
+  let prefix = amt < 0.0 ? "-" : "";
+  amt->Js.Math.abs_float-> Js.Float.toFixedWithPrecision(~digits)
+  |> Js.String.replaceByRe([%re "/\B(?=(\d{3})+(?!\d))/g"], ",")
+  |> (value => prefix ++ {j| ₹|j} ++ value);
+}

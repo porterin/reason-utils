@@ -1,46 +1,67 @@
 .tabs {
     &__list {
-        display: flex;
-        background-color: $color-tab-container;
-        margin: 0;
+      display: flex;
+      background-color: $color-tab-container;
+      margin: 0;
     }
     &__container {
-        margin-top : -1px;
+      margin-top: -1px;
     }
-}
-.tab-item {
+  }
+  .tab-item {
     @include crm-txt-base-style;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     cursor: pointer;
     font-size: 12px;
-    margin: .8rem .5rem 0 .5rem;
-    padding: 1.1rem .8rem .9rem 1.5rem;
+    margin: 0.8rem 0.5rem 0 0.5rem;
+    padding: 1.1rem 0.8rem 0.9rem 1.5rem;
     border-top-left-radius: 1.2rem;
     border-top-right-radius: 1.2rem;
     &-inactive {
-        background-color: $color-tab-item;
+      background-color: $color-tab-item;
     }
     &-active {
-        opacity: 1;
-        background-color: $color-white;
+      opacity: 1;
+      background-color: $color-white;
     }
     &__close-btn {
-        background-color: $color-tab-container;
-        margin-left: 1.6rem;
-        padding: 0 .3rem .2rem;
-        text-align: center;
+      background-color: $color-tab-container;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: fit-content;
+      border-radius: 50%;
+      padding: 0.2rem;
+      margin-left: 0.5rem;
+      &:hover {
+        background-color: $color-grey-2;
+      }
+    }
+    &:first-child {
+      margin-left: 1rem;
+    }
+    .tab-actions-container {
+      margin-left: 1rem;
+      display: flex;
+      .tab-menu-button {
         border-radius: 50%;
-        color: $color-text;
+        padding: 0.6rem;
+        background-color: $color-tab-container !important;
         &:hover {
-            background-color: $color-grey-2;
+          background-color: $color-grey-2 !important;
         }
+      }
     }
-    &:first-child { 
-        margin-left: 1rem;
-    }
-}
-
-.display-tab {
-  height: calc(100vh - 83px);
-  overflow-y: scroll;
-}
+  }
+  
+  .display-tab {
+    height: calc(100vh - 83px);
+    overflow-y: scroll;
+    display: block;
+  }
+  
+  .no-display-tab {
+    display: none;
+  }
+  
