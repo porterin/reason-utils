@@ -1,5 +1,5 @@
 type t = {
-  value: Js.Date.t,
+  value: option(Js.Date.t),
   minDate: option(Js.Date.t),
   maxDate: option(Js.Date.t),
   onChange: Js.Date.t => unit,
@@ -9,11 +9,13 @@ type t = {
 [@react.component]
 let make = (~input_props: FormInputProps.t('b, 'c), ~date_props: t) => {
   <FormInputWrapper className={input_props.className}>
-    <DatePicker
+    <DatePickerV2
       label={input_props.label}
       disabled={input_props.isDisabled}
       onChange={date => date_props.onChange(date |> MomentRe.Moment.toDate)}
-      value={date_props.value |> MomentRe.momentWithDate}
+      value={Belt.Option.mapWithDefault(date_props.value, None, date =>
+        Some(date |> MomentRe.momentWithDate)
+      )}
       minDate={Belt.Option.mapWithDefault(date_props.minDate, None, v =>
         Some(v |> MomentRe.momentWithDate)
       )}
