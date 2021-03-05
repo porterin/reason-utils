@@ -2,7 +2,7 @@
 external make:
   (
     ~onChange: MomentRe.Moment.t => unit,
-    ~value: MomentRe.Moment.t,
+    ~value: option(MomentRe.Moment.t),
     ~autoOk: option(bool)=?,
     ~disabled: option(bool)=?,
     ~disableFuture: option(bool),

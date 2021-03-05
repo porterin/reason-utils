@@ -3,7 +3,7 @@ let make =
     (
       ~label: string,
       ~onChange: MomentRe.Moment.t => unit,
-      ~value: MomentRe.Moment.t,
+      ~value: option(MomentRe.Moment.t),
       ~minDate: option(MomentRe.Moment.t),
       ~maxDate: option(MomentRe.Moment.t),
       ~format: string="DD/MM/YYYY",
