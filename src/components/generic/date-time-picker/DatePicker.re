@@ -1,3 +1,7 @@
+module OptionMomentToMomentMap = {
+  external optionMomentToMoment: Js.Null.t(MomentRe.Moment.t) => MomentRe.Moment.t = "%identity";
+};
+
 [@react.component]
 let make =
     (
@@ -15,7 +19,7 @@ let make =
   <MuiPickersUtilsProvider utils=MuiPickersUtilsProvider.utils>
     <MUIDatePicker
       onChange
-      value
+      value={Js.Null.fromOption(value) |> OptionMomentToMomentMap.optionMomentToMoment}
       minDate
       format
       maxDate
