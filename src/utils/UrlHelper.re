@@ -13,7 +13,7 @@ module QueryParamsConstructor = {
           |> List.map(key => {
               key ++ "=" ++ urlParams->Js.Dict.get(key)->Belt.Option.getWithDefault("")
             })
-          |> (params_list => fold(~lst=params_list, ()) |> (query_param => Some(query_param)))
+          |> (paramsList => fold(~lst=paramsList, ()) |> (queryParam => Some(queryParam)))
         : None;
     };
   }
