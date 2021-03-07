@@ -12,7 +12,7 @@ let getURLParams = (searchStr: string): Js.Dict.t(string) => {
 
 let createRequestURLfrmParams =
     (hostName: string, requestUrl: string, urlParams: Js.Dict.t(string)) => {
-  switch (UrlHelper.QueryParamsConstructor.create(urlParams)) {
+  switch (QueryParamsConstructor.create(urlParams)) {
   | Some(args) => hostName ++ requestUrl ++ "?" ++ args
   | None => hostName ++ requestUrl
   };
