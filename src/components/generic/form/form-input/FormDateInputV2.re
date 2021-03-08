@@ -1,3 +1,7 @@
+/* This component is made to fulfill the requirements of Packers & Movers.
+    It will replace either DatePicker v1 or will be reverted by 15th April 2021.
+   */
+
 type t = {
   value: option(Js.Date.t),
   minDate: option(Js.Date.t),
@@ -14,7 +18,7 @@ type t = {
 
 let make_props =
     (
-      ~value: option(Js.Date.t),
+      ~value: option(Js.Date.t)=None,
       ~minDate: option(Js.Date.t)=None,
       ~maxDate: option(Js.Date.t)=None,
       ~onChange: Js.Date.t => unit,

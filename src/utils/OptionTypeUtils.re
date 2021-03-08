@@ -78,6 +78,10 @@ let getListFromOptionalType = (li: option(list('a))): list('a) => {
   };
 };
 
+/* Handles option type for Moment. If value exists, it creates moment
+   object from it, if not it creates nullable object. */
 module OptionMomentToMomentMap = {
-  external optionMomentToMoment: Js.Null.t(MomentRe.Moment.t) => MomentRe.Moment.t = "%identity";
+  external optionMomentToMoment:
+    Js.Null.t(MomentRe.Moment.t) => MomentRe.Moment.t =
+    "%identity";
 };
