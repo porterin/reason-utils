@@ -25,6 +25,7 @@ let make_props =
       ~autoOk: bool=true,
       ~className: string="form-input-date-time",
       ~format: string,
+      ()
     )
     : t => {
   value,
