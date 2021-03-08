@@ -1,7 +1,6 @@
-module OptionMomentToMomentMap = {
-  external optionMomentToMoment: Js.Null.t(MomentRe.Moment.t) => MomentRe.Moment.t = "%identity";
-};
-
+/* This component is made to fulfill the requirements of Packers & Movers.
+    It will replace either DatePicker v1 or will be reverted by 15th April 2021.
+   */
 [@react.component]
 let make =
     (
@@ -11,27 +10,34 @@ let make =
       ~minDate: option(MomentRe.Moment.t),
       ~maxDate: option(MomentRe.Moment.t),
       ~format: string="DD/MM/YYYY",
-      ~disableFuture: option(bool)=?,
-      ~disablePast: option(bool)=?,
-      ~disabled=false,
+      ~disableFuture: option(bool),
+      ~disablePast: option(bool),
+      ~disabled: bool,
+      ~variant: string,
+      ~inputVariant: string,
+      ~autoOk: bool,
+      ~className: string
     )
     : React.element => {
   <MuiPickersUtilsProvider utils=MuiPickersUtilsProvider.utils>
     <MUIDatePicker
       onChange
-      value={Js.Null.fromOption(value) |> OptionMomentToMomentMap.optionMomentToMoment}
+      value={
+        Js.Null.fromOption(value)
+        |> OptionTypeUtils.OptionMomentToMomentMap.optionMomentToMoment
+      }
       minDate
       format
       maxDate
       disableFuture
       disablePast
-      autoOk=true
+      autoOk
       disableToolbar=true
       disabled
-      variant="inline"
+      variant
       label
-      inputVariant="outlined"
-      className="form-input-date-time"
+      inputVariant
+      className
     />
   </MuiPickersUtilsProvider>;
 };

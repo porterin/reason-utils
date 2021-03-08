@@ -77,3 +77,7 @@ let getListFromOptionalType = (li: option(list('a))): list('a) => {
   | Some(li) => li
   };
 };
+
+module OptionMomentToMomentMap = {
+  external optionMomentToMoment: Js.Null.t(MomentRe.Moment.t) => MomentRe.Moment.t = "%identity";
+};
