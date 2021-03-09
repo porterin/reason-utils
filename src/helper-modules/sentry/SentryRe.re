@@ -7,7 +7,8 @@ type static;
 
 let initSentry = (~environment: Environment.t, ~dsn: string) => {
   switch(environment) {
-    | Production => init(dsn)
+    | Production 
+    | Staging => init(dsn)
     | _ => ()
   }
 }
