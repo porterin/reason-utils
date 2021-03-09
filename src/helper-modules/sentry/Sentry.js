@@ -8,13 +8,11 @@ let ignoreErrors = [
 ]
 
 export function init(environment, dsn) {
-  if (environment == "production") {
-    Sentry.init({
-      dsn,
-      attachStackTrace: true,
-      ignoreErrors
-    })
-  }
+  Sentry.init({
+    dsn,
+    attachStackTrace: true,
+    ignoreErrors
+  })
 }
 
 /* TODO: Create proper bindings */
