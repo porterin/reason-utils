@@ -7,7 +7,7 @@ let ignoreErrors = [
   /ibFindAllVideos is not defined/i,
 ]
 
-export function init(dsn) {
+export function initializeSentry(dsn) {
   console.log("sentry_init")
   console.log(dsn)
   Sentry.init({
