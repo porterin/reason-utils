@@ -8,8 +8,6 @@ let ignoreErrors = [
 ]
 
 export function init(dsn) {
-  console.log("sentry_init")
-  console.log(dsn)
   Sentry.init({
     dsn,
     attachStackTrace: true,
