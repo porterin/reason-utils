@@ -57,6 +57,12 @@ module SelectUtils = {
          )
        );
   };
+
+  let getSelectedItemByValue =
+      (value: string, options: list(Catalyst.SelectComponent.t))
+      : option(Catalyst.SelectComponent.t) => {
+    List.find_opt((o: Catalyst.SelectComponent.t) => value == o.value, options);
+  };
 };
 
 [@react.component]
