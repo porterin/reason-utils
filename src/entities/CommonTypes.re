@@ -24,3 +24,5 @@ type viewText =
   | Custom(unit => React.element);
 [@decco]
 type timestamp = float;
+[@decco]
+type distance=float
