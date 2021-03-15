@@ -22,9 +22,10 @@ let make =
   <MuiPickersUtilsProvider utils=MuiPickersUtilsProvider.utils>
     <MUIDatePicker
       onChange
-      value={
-        Js.Null.fromOption(value)
-        |> OptionTypeUtils.OptionMomentToMomentMap.optionMomentToMoment
+      value = {
+        value
+        ->Js.Null.fromOption
+        ->OptionTypeUtils.OptionMomentToMomentMap.optionMomentToMoment;
       }
       minDate
       format
