@@ -24,26 +24,26 @@ module PositionH = {
 
 module Classes = {
   type t = {
-    root: option(string),
-    anchorOriginTopLeftroot: option(string),
-    anchorOriginTopCenter: option(string),
-    anchorOriginBottomCenter: option(string),
-    anchorOriginTopRight: option(string),
-    anchorOriginBottomRight: option(string),
-    anchorOriginTopLeft: option(string),
-    anchorOriginBottomLeft: option(string)
+    root: string,
+    anchorOriginTopLeftroot: string,
+    anchorOriginTopCenter: string,
+    anchorOriginBottomCenter: string,
+    anchorOriginTopRight: string,
+    anchorOriginBottomRight: string,
+    anchorOriginTopLeft: string,
+    anchorOriginBottomLeft: string
   };
 
 let make_props =
   (
-    ~root: option(string)=?,
-    ~anchorOriginTopLeftroot: option(string)=?,
-    ~anchorOriginTopCenter: option(string)=?,
-    ~anchorOriginBottomCenter: option(string)=?,
-    ~anchorOriginTopRight: option(string)=?,
-    ~anchorOriginBottomRight: option(string)=?,
-    ~anchorOriginTopLeft: option(string)=?,
-    ~anchorOriginBottomLeft: option(string)=?,
+    ~root: string="",
+    ~anchorOriginTopLeftroot: string="",
+    ~anchorOriginTopCenter: string="",
+    ~anchorOriginBottomCenter: string="",
+    ~anchorOriginTopRight: string="",
+    ~anchorOriginBottomRight: string="",
+    ~anchorOriginTopLeft: string="",
+    ~anchorOriginBottomLeft: string="",
     (),
   )
   : t => {
@@ -61,7 +61,7 @@ let make_props =
 [@react.component]
 let make = (
   ~is_open: bool, 
-  ~autoHideDuration=150, 
+  ~autoHideDuration=1500, 
   ~position=(PositionV.Bottom, PositionH.Centre),
   ~onClose: (ReactEvent.Synthetic.t, string) => unit,
   ~className: option(string)=?,
@@ -83,19 +83,17 @@ let make = (
         switch(classes) {
           | Some(classes) => {
               MaterialUi_Snackbar.Classes.make(
-                ~root=Belt.Option.getWithDefault(classes.root, ""),
-                ~anchorOriginTopCenter=Belt.Option.getWithDefault(classes.anchorOriginTopCenter, ""),
-                ~anchorOriginBottomCenter=Belt.Option.getWithDefault(classes.anchorOriginBottomCenter, ""),
-                ~anchorOriginTopRight=Belt.Option.getWithDefault(classes.anchorOriginTopRight, ""),
-                ~anchorOriginBottomRight=Belt.Option.getWithDefault(classes.anchorOriginBottomRight, ""),
-                ~anchorOriginTopLeft=Belt.Option.getWithDefault(classes.anchorOriginTopLeft, ""),
-                ~anchorOriginBottomLeft=Belt.Option.getWithDefault(classes.anchorOriginBottomLeft, ""),
+                ~root=classes.root,
+                ~anchorOriginTopCenter=classes.anchorOriginTopCenter,
+                ~anchorOriginBottomCenter=classes.anchorOriginBottomCenter,
+                ~anchorOriginTopRight=classes.anchorOriginTopRight,
+                ~anchorOriginBottomRight=classes.anchorOriginBottomRight,
+                ~anchorOriginTopLeft=classes.anchorOriginTopLeft,
+                ~anchorOriginBottomLeft=classes.anchorOriginBottomLeft,
                 ()
               )
           }
-          | None => MaterialUi_Snackbar.Classes.make(
-              ()
-            )
+          | None => MaterialUi_Snackbar.Classes.make(())
         }
       )
     >
