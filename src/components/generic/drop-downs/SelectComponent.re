@@ -32,7 +32,7 @@ let make =
      }}
     <MaterialUi.Select
       labelId="select-label-id"
-      label={React.string(label)}
+      /* label={React.string(label)} */
       defaultValue={MaterialUi_Types.Any(defaultSelectItem.value)}
       value={MaterialUi.Select.Value.string(selectedValue.value)}
       onChange={(e, _) => onChange(e)}>
