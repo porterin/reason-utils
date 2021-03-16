@@ -1,5 +1,9 @@
 ### Release Notes
 
++ **2.5.1**
+  - Date Picker V2 added
+  - NavigateNextRoundedIcon added
+
 + **2.5.0**
   - Added Kolkata to the list of geo-regions
 
