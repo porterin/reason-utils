@@ -1,7 +1,3 @@
-module OptionMomentToMomentMap = {
-  external optionMomentToMoment: Js.Null.t(MomentRe.Moment.t) => MomentRe.Moment.t = "%identity";
-};
-
 module ClearButton = {
   let closeIcon = AssetsManager.getImage("close-icon-round.svg");
 
@@ -30,7 +26,11 @@ let make =
     <ClearButton className="date-time-picker-cross-btn" cb={_ => onClear()} />
     <MUIDateTimePicker
       onChange
-      value={Js.Null.fromOption(value) |> OptionMomentToMomentMap.optionMomentToMoment}
+      value = {
+        value
+        ->Js.Null.fromOption
+        ->OptionTypeUtils.OptionMomentToMomentMap.optionMomentToMoment;
+      }
       minDate
       format
       maxDate
