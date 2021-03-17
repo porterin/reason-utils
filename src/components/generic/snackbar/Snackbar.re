@@ -81,15 +81,23 @@ let make = (
       className=Belt.Option.getWithDefault(className, "")
       classes=(
         switch(classes) {
-          | Some(classes) => {
+          | Some({
+            root,
+            anchorOriginTopCenter,
+            anchorOriginBottomCenter,
+            anchorOriginTopRight,
+            anchorOriginBottomRight,
+            anchorOriginTopLeft,
+            anchorOriginBottomLeft
+            }) => {
               MaterialUi_Snackbar.Classes.make(
-                ~root=classes.root,
-                ~anchorOriginTopCenter=classes.anchorOriginTopCenter,
-                ~anchorOriginBottomCenter=classes.anchorOriginBottomCenter,
-                ~anchorOriginTopRight=classes.anchorOriginTopRight,
-                ~anchorOriginBottomRight=classes.anchorOriginBottomRight,
-                ~anchorOriginTopLeft=classes.anchorOriginTopLeft,
-                ~anchorOriginBottomLeft=classes.anchorOriginBottomLeft,
+                ~root,
+                ~anchorOriginTopCenter,
+                ~anchorOriginBottomCenter,
+                ~anchorOriginTopRight,
+                ~anchorOriginBottomRight,
+                ~anchorOriginTopLeft,
+                ~anchorOriginBottomLeft,
                 ()
               )
           }
