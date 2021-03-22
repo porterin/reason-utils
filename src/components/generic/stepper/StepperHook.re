@@ -11,6 +11,7 @@ let useStepper =
       ~classes: Catalyst.Stepper.Classes.t=Stepper.Classes.make(),
       ~steppers: list(Stepper.t('a)),
       ~defaultActive: 'a,
+      ()
     ) => {
   let (active, setActive) = React.useState(_ => defaultActive);
   let (completed, setCompleted) = React.useState(_ => []);
