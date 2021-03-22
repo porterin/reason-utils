@@ -54,8 +54,25 @@ let make =
     activeStep={MaterialUi_Types.Number.int(activeStep)}>
     {steppers
      |> List.mapi((index: int, step: t('a)) => {
-          <MaterialUi.Step key={string_of_int(index)}>
-            <MaterialUi.StepButton completed={isCompleted(step.stepper_id)}>
+          <MaterialUi.Step
+            key={string_of_int(index)}
+            classes={MaterialUi.Step.Classes.make(
+              ~root="step-root",
+              ~horizontal="step-horizontal",
+              ~vertical="step-vertical",
+              ~alternativeLabel="step-alternative-label",
+              ~completed="step-completed",
+              (),
+            )}>
+            <MaterialUi.StepButton
+              classes={MaterialUi.StepButton.Classes.make(
+                ~root="step-button-root",
+                ~horizontal="step-button-horizontal",
+                ~vertical="step-button-vertical",
+                ~touchRipple="step-button-touch-ripple",
+                (),
+              )}
+              completed={isCompleted(step.stepper_id)}>
               {switch (step.label) {
                | Text(label) => <div> {React.string(label)} </div>
                | Custom(fn) => fn()
