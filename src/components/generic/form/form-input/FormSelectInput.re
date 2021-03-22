@@ -75,6 +75,6 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~select_props: SelectProps.t
       items={select_props.items}
       isNoneRequired={select_props.isNoneRequired}
     />
-    {FormInputHelper.getWarningOrError(None, input_props.result)}
+    {FormInputHelper.getWarningOrError(None, input_props.result, input_props.helper_text)}
   </FormInputWrapper>;
 };

@@ -1,10 +1,20 @@
 let getWarningOrError =
-    (warning: option(string), result: option(result('a, 'b))): React.element => {
+    (
+      warning: option(string),
+      result: option(result('a, 'b)),
+      helper_text: CommonTypes.viewText,
+    )
+    : React.element => {
   <div className="input-error-container">
     {switch (result) {
      | None =>
        switch (warning) {
-       | None => React.null
+       | None =>
+         switch (helper_text) {
+         | NoText => React.null
+         | Text(msg) => <div className="helper-text"> {React.string(msg)} </div>
+         | Custom(fn) => fn()
+         }
        | Some(warning) => <div className="warning"> {React.string(warning)} </div>
        }
      | Some(result) =>
