@@ -1,3 +1,11 @@
+let getHelperText = (helper_text: CommonTypes.viewText) => {
+  switch (helper_text) {
+  | NoText => React.null
+  | Text(msg) => <div className="helper-text"> {React.string(msg)} </div>
+  | Custom(fn) => fn()
+  };
+};
+
 let getWarningOrError =
     (
       warning: option(string),
@@ -9,18 +17,13 @@ let getWarningOrError =
     {switch (result) {
      | None =>
        switch (warning) {
-       | None =>
-         switch (helper_text) {
-         | NoText => React.null
-         | Text(msg) => <div className="helper-text"> {React.string(msg)} </div>
-         | Custom(fn) => fn()
-         }
+       | None => getHelperText(helper_text)
        | Some(warning) => <div className="warning"> {React.string(warning)} </div>
        }
      | Some(result) =>
        switch (result) {
        | Error(err) => <div className="error"> {React.string(err)} </div>
-       | _ => React.null
+       | _ => getHelperText(helper_text)
        }
      }}
   </div>;
