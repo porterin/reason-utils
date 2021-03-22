@@ -4,44 +4,66 @@ type t('a) = {
   label: CommonTypes.viewText,
 };
 
-type stepperHookRt('a) = {
-  steppers: React.element,
-  active: 'a,
-  setActive: 'a => unit,
-  setCompleted: 'a => unit,
-  resetStepper: 'a => unit,
+module Classes = {
+  type t = {
+    root: string,
+    horizontal: string,
+    vertical: string,
+    alternativeLabel: string,
+  };
+  let make =
+      (
+        ~root: string="",
+        ~horizontal: string="",
+        ~vertical: string="",
+        ~alternativeLabel: string="",
+        (),
+      )
+      : t => {
+    root,
+    horizontal,
+    vertical,
+    alternativeLabel,
+  };
 };
 
-let useStepper = (~steppers: list(t('a)), ~defaultActive: 'a) => {
-  let (active, setActive) = React.useState(_ => defaultActive);
-  let (completed, setCompleted) = React.useState(_ => []);
-  let steppers =
-    <MaterialUi.Stepper
-      alternativeLabel=true
-      nonLinear=true
-      activeStep={MaterialUi_Types.Number.int(
-        List.find(a => a.stepper_id == active, steppers).stepper_number,
-      )}>
-      {steppers
-       |> List.mapi((index: int, step: t('a)) => {
-            <MaterialUi.Step key={string_of_int(index)}>
-              <MaterialUi.StepButton
-                completed={List.exists(s => s == step.stepper_id, completed)}>
-                {switch (step.label) {
-                 | Text(label) => <div> {React.string(label)} </div>
-                 | Custom(fn) => fn()
-                 | NoText => React.null
-                 }}
-              </MaterialUi.StepButton>
-            </MaterialUi.Step>
-          })
-       |> ReasonReactUtils.listToReactArray}
-    </MaterialUi.Stepper>;
-  {
-    steppers,
-    active,
-    setActive: a => setActive(_ => a),
-    setCompleted: a => setCompleted(pre => [a, ...pre]),
-    resetStepper: a => setCompleted(pre => List.filter(b => b !== a, pre)),
-  };
+[@react.component]
+let make =
+    (
+      ~steppers: list(t('a)),
+      ~activeStep: int,
+      ~isCompleted: 'a => bool,
+      ~classes: option(Classes.t)=?,
+    ) => {
+  <MaterialUi.Stepper
+    classes={
+      switch (classes) {
+      | Some(classes) =>
+        MaterialUi_Stepper.Classes.make(
+          ~root=classes.root,
+          ~horizontal=classes.horizontal,
+          ~vertical=classes.vertical,
+          ~alternativeLabel=classes.alternativeLabel,
+          (),
+        )
+      | None => MaterialUi_Stepper.Classes.make()
+      }
+    }
+    alternativeLabel=true
+    nonLinear=true
+    activeStep={MaterialUi_Types.Number.int(activeStep)}>
+    {steppers
+     |> List.mapi((index: int, step: t('a)) => {
+          <MaterialUi.Step key={string_of_int(index)}>
+            <MaterialUi.StepButton completed={isCompleted(step.stepper_id)}>
+              {switch (step.label) {
+               | Text(label) => <div> {React.string(label)} </div>
+               | Custom(fn) => fn()
+               | NoText => React.null
+               }}
+            </MaterialUi.StepButton>
+          </MaterialUi.Step>
+        })
+     |> ReasonReactUtils.listToReactArray}
+  </MaterialUi.Stepper>;
 };
