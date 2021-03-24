@@ -13,10 +13,8 @@ let copyWithExecCommand : string => unit = [%bs.raw {|
 |}];
 
 let copy = (~text: string, ~onCopy: unit => unit) => {
-  clipboardSupported  ? 
-    text -> clipboardWriteText -> Promise.get(_ => onCopy())
-  :
-    Promise.resolved(copyWithExecCommand(text)) -> Promise.get(_ => onCopy())
+  (clipboardSupported  ? 
+    text -> clipboardWriteText : Promise.resolved(copyWithExecCommand(text))) -> Promise.get(_ => onCopy())
 };
 
 let useCopyToClipboard = (~text: string, ~children: React.element) => {
