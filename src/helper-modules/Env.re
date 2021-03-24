@@ -2,20 +2,6 @@
 [@bs.val] external oms_url: string = "process.env.OMS_URL";
 [@bs.val] external crm_url: string = "window.location.origin";
 
-
-module Environment = {
-  type t =
-    | Production
-    | Staging
-    | Development
-
-  let fromString :(string) => t =
-    fun
-    | "production" => Production
-    | "staging" => Staging
-    | _ => Development
-}
-
 let getHostName = (): string => {
   switch (node_env) {
   | "development" => "http://localhost:3000"
@@ -23,6 +9,6 @@ let getHostName = (): string => {
   };
 };
 
-let getWorkingEnv= () => {
+let getWorkingEnv = () => {
   Environment.fromString(node_env)
 }

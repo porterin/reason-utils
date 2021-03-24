@@ -6,9 +6,10 @@ type t =
   | Chennai
   | Ahmedabad
   | Pune
-  | Surat;
+  | Surat
+  | Kolkata;
 
-let cities: list(t) = [Mumbai, Bangalore, Delhi, Hyderabad, Chennai, Ahmedabad, Pune, Surat];
+let cities: list(t) = [Mumbai, Bangalore, Delhi, Hyderabad, Chennai, Ahmedabad, Pune, Surat, Kolkata];
 
 let toString = (region: t): string =>
   switch (region) {
@@ -20,6 +21,7 @@ let toString = (region: t): string =>
   | Ahmedabad => "Ahmedabad"
   | Pune => "Pune"
   | Surat => "Surat"
+  | Kolkata => "Kolkata"
   };
 
 let fromString = (region: string): t =>
@@ -33,6 +35,7 @@ let fromString = (region: string): t =>
   | "Ahmedabad" => Ahmedabad
   | "Pune" => Pune
   | "Surat" => Surat
+  | "Kolkata" => Kolkata
   | _ => failwith("No geo-region found for given string")
   };
 
