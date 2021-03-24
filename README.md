@@ -1,7 +1,7 @@
 ### Release Notes
 + **2.5.2**
   - Snackbar component
-  - Copy to Clipboard component
+  - Copy to Clipboard hook
   - css utilites
 
 + **2.5.1**
