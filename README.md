@@ -1,4 +1,8 @@
 ### Release Notes
++ **2.5.2**
+  - Snackbar component
+  - Copy to Clipboard component
+  - css utilites
 
 + **2.5.1**
   - Date Picker V2 added
