@@ -56,3 +56,7 @@
   - Updated GA initializer
   - Updated GA event publisher
   - Added mmi map events
+
++ **2.5.2**
+  - Fixed UrlUtils QueryParamConstructor
+
