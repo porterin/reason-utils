@@ -44,6 +44,9 @@
     margin-bottom: 0.2em;
     > .error {
       color: $status-red;
+      > img {
+        margin-right: 0.4rem;
+      }
     }
     > .warning {
       color: $secondary;
