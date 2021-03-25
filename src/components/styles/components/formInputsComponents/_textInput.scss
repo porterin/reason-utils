@@ -44,10 +44,10 @@
     margin-bottom: 0.2em;
     > .error {
       color: $status-red;
+      display: flex;
+      align-items: center;
       > img {
         margin-right: 0.4rem;
-        display: flex;
-        align-items: center;
       }
     }
     > .warning {
