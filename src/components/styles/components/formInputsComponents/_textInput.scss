@@ -46,6 +46,8 @@
       color: $status-red;
       > img {
         margin-right: 0.4rem;
+        display: flex;
+        align-items: center;
       }
     }
     > .warning {
