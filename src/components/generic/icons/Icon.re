@@ -44,3 +44,9 @@ module MoreVertIcon =
     [@bs.module "@material-ui/icons/MoreVert"]
     external reactClass: React.component('a) = "default";
   });
+
+module NavigateNextRoundedIcon =
+  Make({
+    [@bs.module "@material-ui/icons/NavigateNextRounded"]
+    external reactClass: React.component('a) = "default";
+  });

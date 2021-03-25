@@ -1,0 +1,1 @@
+let useCopyToClipboard: (~text: string, ~children: React.element) => (React.element, bool, (bool => bool) => unit)
