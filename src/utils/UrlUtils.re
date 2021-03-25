@@ -10,29 +10,9 @@ let getURLParams = (searchStr: string): Js.Dict.t(string) => {
   urlParams;
 };
 
-let getQueryParameterString = (urlParams: Js.Dict.t(string)): option(string) => {
-  let keys = Js.Dict.keys(urlParams);
-
-  Array.length(keys) > 0
-    ? keys
-      |> Array.map(key => {
-           key ++ "=" ++ urlParams->Js.Dict.get(key)->Belt.Option.getWithDefault("")
-         })
-      |> (
-        params_list =>
-          Array.fold_left(
-            (query_param, param) => {query_param ++ "&" ++ param},
-            params_list[0],
-            params_list,
-          )
-          |> (query_param => Some(query_param))
-      )
-    : None;
-};
-
 let createRequestURLfrmParams =
     (hostName: string, requestUrl: string, urlParams: Js.Dict.t(string)) => {
-  switch (getQueryParameterString(urlParams)) {
+  switch (QueryParamsConstructor.create(urlParams)) {
   | Some(args) => hostName ++ requestUrl ++ "?" ++ args
   | None => hostName ++ requestUrl
   };

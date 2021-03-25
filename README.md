@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.5.3**
+  - Fixed UrlUtils QueryParamConstructor
+  
 + **2.5.2**
   - Snackbar component
   - Copy to Clipboard hook
