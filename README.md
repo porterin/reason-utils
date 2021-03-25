@@ -1,7 +1,12 @@
 ### Release Notes
-**2.5.2**
++ **2.5.3**
   - Fixed UrlUtils QueryParamConstructor
   
++ **2.5.2**
+  - Snackbar component
+  - Copy to Clipboard hook
+  - css utilites
+
 + **2.5.1**
   - Date Picker V2 added
   - NavigateNextRoundedIcon added
