@@ -11,7 +11,7 @@ module Size = {
 };
 
 [@react.component]
-let make = (~title: CommonTypes.viewText, ~size: Size.t=Small) => {
+let make = (~title: CommonTypes.viewText, ~size: Size.t=Small, ~className="") => {
   <MaterialUi.Chip
     label={
       switch (title) {
@@ -21,5 +21,6 @@ let make = (~title: CommonTypes.viewText, ~size: Size.t=Small) => {
       }
     }
     size={Size.make(size)}
+    className
   />;
 };
