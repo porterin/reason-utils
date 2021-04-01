@@ -2,6 +2,8 @@ include FormInputProps;
 
 module Date = FormDateInput;
 
+module DateV2 = FormDateInputV2;
+
 module DateTime = FormDateTimeInput;
 
 module Time = FormTimeInput;
@@ -17,3 +19,5 @@ module CheckBox = FormCheckBoxInput;
 module SelectCheckBoxes = FormSelectWithCheckboxInput;
 
 module TextInput = FormTextInput;
+
+module NativeField = FormNativeTextField;
