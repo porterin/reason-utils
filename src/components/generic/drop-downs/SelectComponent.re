@@ -23,26 +23,28 @@ let make =
   let selectedValue = Belt.Option.getWithDefault(value, defaultSelectItem);
 
   <MaterialUi.FormControl variant=`Outlined className="form-input-select">
-    <MaterialUi.InputLabel id="select-label-id" htmlFor="select-label">
-      label->React.string
-    </MaterialUi.InputLabel>
+    {switch (label) {
+     | "" => React.null
+     | _ =>
+       <MaterialUi.InputLabel id="select-label-id" htmlFor="select-label">
+         label->React.string
+       </MaterialUi.InputLabel>
+     }}
     <MaterialUi.Select
       labelId="select-label-id"
-      label={React.string(label)}
+      /* label={React.string(label)} */
       defaultValue={MaterialUi_Types.Any(defaultSelectItem.value)}
       value={MaterialUi.Select.Value.string(selectedValue.value)}
       onChange={(e, _) => onChange(e)}>
       {isNoneRequired
-         ? <MaterialUi.MenuItem
-             value={MaterialUi_MenuItem.Value.string(defaultSelectItem.value)}>
+         ? <MaterialUi.MenuItem value={MaterialUi_MenuItem.Value.string(defaultSelectItem.value)}>
              defaultSelectItem.text->React.string
            </MaterialUi.MenuItem>
          : React.null}
       {items
        |> List.map(item =>
             <MaterialUi.MenuItem
-              key={item.key}
-              value={MaterialUi_MenuItem.Value.string(item.value)}>
+              key={item.key} value={MaterialUi_MenuItem.Value.string(item.value)}>
               {React.string(item.text)}
             </MaterialUi.MenuItem>
           )

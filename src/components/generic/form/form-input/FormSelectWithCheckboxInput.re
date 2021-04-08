@@ -14,6 +14,6 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~select_props: t) => {
       items={select_props.options}
       renderValue={select_props.renderValue}
     />
-    {FormInputHelper.getWarningOrError(None, input_props.result)}
+    {FormInputHelper.getWarningOrError(None, input_props.result, input_props.helper_text)}
   </FormInputWrapper>;
 };
