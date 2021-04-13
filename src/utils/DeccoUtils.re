@@ -20,4 +20,3 @@ module DateUtils = {
     DateTime.toString(~format="DD/MM/YYYY HH:mm:ss", date);
   };
 };
-
