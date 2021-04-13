@@ -1,4 +1,4 @@
-type t = MomentUtils.t
+type t = Js.Date.t;
 
 let make = (~value: string, ~format: string) => {
   MomentUtils.toDate(~value, ~format);
