@@ -34,6 +34,6 @@ let t_decode = (
   )) => {
   decoder 
     -> Decco.listFromJson(json) 
-    -> Catalyst.DeccoUtils.resolveResult("NonEmptyList.re")
+    -> DeccoUtils.resolveResult("NonEmptyList.re")
     -> make
 }
