@@ -3,10 +3,14 @@ type t('a) = {
   tail: list('a),
 };
 
-let make: list('a) => option(t('a)) =
+type typeError = {
+  error: string
+}
+
+let make: list('a) => Belt.Result.t(t('a), typeError) =
   fun
-  | [head, ...tail] => Some({head, tail})
-  | [] => None;
+  | [head, ...tail] => Belt.Result.Ok({head, tail})
+  | [] => Belt.Result.Error({error: "the type cannot be instantiated with empty list"});
 
 let toT = (head: 'a, tail: list('a)): t('a) => {
   {head, tail};
@@ -34,6 +38,6 @@ let t_decode = (
   )) => {
   decoder 
     -> Decco.listFromJson(json) 
-    -> DeccoUtils.resolveResult("NonEmptyList.re - The list cannot be empty")
+    -> DeccoUtils.resolveResult("NonEmptyList.re - Decco failed -> The list cannot be empty")
     -> make
 }
