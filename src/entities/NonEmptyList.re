@@ -25,3 +25,15 @@ let listFunc = (funcDef: list('a) => list('b), l: t('a)): t('b) => {
 let delegateToList = (funcDef: list('a) => 'c, l: t('a)): 'c => {
   funcDef(l |> toList);
 };
+
+let t_decode = (
+  json: Js.Json.t, 
+  decoder: Js.Json.t => Belt.Result.t(
+    'a,
+    Decco.decodeError
+  )) => {
+  decoder 
+    -> Decco.listFromJson(json) 
+    -> Catalyst.DeccoUtils.resolveResult("NonEmptyList.re")
+    -> make
+}
