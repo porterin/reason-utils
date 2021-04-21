@@ -34,6 +34,6 @@ let t_decode = (
   )) => {
   decoder 
     -> Decco.listFromJson(json) 
-    -> DeccoUtils.resolveResult("NonEmptyList.re")
+    -> DeccoUtils.resolveResult("NonEmptyList.re - The list cannot be empty")
     -> make
 }
