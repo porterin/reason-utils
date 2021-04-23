@@ -1,3 +1,2 @@
-type t
-let toDate: (~format: string, ~value: string) => t;
-let toString: (~format: string, ~date: t) => string;
+let toDate: (~format: string, ~value: string) => Js.Date.t;
+let toString: (~format: string, ~date: Js.Date.t) => string;
