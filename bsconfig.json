@@ -10,7 +10,8 @@
       "@jsiebern/bs-material-ui",
       "bs-moment",
       "decco",
-      "bs-webapi"
+      "bs-webapi",
+      "reason-promise"
     ],
     "ppx-flags": [
       "decco/ppx"
@@ -38,4 +39,3 @@
     "suffix": ".bs.js",
     "refmt": 3
   }
-  
