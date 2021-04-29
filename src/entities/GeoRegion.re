@@ -26,6 +26,7 @@ let toString = (region: t): string =>
   | Jaipur => "Jaipur"
   };
 
+/* Better use lowercase city name */
 let fromString = (region: string): t =>
   switch (region) {
   | "Mumbai" => Mumbai
