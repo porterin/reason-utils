@@ -9,7 +9,17 @@ type t =
   | Surat
   | Kolkata;
 
-let cities: list(t) = [Mumbai, Bangalore, Delhi, Hyderabad, Chennai, Ahmedabad, Pune, Surat, Kolkata];
+let cities: list(t) = [
+  Mumbai,
+  Bangalore,
+  Delhi,
+  Hyderabad,
+  Chennai,
+  Ahmedabad,
+  Pune,
+  Surat,
+  Kolkata,
+];
 
 let toString = (region: t): string =>
   switch (region) {
@@ -36,9 +46,16 @@ let fromString = (region: string): t =>
   | "Pune" => Pune
   | "Surat" => Surat
   | "Kolkata" => Kolkata
-  | _ => failwith("No geo-region found for given string")
+  | _ =>
+    ErrorUtils.raiseError(
+      ~path="GeoRegion.re",
+      ~message="No geo-region found for given string",
+      ~value=region,
+    )
   };
 
 let getList = (): list(string) => {
   cities |> List.map((region: t) => toString(region));
 };
+
+let t_decode = json => json->Decco.stringFromJson->Belt.Result.map(fromString);
