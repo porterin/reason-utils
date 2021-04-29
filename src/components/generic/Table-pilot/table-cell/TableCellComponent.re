@@ -2,6 +2,7 @@ let buildTableCell = (~cell: TableCell.t, ~className: string) => {
   <MaterialUi.TableCell className>
     {
       switch cell {
+      | Date({format, date}) => Date.toString(~format, ~date) -> React.string;
       | Text(text) => React.string(text);
       | Status({color, text}) => <span className=(color ->ColorPalette.getClassName)>(React.string(text))</span>;
       | ActionButton(text, callback) => (
