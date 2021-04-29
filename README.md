@@ -1,4 +1,8 @@
 ### Release Notes
++ **2.5.4**
+  - Playground server added
+  - Production deployment script added for keeping track of build size
+
 + **2.5.3**
   - Fixed UrlUtils QueryParamConstructor
   
