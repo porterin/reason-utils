@@ -94,7 +94,7 @@ module Make = (Cmp: Record) => {
        | Live(data) =>
          <Scrollable height="100%" onScrollEndCallback>
             <div className="table-wrapper">
-              <TableComponent columns className="order-table" rowData={data.recs} />
+              <TableComponent columns className="customTable" rowData={data.recs} />
             </div>
          </Scrollable>
        | FetchLoadable.Loading(Some(data)) =>
