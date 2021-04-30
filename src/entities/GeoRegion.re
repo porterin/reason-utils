@@ -10,7 +10,7 @@ type t =
   | Kolkata
   | Jaipur;
 
-let cities: list(t) = [
+let getActiveGeoRegions = (): list(t) => [
   Mumbai,
   Bangalore,
   Delhi,
@@ -58,9 +58,5 @@ let fromString = (region: string): t =>
       ~value=region,
     )
   };
-
-let getList = (): list(string) => {
-  cities |> List.map((region: t) => toString(region));
-};
 
 let t_decode = json => json->Decco.stringFromJson->Belt.Result.map(fromString);
