@@ -7,7 +7,8 @@ type t =
   | Ahmedabad
   | Pune
   | Surat
-  | Kolkata;
+  | Kolkata
+  | Jaipur;
 
 let cities: list(t) = [
   Mumbai,
@@ -19,6 +20,7 @@ let cities: list(t) = [
   Pune,
   Surat,
   Kolkata,
+  Jaipur,
 ];
 
 let toString = (region: t): string =>
@@ -32,8 +34,10 @@ let toString = (region: t): string =>
   | Pune => "Pune"
   | Surat => "Surat"
   | Kolkata => "Kolkata"
+  | Jaipur => "Jaipur"
   };
 
+/* Better use lowercase city name */
 let fromString = (region: string): t =>
   switch (region) {
   | "Mumbai" => Mumbai
@@ -46,6 +50,7 @@ let fromString = (region: string): t =>
   | "Pune" => Pune
   | "Surat" => Surat
   | "Kolkata" => Kolkata
+  | "Jaipur" => Jaipur
   | _ =>
     ErrorUtils.raiseError(
       ~path="GeoRegion.re",
