@@ -1,4 +1,10 @@
 ### Release Notes
++ **2.5.5**
+  - New Date interface. The idea is to avoid using Js.Date.t in our consumers and use the date implemenation exposed by the Date.rei interface.
+
++ **2.5.4**
+  - Added Jaipur city to Geo-Regions
+
 + **2.5.3**
   - Fixed UrlUtils QueryParamConstructor
   
