@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.5.7**
+  - Navbar Css moved to catalyst.
+
 + **2.5.6**
   - GeoRegion Code update.
 
