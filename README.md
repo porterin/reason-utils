@@ -1,6 +1,6 @@
 ### Release Notes
 + **2.5.8**
-  - Playground server added
+  - Playgrpound server added
   - Production deployment script added for keeping track of build size
 + **2.5.7**
   - Navbar Css moved to catalyst.
