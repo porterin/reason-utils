@@ -1,39 +1,33 @@
 %bs.raw
 {|require(`./_progress.scss`)|};
 
-type stepStates =
-  | NOT_STARTED
-  | CURRENT
-  | ERROR
-  | COMPLETED;
+type subStep('b) = {
+  label: string,
+  subtitle: option(string),
+  name: 'b,
+}
 
-type progressStep('t) = {
+type progressStep('t,'b) = {
   label: string,
   subtitle: option(string),
   name: 't,
-  state: stepStates,
-};
-
-type stepProgressProps('t) = {
-  steps: list(progressStep('t)),
-  startingStep: 't,
+  subSteps: option(list(subStep('b)))
 };
 
 [@react.component]
-let make = (~props: stepProgressProps('t)) => {
+let make = (~steps: list(progressStep('t, 'b)), ~isCompleted: 't => bool, ~activeStep: 't) => {
   <div className="progress-bar-wrapper">
     <ul className="step-progress-bar">
-      {props.steps
+      {steps
        |> List.mapi((index, step) => {
             <li
               key={index->string_of_int}
               className={
                 "progress-step "
-                ++ (step.state === COMPLETED ? "completed" : "")
-                ++ (step.state === CURRENT ? "current" : "")
-                ++ (step.state === ERROR ? "has-error" : "")
+                ++ (isCompleted(step.name) ? "completed " : "")
+                ++ (step.name === activeStep ? " current" : "")
               }>
-              {step.state === COMPLETED
+              {isCompleted(step.name)
                  ? <span className="step-icon">
                      <svg
                        width="1.5rem"
@@ -44,9 +38,7 @@ let make = (~props: stepProgressProps('t)) => {
                      </svg>
                    </span>
                  : React.null}
-              {step.state === ERROR
-                 ? <span className="step-icon"> {React.string("!")} </span> : React.null}
-              {step.state !== COMPLETED && step.state !== ERROR
+              {!isCompleted(step.name)
                  ? <span className="step-index"> {React.int(index + 1)} </span> : React.null}
               <div className="step-label">
                 {React.string(step.label)}

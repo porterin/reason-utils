@@ -23,7 +23,27 @@
 }
 
 .progress-step::before {
-  content: "";
+
+
+  
+    content: "";
+    width: 100%;
+    height: 6px;
+    transform: translateY(-50%);
+    z-index: -1;
+    position: absolute;
+    top: 38%;
+    right: 50%;
+    background: linear-gradient(to left, #e7eaf3 50%, #387cf6 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: background-position 2s ease-in-out;
+
+
+
+
+
+  /* content: "";
   position: absolute;
   top: 50%;
   height: 3px;
@@ -34,7 +54,7 @@
   background: linear-gradient(to left, #e7eaf3 50%, #387cf6 50%);
   background-size: 200% 100%;
   background-position: right bottom;
-  transition: background-position 2s ease-in-out;
+  transition: background-position 2s ease-in-out; */
 }
 .progress-step:first-child::before {
   content: none;
@@ -58,10 +78,10 @@
 }
 .progress-step .step-label {
   color: var(--text-normal);
-  position: absolute;
+  /* position: absolute;
   top: 120%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); */
 }
 .progress-step .step-label-subtitle {
   display: block;
@@ -69,7 +89,6 @@
 .progress-step.completed .step-icon {
   background-color: #387cf6;
   color: white;
-  animation: spring-down 4s ease-in-out forwards;
 }
 .progress-step.completed .step-icon:hover {
   background-color: #387cf6;
@@ -77,7 +96,6 @@
 .progress-step.current .step-index {
   background-color: #387cf6;
   color: white;
-  animation: spring-up 4s ease forwards;
 }
 .progress-step.current .step-index:hover {
   background-color: #316ddb;
@@ -86,11 +104,6 @@
 .progress-step.current::before,
 .progress-step.has-error::before {
   background-position: left bottom;
-}
-.progress-step.has-error .step-icon {
-  color: white;
-  background-color: #bb392d;
-  animation: shake 3s ease-in-out forwards;
 }
 .step-content {
   padding: 1rem;
@@ -129,7 +142,7 @@
   filter: opacity(0.7);
   cursor: default;
 }
-
+/* 
 @keyframes spring-up {
   0% {
     transform: scale(1);
@@ -144,8 +157,8 @@
   100% {
     transform: scale(1.2);
   }
-}
-@keyframes spring-down {
+} */
+/* @keyframes spring-down {
   0% {
     transform: scale(1.2);
   }
@@ -153,8 +166,8 @@
   100% {
     transform: scale(1);
   }
-}
-@keyframes shake {
+} */
+/* @keyframes shake {
   0% {
     transform: translateX(0);
   }
@@ -175,4 +188,29 @@
   100% {
     transform: translateX(0);
   }
+}
+ */
+
+
+
+.test-comp::before{
+  content: "";
+  width: 100%;
+  height: 6px;
+  z-index: -1;
+  position: absolute;
+  background: linear-gradient(to left, #e7eaf3 50%, #387cf6 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: background-position 2s ease-in-out;
+}
+
+
+.test-comp.completed {
+  background-color: #387cf6;
+  color: white;
+}
+
+.test-comp.completed::before {
+  background-position: left bottom;
 }
