@@ -1,0 +1,36 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: $color-white;
+  box-shadow: 0 1px 4px 0 $color-black-transparent-4;
+  padding: 1.2rem 2.4rem;
+  justify-content: space-between;
+  z-index: 2;
+  &__titleInfo {
+    @include crm-txt-base-style;
+  }
+  &__infoKey {
+    font-size: $font-size-base;
+    font-size: $font-size-12;
+    padding: 0 0.4rem;
+    color: $color-submit-error-text;
+  }
+  &__infoValue {
+    font-size: $font-size-12;
+    color: $color-input-text;
+  }
+  &__ctaList {
+    font-size: $font-size-12;
+    padding: 0 0 0 3.2rem;
+    list-style: none;
+    > :not(:last-child) {
+      margin-right: 0.8em !important;
+    }
+  }
+  &__ctaListItem {
+    @include crm-txt-base-style;
+    margin-right: 1.6rem;
+    color: $color-blue-dark;
+    font-size: $font-size-12;
+  }
+}
