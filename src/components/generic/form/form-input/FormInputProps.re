@@ -11,6 +11,7 @@ type t('b, 'c) = {
   result: option(Belt.Result.t('b, 'c)),
   onBlur: unit => unit,
   warning: ReactEvent.Form.t => option(string),
+  helper_text: CommonTypes.viewText,
   className: string,
   _inputProps: option(_inputProps),
 };
@@ -25,6 +26,7 @@ let make_props =
       ~result: option(Belt.Result.t('b, 'c)),
       ~warning=_ => None,
       ~className="",
+      ~helper_text: CommonTypes.viewText=NoText,
       ~_inputProps: option(_inputProps)=?,
       (),
     )
@@ -36,6 +38,7 @@ let make_props =
   onBlur,
   result,
   warning,
+  helper_text,
   className,
   _inputProps,
 };

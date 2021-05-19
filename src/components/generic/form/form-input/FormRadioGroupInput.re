@@ -14,6 +14,6 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~radio_props: t) => {
       onChange={input_props.onChange}
       row={radio_props.row_layout}
     />
-    {FormInputHelper.getWarningOrError(None, input_props.result)}
+    {FormInputHelper.getWarningOrError(None, input_props.result, input_props.helper_text)}
   </FormInputWrapper>;
 };
