@@ -3,6 +3,11 @@
   - Pricing Dashboard Changes
   - SideBar implementation
   - Tabs Hook refactor
+  - Stepper implementation
+  - Label Unit (Ex - Start Date(dd/mm/yyyy))
+  - Chip Component added
+  - Helper text in Form input added
+  - Form Input Select component utility functions added
 
 + **2.5.7**
   - Navbar Css moved to catalyst.
