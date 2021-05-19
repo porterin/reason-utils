@@ -1,4 +1,9 @@
 ### Release Notes
++ **2.5.8**
+  - Pricing Dashboard Changes
+  - SideBar implementation
+  - Tabs Hook refactor
+
 + **2.5.7**
   - Navbar Css moved to catalyst.
 
