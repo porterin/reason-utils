@@ -24,6 +24,6 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~date_props: t) => {
       )}
       onClear={date_props.onClear}
     />
-    {FormInputHelper.getWarningOrError(None, input_props.result)}
+    {FormInputHelper.getWarningOrError(None, input_props.result, input_props.helper_text)}
   </FormInputWrapper>;
 };
