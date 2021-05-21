@@ -2,6 +2,8 @@ include FormInputProps;
 
 module Date = FormDateInput;
 
+module DateV2 = FormDateInputV2;
+
 module DateTime = FormDateTimeInput;
 
 module Time = FormTimeInput;

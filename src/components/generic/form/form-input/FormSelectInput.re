@@ -57,6 +57,12 @@ module SelectUtils = {
          )
        );
   };
+
+  let getSelectedItemByValue =
+      (value: string, options: list(Catalyst.SelectComponent.t))
+      : option(Catalyst.SelectComponent.t) => {
+    List.find_opt((o: Catalyst.SelectComponent.t) => value == o.value, options);
+  };
 };
 
 [@react.component]
@@ -69,6 +75,6 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~select_props: SelectProps.t
       items={select_props.items}
       isNoneRequired={select_props.isNoneRequired}
     />
-    {FormInputHelper.getWarningOrError(None, input_props.result)}
+    {FormInputHelper.getWarningOrError(None, input_props.result, input_props.helper_text)}
   </FormInputWrapper>;
 };

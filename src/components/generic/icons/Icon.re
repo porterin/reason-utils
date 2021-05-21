@@ -56,3 +56,9 @@ module VisibilityOffIcon =
     [@bs.module "@material-ui/icons/VisibilityOff"]
     external reactClass: React.component('a) = "default";
   });
+
+module NavigateNextRoundedIcon =
+  Make({
+    [@bs.module "@material-ui/icons/NavigateNextRounded"]
+    external reactClass: React.component('a) = "default";
+  });
