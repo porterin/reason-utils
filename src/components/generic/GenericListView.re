@@ -91,6 +91,7 @@ module Make = (Cmp: Record) => {
 
     <>
       {switch (state.data) {
+       | _ => <ErrorDisplayComponent error />
        | Live(data) =>
          <Scrollable height="100%" onScrollEndCallback>
             <div className="table-wrapper">
