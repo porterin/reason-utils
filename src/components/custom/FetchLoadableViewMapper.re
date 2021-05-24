@@ -6,6 +6,7 @@ let make =
       ~loadingData: React.element=<LoadingViewComponent />,
     ) => {
   switch (loadableData) {
+  | _ => <ErrorDisplayComponent error />
   | Loading(_data) => loadingData
   | Live(data) => children(data)
   | Error(error) => <ErrorDisplayComponent error />
