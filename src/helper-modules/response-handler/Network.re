@@ -9,6 +9,24 @@ module NetworkUtils = {
   };
 };
 
+module HeaderUtils = {
+  let defaultHeaders = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": true,
+  };
+
+  let makeHeader = (headers: option(Js.t('a))) => {
+    Belt.Option.mapWithDefault(headers, defaultHeaders, (headers) => {
+        Js.Obj.assign(
+          defaultHeaders,
+          headers
+        )
+    }) -> Fetch.HeadersInit.make;
+  };
+}
+
 let postRequest =
     (~requestUrl: string, ~payload: string, ~timeoutMs=maxTimeoutMs, _unit)
     : Js.Promise.t(ResponseType.t) => {
@@ -25,6 +43,53 @@ let postRequest =
       ),
     );
   PromiseHandler.resolvePromise(~promise, ~timeoutMs);
+};
+
+let postRequestV1 =
+    (
+      ~requestUrl: string, 
+      ~headers: option(Js.t('a))=?,
+      ~payload: string, 
+      ~timeoutMs=maxTimeoutMs, 
+      _unit)
+    : Js.Promise.t(ResponseType.t) => {
+  let promise =
+    Fetch.fetchWithInit(
+      requestUrl,
+      Fetch.RequestInit.make(
+        ~method_=Post,
+        ~body=Fetch.BodyInit.make(payload),
+        ~headers=HeaderUtils.makeHeader(headers),
+        ~credentials=Include,
+        ~mode=CORS,
+        (),
+      ),
+    );
+  PromiseHandler.resolvePromise(~promise, ~timeoutMs);
+};
+
+
+let getRequest =
+  (
+    ~requestUrl: string,
+    ~headers: option(Js.t('a))=?,
+    ~timeoutMs=maxTimeoutMs,
+    ~retryCount=maxRetryCount,
+    (),
+  )
+  : Js.Promise.t(ResponseType.t) => {
+    let promiseGenerator = () =>
+      Fetch.fetchWithInit(
+        requestUrl,
+        Fetch.RequestInit.make(
+          ~method_=Get,
+          ~headers=HeaderUtils.makeHeader(headers),
+          ~credentials=Include,
+          ~mode=CORS,
+          (),
+        ),
+      );
+    PromiseHandler.resolvePromiseWithRetry(~promiseGenerator, ~timeoutMs, ~retryCount);
 };
 
 let postRequestV2 =
@@ -93,46 +158,6 @@ let deleteRequest =
       ),
     );
   PromiseHandler.resolvePromise(~promise, ~timeoutMs);
-};
-
-let getRequest =
-  (
-    ~requestUrl: string,
-    ~headers: option(Js.t('a))=?,
-    ~timeoutMs=maxTimeoutMs,
-    ~retryCount=maxRetryCount,
-    (),
-  )
-  : Js.Promise.t(ResponseType.t) => {
-      
-      let defaultHeaders = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": true,
-      };
-
-      let makeHeader = (headers: option(Js.t('a))) => {
-        Belt.Option.mapWithDefault(headers, defaultHeaders, (headers) => {
-            Js.Obj.assign(
-              defaultHeaders,
-              headers
-            )
-        }) -> Fetch.HeadersInit.make;
-      };
-
-    let promiseGenerator = () =>
-      Fetch.fetchWithInit(
-        requestUrl,
-        Fetch.RequestInit.make(
-          ~method_=Get,
-          ~headers=makeHeader(headers),
-          ~credentials=Include,
-          ~mode=CORS,
-          (),
-        ),
-      );
-    PromiseHandler.resolvePromiseWithRetry(~promiseGenerator, ~timeoutMs, ~retryCount);
 };
 
 let getRequestV2 =
