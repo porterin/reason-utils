@@ -95,6 +95,46 @@ let deleteRequest =
   PromiseHandler.resolvePromise(~promise, ~timeoutMs);
 };
 
+let getRequest =
+  (
+    ~requestUrl: string,
+    ~header=None,
+    ~timeoutMs=maxTimeoutMs,
+    ~retryCount=maxRetryCount,
+    (),
+  )
+  : Js.Promise.t(ResponseType.t) => {
+      
+      let defaultHeaders = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+      };
+
+      let makeHeader = (header: option(Js.t('a))) => {
+        Belt.Option.mapWithDefault(header, defaultHeaders, (header) => {
+            Js.Obj.assign(
+              defaultHeaders,
+              header
+            )
+        }) -> Fetch.HeadersInit.make;
+      };
+
+    let promiseGenerator = () =>
+      Fetch.fetchWithInit(
+        requestUrl,
+        Fetch.RequestInit.make(
+          ~method_=Get,
+          ~headers=makeHeader(header),
+          ~credentials=Include,
+          ~mode=CORS,
+          (),
+        ),
+      );
+    PromiseHandler.resolvePromiseWithRetry(~promiseGenerator, ~timeoutMs, ~retryCount);
+};
+
 let getRequestV2 =
     (~requestUrl: string, ~timeoutMs=maxTimeoutMs, ~retryCount=maxRetryCount, ())
     : Js.Promise.t(ResponseType.t) => {
