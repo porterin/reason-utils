@@ -98,7 +98,7 @@ let deleteRequest =
 let getRequest =
   (
     ~requestUrl: string,
-    ~header=None,
+    ~headers: option(Js.t('a))=?,
     ~timeoutMs=maxTimeoutMs,
     ~retryCount=maxRetryCount,
     (),
@@ -112,11 +112,11 @@ let getRequest =
         "Access-Control-Allow-Credentials": true,
       };
 
-      let makeHeader = (header: option(Js.t('a))) => {
-        Belt.Option.mapWithDefault(header, defaultHeaders, (header) => {
+      let makeHeader = (headers: option(Js.t('a))) => {
+        Belt.Option.mapWithDefault(headers, defaultHeaders, (headers) => {
             Js.Obj.assign(
               defaultHeaders,
-              header
+              headers
             )
         }) -> Fetch.HeadersInit.make;
       };
@@ -126,7 +126,7 @@ let getRequest =
         requestUrl,
         Fetch.RequestInit.make(
           ~method_=Get,
-          ~headers=makeHeader(header),
+          ~headers=makeHeader(headers),
           ~credentials=Include,
           ~mode=CORS,
           (),
