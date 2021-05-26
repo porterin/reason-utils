@@ -27,25 +27,7 @@ module HeaderUtils = {
   };
 }
 
-let postRequest =
-    (~requestUrl: string, ~payload: string, ~timeoutMs=maxTimeoutMs, _unit)
-    : Js.Promise.t(ResponseType.t) => {
-  let promise =
-    Fetch.fetchWithInit(
-      requestUrl,
-      Fetch.RequestInit.make(
-        ~method_=Post,
-        ~body=Fetch.BodyInit.make(payload),
-        ~headers=Fetch.HeadersInit.make(NetworkUtils.getDefaultHeaders()),
-        ~credentials=Include,
-        ~mode=CORS,
-        (),
-      ),
-    );
-  PromiseHandler.resolvePromise(~promise, ~timeoutMs);
-};
-
-let postRequestV1 =
+let post =
     (
       ~requestUrl: string, 
       ~headers: option(Js.t('a))=?,
@@ -68,8 +50,7 @@ let postRequestV1 =
   PromiseHandler.resolvePromise(~promise, ~timeoutMs);
 };
 
-
-let getRequest =
+let get =
   (
     ~requestUrl: string,
     ~headers: option(Js.t('a))=?,
@@ -91,6 +72,29 @@ let getRequest =
       );
     PromiseHandler.resolvePromiseWithRetry(~promiseGenerator, ~timeoutMs, ~retryCount);
 };
+
+let postRequest =
+    (
+      ~requestUrl: string, 
+      ~payload: string, 
+      ~timeoutMs=maxTimeoutMs, 
+      _unit)
+    : Js.Promise.t(ResponseType.t) => {
+  let promise =
+    Fetch.fetchWithInit(
+      requestUrl,
+      Fetch.RequestInit.make(
+        ~method_=Post,
+        ~body=Fetch.BodyInit.make(payload),
+        ~headers=Fetch.HeadersInit.make(NetworkUtils.getDefaultHeaders()),
+        ~credentials=Include,
+        ~mode=CORS,
+        (),
+      ),
+    );
+  PromiseHandler.resolvePromise(~promise, ~timeoutMs);
+};
+
 
 let postRequestV2 =
     (~requestUrl: string, ~payload: string, ~header: Js.t('a), ~timeoutMs=maxTimeoutMs, _unit)
