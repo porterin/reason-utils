@@ -1,4 +1,15 @@
 type t = Js.Date.t;
+type timeUnit = [
+  | `years
+  | `quarters
+  | `months
+  | `weeks
+  | `days
+  | `hours
+  | `minutes
+  | `seconds
+  | `milliseconds
+];
 open MomentRe;
 
 let make = (~value: string, ~format: string) => {
@@ -17,26 +28,11 @@ let isBefore = (~d: t, ~referenceDate: t) => {
   Moment.isBefore(momentWithDate(d), momentWithDate(referenceDate));
 };
 
-let isAfter = (firstDate: t, secondDate: t) => {
-  Moment.isAfter(momentWithDate(firstDate), momentWithDate(secondDate));
+let isAfter = (~d: t, ~referenceDate: t) => {
+  Moment.isAfter(momentWithDate(d), momentWithDate(referenceDate));
 };
 
-let getDateTimeAfterElapsedTime =
-    (
-      elapsedTime: float,
-      timeUnit: [
-        | `years
-        | `quarters
-        | `months
-        | `weeks
-        | `days
-        | `hours
-        | `minutes
-        | `seconds
-        | `milliseconds
-      ],
-      initialDate: t,
-    ) => {
+let getDateTimeAfterElapsedTime = (elapsedTime: float, timeUnit: timeUnit, initialDate: t) => {
   let toDuration = duration(elapsedTime, timeUnit);
   let toMoment = Moment.add(~duration=toDuration, momentWithDate(initialDate));
   Moment.toDate(toMoment);
