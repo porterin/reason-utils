@@ -14,6 +14,6 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~checkbox_props: t) => {
       options={checkbox_props.options}
       row_layout={checkbox_props.row_layout}
     />
-    {FormInputHelper.getWarningOrError(None, input_props.result)}
+    {FormInputHelper.getWarningOrError(None, input_props.result, input_props.helper_text)}
   </FormInputWrapper>;
 };
