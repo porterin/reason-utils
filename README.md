@@ -1,4 +1,8 @@
 ### Release Notes
++ **2.6.0**
+  - Playgrpound server added
+  - Production deployment script added for keeping track of build size
+
 + **2.5.8**
   - Pricing Dashboard Changes
   - SideBar implementation
