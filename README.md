@@ -1,4 +1,30 @@
 ### Release Notes
++ **2.6.0**
+  - Playgrpound server added
+  - Production deployment script added for keeping track of build size
+
++ **2.5.8**
+  - Pricing Dashboard Changes
+  - SideBar implementation
+  - Tabs Hook refactor
+  - Stepper implementation
+  - Label Unit (Ex - Start Date(dd/mm/yyyy))
+  - Chip Component added
+  - Helper text in Form input added
+  - Form Input Select component utility functions added
+
++ **2.5.7**
+  - Navbar Css moved to catalyst.
+
++ **2.5.6**
+  - GeoRegion Code update.
+
++ **2.5.5**
+  - New Date interface. The idea is to avoid using Js.Date.t in our consumers and use the date implemenation exposed by the Date.rei interface.
+
++ **2.5.4**
+  - Added Jaipur city to Geo-Regions
+
 + **2.5.3**
   - Fixed UrlUtils QueryParamConstructor
   

@@ -3,9 +3,9 @@ type language = string;
 type text = string;
 type minutes = int;
 type money = int;
-[@decco.decode]
+[@decco]
 type amount = float;
-[@decco.decode]
+[@decco]
 type days = int;
 /* partner */
 type msisdn = string;
@@ -24,3 +24,5 @@ type viewText =
   | Custom(unit => React.element);
 [@decco]
 type timestamp = float;
+[@decco]
+type distance=float

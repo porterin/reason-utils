@@ -12,6 +12,6 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~time_props: t) => {
       onChange={date => time_props.onChange(date |> MomentRe.Moment.toDate)}
       value={time_props.value |> MomentRe.momentWithDate}
     />
-    {FormInputHelper.getWarningOrError(None, input_props.result)}
+    {FormInputHelper.getWarningOrError(None, input_props.result, input_props.helper_text)}
   </FormInputWrapper>;
 };

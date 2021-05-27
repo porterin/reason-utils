@@ -26,7 +26,7 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~textinput_props: t) => {
       _InputLabelProps={"className": "form-input-label"}
       _InputProps={FormInputHelper.get_InputProps(input_props._inputProps)}
     />
-    {FormInputHelper.getWarningOrError(warning, input_props.result)}
+    {FormInputHelper.getWarningOrError(warning, input_props.result, input_props.helper_text)}
   </FormInputWrapper>;
 };
 

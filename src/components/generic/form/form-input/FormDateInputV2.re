@@ -69,6 +69,6 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~date_props: t) => {
       autoOk=date_props.autoOk
       className=date_props.className
     />
-    {FormInputHelper.getWarningOrError(None, input_props.result)}
+    {FormInputHelper.getWarningOrError(None, input_props.result, input_props.helper_text)}
   </FormInputWrapper>;
 };

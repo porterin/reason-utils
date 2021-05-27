@@ -44,9 +44,17 @@
     margin-bottom: 0.2em;
     > .error {
       color: $status-red;
+      display: flex;
+      align-items: center;
+      > img {
+        margin-right: 0.4rem;
+      }
     }
     > .warning {
       color: $secondary;
+    }
+    > .helper-text {
+      color: $txt-semi-dark;
     }
   }
 }
