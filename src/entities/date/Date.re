@@ -1,4 +1,9 @@
 type t = Js.Date.t;
+
+let toJsDate = (d): Js.Date.t => d;
+
+let fromJsDate = (d: Js.Date.t): t => d;
+
 type timeUnit = [
   | `years
   | `quarters
@@ -40,12 +45,4 @@ let getDateTimeAfterElapsedTime = (elapsedTime: float, timeUnit: timeUnit, initi
 
 let tomorrow = () => {
   getDateTimeAfterElapsedTime(float_of_int(1), `days, Js.Date.fromFloat(Js.Date.now()));
-};
-
-let fromTimeStamp = (timestamp: int) => {
-  Moment.toDate(momentWithUnix(timestamp));
-};
-
-let toTimeStamp = (date: t) => {
-  Moment.toUnix(momentWithDate(date));
 };

@@ -1,5 +1,9 @@
 type t;
 
+let toJsDate: (t) => Js.Date.t;
+
+let fromJsDate: (Js.Date.t) => t;
+
 type timeUnit = [
   | `years
   | `quarters
@@ -13,6 +17,7 @@ type timeUnit = [
 ];
 
 let make: (~value: string, ~format: string) => t;
+
 let toString: (~format: string, ~date: t) => string;
 
 let now: unit => t;
@@ -24,7 +29,3 @@ let isAfter: (~d: t, ~referenceDate: t) => bool;
 let getDateTimeAfterElapsedTime: (float, timeUnit, t) => t;
 
 let tomorrow: unit => t;
-
-let fromTimeStamp: int => t;
-
-let toTimeStamp: t => int;

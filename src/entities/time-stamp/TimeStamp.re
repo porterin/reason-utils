@@ -1,6 +1,12 @@
 /* Milliseconds */
 type t = float;
 
-let fromTimeStamp = (timestamp: t) => {
-  MomentRe.Moment.toDate(MomentRe.momentWithTimestampMS(timestamp));
+open MomentRe;
+
+let now = (): t => {
+  MomentRe.momentNow()->MomentRe.Moment.valueOf;
+};
+
+let toString = (~value: t, ~format): string => {
+  Moment.format(format, momentWithTimestampMS(value));
 };
