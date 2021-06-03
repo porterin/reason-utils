@@ -1,5 +1,5 @@
 type config = {
-  path: array(Catalyst.LatLng.t),
+  path: array(LatLng.t),
   color: option(string),
   visible: bool,
   opacity: option(float),
@@ -9,7 +9,7 @@ type config = {
 
 let make_props =
     (
-      ~path: array(Catalyst.LatLng.t),
+      ~path: array(LatLng.t),
       ~visible: bool=true,
       ~color: option(string)=?,
       ~opacity: option(float)=Some(1.0),

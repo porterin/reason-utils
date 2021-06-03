@@ -1,5 +1,5 @@
 type config = {
-  position: Catalyst.LatLng.t,
+  position: LatLng.t,
   mapPaneName: option(string),
   onMouseOver: option(ReactEvent.Mouse.t => unit),
   onMouseOut: option(ReactEvent.Mouse.t => unit),
@@ -9,7 +9,7 @@ type config = {
 
 let make_props =
     (
-      ~position: Catalyst.LatLng.t,
+      ~position: LatLng.t,
       ~mapPaneName: option(string)=Some("overlayMouseTarget"),
       ~onMouseOver: option(ReactEvent.Mouse.t => unit)=None,
       ~onMouseOut: option(ReactEvent.Mouse.t => unit)=None,

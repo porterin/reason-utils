@@ -9,13 +9,13 @@ type toolTipInfo = {
 };
   
 type markerData = {
-  location: Catalyst.LatLng.t,
+  location: LatLng.t,
   icon_data: icon,
   tooltip: toolTipInfo, //ToolTipInfo.t is present in SpotCrm
 };
 
 type config = {
-  position: Catalyst.LatLng.t,
+  position: LatLng.t,
   clickable: option(bool),
   visible: option(bool),
   zIndex: option(int),
@@ -31,7 +31,7 @@ type config = {
 
 let make_props =
     (
-      ~position: Catalyst.LatLng.t,
+      ~position: LatLng.t,
       ~clickable: option(bool)=Some(false),
       ~visible: option(bool)=Some(true),
       ~zIndex: option(int)=None,

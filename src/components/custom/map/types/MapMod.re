@@ -10,7 +10,7 @@ type loadConfig =
 
 type config = {
   map_elem_id: string,
-  center: Catalyst.LatLng.t,
+  center: LatLng.t,
   zoom: option(int),
   zoom_control: option(bool),
   hybrid: option(bool),
@@ -35,7 +35,7 @@ let defaultOptions =
 let make_props =
     (
       ~map_elem_id: string,
-      ~center: Catalyst.LatLng.t,
+      ~center: LatLng.t,
       ~zoom: option(int)=Some(11),
       ~zoom_control: option(bool)=Some(true),
       ~hybrid: option(bool)=Some(false),
