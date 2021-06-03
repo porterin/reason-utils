@@ -30,7 +30,8 @@ let getDateTimeAfterElapsedTime = (~elapsed_time: float, ~time_unit: TimeUnit.t,
     ~elapsed_time,
     ~time_unit,
     ~initial_date=MomentUtils.fromJsDate(initial_date),
-  );
+  )
+  ->MomentUtils.toJsDate;
 };
 
 let tomorrow = (): t => {
