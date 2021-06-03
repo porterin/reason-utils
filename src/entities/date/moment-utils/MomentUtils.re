@@ -16,13 +16,13 @@ let now = () => momentNow();
 
 let toFloat = moment => moment->Moment.valueOf;
 
-let formatFromJsDate = (~format: string, ~date: Js.Date.t) =>
-  Moment.format(format, momentWithDate(date));
+let fromTimestampMs = (value: float): Moment.t => value->momentWithTimestampMS;
 
 let formatFromFloat = (~format: string, ~timestamp: float) =>
   Moment.format(format, momentWithTimestampMS(timestamp));
 
-let fromTimestmapMs = (value: float): Moment.t => value->momentWithTimestampMS;
+let formatFromJsDate = (~format: string, ~date: Js.Date.t) =>
+  Moment.format(format, momentWithDate(date));
 
 let fromJsDate = (date: Js.Date.t): Moment.t => date->momentWithDate;
 
@@ -36,7 +36,7 @@ let isBefore = (~first_date: Moment.t, ~second_date: Moment.t) =>
 let isAfter = (~first_date: Moment.t, ~second_date: Moment.t) =>
   Moment.isAfter(first_date, second_date);
 
-let fromJsTimeUnit = (t: TimeUnit.t): timeUnit => {
+let toMomentTimeUnit = (t: TimeUnit.t): timeUnit => {
   switch (t) {
   | Years => `years
   | Quarters => `quarters
@@ -53,6 +53,6 @@ let fromJsTimeUnit = (t: TimeUnit.t): timeUnit => {
 let getDateTimeAfterElapsedTime =
     (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: MomentRe.Moment.t)
     : MomentRe.Moment.t => {
-  let toDuration = duration(elapsed_time, fromJsTimeUnit(time_unit));
+  let toDuration = duration(elapsed_time, toMomentTimeUnit(time_unit));
   Moment.add(~duration=toDuration, initial_date);
 };

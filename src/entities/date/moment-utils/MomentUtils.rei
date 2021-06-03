@@ -8,7 +8,7 @@ let formatFromJsDate: (~format: string, ~date: Js.Date.t) => string;
 
 let formatFromFloat: (~format: string, ~timestamp: float) => string;
 
-let fromTimestmapMs: float => MomentRe.Moment.t;
+let fromTimestampMs: float => MomentRe.Moment.t;
 
 let fromJsDate: Js.Date.t => MomentRe.Moment.t;
 

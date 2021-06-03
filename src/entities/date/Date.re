@@ -9,7 +9,7 @@ let make = (~value: string, ~format: string): t =>
 
 let toString = (~format: string, ~date: t) => MomentUtils.formatFromJsDate(~format, ~date);
 
-let now = (): t => Js.Date.fromFloat(Js.Date.now());
+let now = (): t => MomentUtils.now()->MomentUtils.toJsDate;
 
 let isBefore = (~first_date: t, ~second_date: t) => {
   MomentUtils.isBefore(
