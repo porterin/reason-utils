@@ -4,45 +4,40 @@ let toJsDate = (d): Js.Date.t => d;
 
 let fromJsDate = (d: Js.Date.t): t => d;
 
-type timeUnit = [
-  | `years
-  | `quarters
-  | `months
-  | `weeks
-  | `days
-  | `hours
-  | `minutes
-  | `seconds
-  | `milliseconds
-];
-open MomentRe;
+let make = (~value: string, ~format: string): t =>
+  MomentUtils.fromString(~date=value, ~format)->MomentUtils.toJsDate;
 
-let make = (~value: string, ~format: string) => {
-  MomentUtils.toDate(~value, ~format);
+let toString = (~format: string, ~date: t) => MomentUtils.formatFromJsDate(~format, ~date);
+
+let now = (): t => Js.Date.fromFloat(Js.Date.now());
+
+let isBefore = (~first_date: t, ~second_date: t) => {
+  MomentUtils.isBefore(
+    ~first_date=MomentUtils.fromJsDate(first_date),
+    ~second_date=MomentUtils.fromJsDate(second_date),
+  );
 };
 
-let toString = (~format: string, ~date: t) => {
-  MomentUtils.toString(~format, ~date);
+let isAfter = (~first_date: t, ~second_date: t) => {
+  MomentUtils.isAfter(
+    ~first_date=MomentUtils.fromJsDate(first_date),
+    ~second_date=MomentUtils.fromJsDate(second_date),
+  );
 };
 
-let now = (): t => {
-  Js.Date.fromFloat(Js.Date.now());
+let getDateTimeAfterElapsedTime = (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: t) => {
+  MomentUtils.getDateTimeAfterElapsedTime(
+    ~elapsed_time,
+    ~time_unit,
+    ~initial_date=MomentUtils.fromJsDate(initial_date),
+  );
 };
 
-let isBefore = (~d: t, ~referenceDate: t) => {
-  Moment.isBefore(momentWithDate(d), momentWithDate(referenceDate));
-};
-
-let isAfter = (~d: t, ~referenceDate: t) => {
-  Moment.isAfter(momentWithDate(d), momentWithDate(referenceDate));
-};
-
-let getDateTimeAfterElapsedTime = (elapsedTime: float, timeUnit: timeUnit, initialDate: t) => {
-  let toDuration = duration(elapsedTime, timeUnit);
-  let toMoment = Moment.add(~duration=toDuration, momentWithDate(initialDate));
-  Moment.toDate(toMoment);
-};
-
-let tomorrow = () => {
-  getDateTimeAfterElapsedTime(float_of_int(1), `days, Js.Date.fromFloat(Js.Date.now()));
+let tomorrow = (): t => {
+  MomentUtils.getDateTimeAfterElapsedTime(
+    ~elapsed_time=float_of_int(1),
+    ~time_unit=Days,
+    ~initial_date=MomentUtils.now(),
+  )
+  ->MomentUtils.toJsDate;
 };
