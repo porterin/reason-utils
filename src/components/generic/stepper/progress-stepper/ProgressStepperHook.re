@@ -6,7 +6,13 @@ type stepperHookRt('a) = {
   resetStepper: 'a => unit,
 };
 
-let useStepper = (~steppers: list(ProgressStepper.t('a)), ~defaultActive: 'a) => {
+let useStepper =
+    (
+      ~steppers: list(ProgressStepper.t('a)),
+      ~defaultActive: 'a,
+      ~classes: Catalyst.ProgressStepper.Classes.t=ProgressStepper.Classes.make(),
+      ()
+    ) => {
   let (active, setActive) = React.useState(_ => defaultActive);
   let (completed, setCompleted) = React.useState(_ => []);
 
@@ -16,7 +22,7 @@ let useStepper = (~steppers: list(ProgressStepper.t('a)), ~defaultActive: 'a) =>
       steps=steppers
       activeStep
       isCompleted={stepper_id => List.exists(s => s == stepper_id, completed)}
-      classes={ProgressStepper.Classes.make()}
+      classes
     />;
   {
     steppers,
