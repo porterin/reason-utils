@@ -1,0 +1,82 @@
+.progress-bar-wrapper {
+  @include crm-txt-base-style;
+  padding: 2rem;
+}
+.progress-bar-wrapper,
+.progress-bar-wrapper * {
+  box-sizing: border-box;
+}
+.step-progress-bar {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.progress-step {
+  list-style: none;
+  text-align: center;
+  flex: 1 1 auto;
+  position: relative;
+}
+
+.progress-step .step-index,
+.progress-step .step-icon {
+  @include crm-txt-base-style;
+  background-color: $border-light;
+  color: $black;
+  border-radius: 50%;
+  height: 3.2rem;
+  width: 3.2rem;
+  display: inline-flex;
+  transform-origin: center;
+  align-items: center;
+  justify-content: center;
+}
+.step-index,
+.step-icon {
+  transition: background-color 2s ease;
+}
+
+.step-label {
+  @include crm-txt-base-style;
+  margin-top: 1.2rem;
+  font-size: $font-size-12;
+}
+
+.progress-step .step-label-subtitle {
+  display: block;
+}
+.progress-step.completed .step-icon {
+  background-color: $primary;
+  color: white;
+}
+.progress-step.completed .step-icon:hover {
+  background-color: $primary;
+}
+.progress-step.current .step-index {
+  background-color: $primary;
+  color: white;
+}
+
+.progress-bar::before{
+  content: "";
+  width: 100%;
+  height: .4rem;
+  z-index: -1;
+  margin-top: -1.75rem;
+  position: absolute;
+  background: linear-gradient(to left, $border-light 50%, $primary 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: background-position 2s ease-in-out;
+}
+
+.progress-bar-completed {
+  background-color: $primary;
+}
+
+.progress-bar-completed::before {
+  background-position: left bottom;
+}
