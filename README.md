@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.7.2**
+  - Colors bug fix.
+
 + **2.7.1**
   - Date and Timestamp module new functions added.
   - Extra colors removed from color palette.
