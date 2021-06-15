@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.7.3**
+  - Version Fix.
+
 + **2.7.2**
   - Colors bug fix.
 
