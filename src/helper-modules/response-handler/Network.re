@@ -12,12 +12,10 @@ module NetworkUtils = {
 module HeaderUtils = {
   let defaultHeaders = {
     "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Credentials": true,
+    "Accept": "application/json"
   };
 
-  let makeHeader = (headers: option(Js.t('a))) => {
+  let make = (headers: option(Js.t('a))) => {
     Belt.Option.mapWithDefault(headers, defaultHeaders, (headers) => {
         Js.Obj.assign(
           defaultHeaders,
@@ -41,7 +39,7 @@ let post =
       Fetch.RequestInit.make(
         ~method_=Post,
         ~body=Fetch.BodyInit.make(payload),
-        ~headers=HeaderUtils.makeHeader(headers),
+        ~headers=HeaderUtils.make(headers),
         ~credentials=Include,
         ~mode=CORS,
         (),
@@ -64,7 +62,7 @@ let get =
         requestUrl,
         Fetch.RequestInit.make(
           ~method_=Get,
-          ~headers=HeaderUtils.makeHeader(headers),
+          ~headers=HeaderUtils.make(headers),
           ~credentials=Include,
           ~mode=CORS,
           (),
@@ -94,7 +92,6 @@ let postRequest =
     );
   PromiseHandler.resolvePromise(~promise, ~timeoutMs);
 };
-
 
 let postRequestV2 =
     (~requestUrl: string, ~payload: string, ~header: Js.t('a), ~timeoutMs=maxTimeoutMs, _unit)
