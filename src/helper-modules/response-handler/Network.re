@@ -12,18 +12,18 @@ module NetworkUtils = {
 module HeaderUtils = {
   let defaultHeaders = {
     "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Credentials": true,
+    "Accept": "application/json"
   };
 
   let makeHeader = (headers: option(Js.t('a))) => {
-    Belt.Option.mapWithDefault(headers, defaultHeaders, (headers) => {
+    let headers = Belt.Option.mapWithDefault(headers, defaultHeaders, (headers) => {
         Js.Obj.assign(
           defaultHeaders,
           headers
         )
     }) -> Fetch.HeadersInit.make;
+    Js.log2("headers", headers);
+    headers;
   };
 }
 
