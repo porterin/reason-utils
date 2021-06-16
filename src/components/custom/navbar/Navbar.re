@@ -30,9 +30,10 @@ let make =
       ~navbar_item_second: option(navbar_item)=?,
       ~navbar_item_third: option(navbar_item)=?,
       ~navbar_item_fourth: option(navbar_item)=?,
+      ~navbar_item_fifth: option(navbar_item)=?,
       ~actions: list(navbar_action)=[],
     ) => {
-  let infoList = [navbar_item_first, navbar_item_second, navbar_item_third, navbar_item_fourth];
+  let infoList = [navbar_item_first, navbar_item_second, navbar_item_third, navbar_item_fourth, navbar_item_fifth];
 
   let visibleActionsLimit = 4;
 

@@ -22,7 +22,7 @@ let progressProps: list(ProgressStepper.t(steps)) = [
 [@react.component]
 let make = () => {
   let {steppers, active, setActive, setCompleted, resetStepper} =
-    ProgressStepperHook.useStepper(~steppers=progressProps, ~defaultActive=First);
+    ProgressStepperHook.useStepper(~steppers=progressProps, ~defaultActive=First, ());
   <>
     steppers
     <div className="step-buttons">
