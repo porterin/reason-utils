@@ -161,6 +161,12 @@
 .u-color-dark-grey {
   color: $color-dark-grey;
 }
+.u-status-green {
+  color: $green-dark;
+}
+.u-status-red {
+  color: $status-red;
+}
 
 //porter-color-palette
 
@@ -199,6 +205,9 @@
 }
 .u-bg-color-p-green-light {
   background-color: $green-light;
+}
+.u-bg-color-p-premium {
+  background-color: $premium;
 }
 
 //font-styling
