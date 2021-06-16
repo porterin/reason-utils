@@ -1,4 +1,21 @@
 ### Release Notes
++ **2.7.3**
+  - Version Fix.
+
++ **2.7.2**
+  - Colors bug fix.
+
++ **2.7.1**
+  - Date and Timestamp module new functions added.
+  - Extra colors removed from color palette.
+
++ **2.7.0**
+  - Non Empty List - A custom type for representing non empty lists
+
++ **2.6.0**
+  - Playgrpound server added
+  - Production deployment script added for keeping track of build size
+
 + **2.5.8**
   - Pricing Dashboard Changes
   - SideBar implementation
