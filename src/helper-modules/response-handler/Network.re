@@ -48,10 +48,33 @@ let post =
   PromiseHandler.resolvePromise(~promise, ~timeoutMs);
 };
 
+// let get =
+//   (
+//     ~requestUrl: string,
+//     ~headers: option(Js.t('a))=?,
+//     ~timeoutMs=maxTimeoutMs,
+//     ~retryCount=maxRetryCount,
+//     (),
+//   )
+//   : Js.Promise.t(ResponseType.t) => {
+//     let promiseGenerator = () =>
+//       Fetch.fetchWithInit(
+//         requestUrl,
+//         Fetch.RequestInit.make(
+//           ~method_=Get,
+//           ~headers=HeaderUtils.make(headers),
+//           ~credentials=Include,
+//           ~mode=CORS,
+//           (),
+//         ),
+//       );
+//     PromiseHandler.resolvePromiseWithRetry(~promiseGenerator, ~timeoutMs, ~retryCount);
+// };
+
 let get =
   (
     ~requestUrl: string,
-    ~headers: option(Js.t('a))=?,
+    ~headers: Js.t('a),
     ~timeoutMs=maxTimeoutMs,
     ~retryCount=maxRetryCount,
     (),
@@ -62,7 +85,7 @@ let get =
         requestUrl,
         Fetch.RequestInit.make(
           ~method_=Get,
-          ~headers=HeaderUtils.make(headers),
+          ~headers=Fetch.HeadersInit.make(headers),
           ~credentials=Include,
           ~mode=CORS,
           (),
