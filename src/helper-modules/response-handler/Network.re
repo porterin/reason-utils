@@ -94,6 +94,53 @@ let get =
     PromiseHandler.resolvePromiseWithRetry(~promiseGenerator, ~timeoutMs, ~retryCount);
 };
 
+
+let get =
+  (
+    ~requestUrl: string,
+    ~headers: Js.t('a),
+    ~timeoutMs=maxTimeoutMs,
+    ~retryCount=maxRetryCount,
+    (),
+  )
+  : Js.Promise.t(ResponseType.t) => {
+    let promiseGenerator = () =>
+      Fetch.fetchWithInit(
+        requestUrl,
+        Fetch.RequestInit.make(
+          ~method_=Get,
+          ~headers=Fetch.HeadersInit.make(headers),
+          ~credentials=Include,
+          ~mode=CORS,
+          (),
+        ),
+      );
+    PromiseHandler.resolvePromiseWithRetry(~promiseGenerator, ~timeoutMs, ~retryCount);
+};
+
+
+let get2 =
+  (
+    ~requestUrl: string,
+    ~headers: Js.t('a),
+    ~timeoutMs=maxTimeoutMs,
+    ~retryCount=maxRetryCount,
+    (),
+  )
+  : Js.Promise.t(ResponseType.t) => {
+    let promiseGenerator = () =>
+      Fetch.fetchWithInit(
+        requestUrl,
+        Fetch.RequestInit.make(
+          ~method_=Get,
+          ~headers=Fetch.HeadersInit.make(headers),
+          ~mode=CORS,
+          (),
+        ),
+      );
+    PromiseHandler.resolvePromiseWithRetry(~promiseGenerator, ~timeoutMs, ~retryCount);
+};
+
 let postRequest =
     (
       ~requestUrl: string, 
