@@ -12,7 +12,6 @@ module NetworkUtils = {
 module HeaderUtils = {
   let defaultHeaders = {
     "Content-Type": "application/json",
-    "Accept": "application/json"
   };
 
   let make = (headers: option(Js.t('a))) => {
@@ -40,7 +39,6 @@ let post =
         ~method_=Post,
         ~body=Fetch.BodyInit.make(payload),
         ~headers=HeaderUtils.make(headers),
-        ~credentials=Include,
         ~mode=CORS,
         (),
       ),
@@ -48,33 +46,10 @@ let post =
   PromiseHandler.resolvePromise(~promise, ~timeoutMs);
 };
 
-// let get =
-//   (
-//     ~requestUrl: string,
-//     ~headers: option(Js.t('a))=?,
-//     ~timeoutMs=maxTimeoutMs,
-//     ~retryCount=maxRetryCount,
-//     (),
-//   )
-//   : Js.Promise.t(ResponseType.t) => {
-//     let promiseGenerator = () =>
-//       Fetch.fetchWithInit(
-//         requestUrl,
-//         Fetch.RequestInit.make(
-//           ~method_=Get,
-//           ~headers=HeaderUtils.make(headers),
-//           ~credentials=Include,
-//           ~mode=CORS,
-//           (),
-//         ),
-//       );
-//     PromiseHandler.resolvePromiseWithRetry(~promiseGenerator, ~timeoutMs, ~retryCount);
-// };
-
 let get =
   (
     ~requestUrl: string,
-    ~headers: Js.t('a),
+    ~headers: option(Js.t('a))=?,
     ~timeoutMs=maxTimeoutMs,
     ~retryCount=maxRetryCount,
     (),
@@ -85,55 +60,7 @@ let get =
         requestUrl,
         Fetch.RequestInit.make(
           ~method_=Get,
-          ~headers=Fetch.HeadersInit.make(headers),
-          ~credentials=Include,
-          ~mode=CORS,
-          (),
-        ),
-      );
-    PromiseHandler.resolvePromiseWithRetry(~promiseGenerator, ~timeoutMs, ~retryCount);
-};
-
-
-let get =
-  (
-    ~requestUrl: string,
-    ~headers: Js.t('a),
-    ~timeoutMs=maxTimeoutMs,
-    ~retryCount=maxRetryCount,
-    (),
-  )
-  : Js.Promise.t(ResponseType.t) => {
-    let promiseGenerator = () =>
-      Fetch.fetchWithInit(
-        requestUrl,
-        Fetch.RequestInit.make(
-          ~method_=Get,
-          ~headers=Fetch.HeadersInit.make(headers),
-          ~credentials=Include,
-          ~mode=CORS,
-          (),
-        ),
-      );
-    PromiseHandler.resolvePromiseWithRetry(~promiseGenerator, ~timeoutMs, ~retryCount);
-};
-
-
-let get2 =
-  (
-    ~requestUrl: string,
-    ~headers: Js.t('a),
-    ~timeoutMs=maxTimeoutMs,
-    ~retryCount=maxRetryCount,
-    (),
-  )
-  : Js.Promise.t(ResponseType.t) => {
-    let promiseGenerator = () =>
-      Fetch.fetchWithInit(
-        requestUrl,
-        Fetch.RequestInit.make(
-          ~method_=Get,
-          ~headers=Fetch.HeadersInit.make(headers),
+          ~headers=HeaderUtils.make(headers),
           ~mode=CORS,
           (),
         ),
