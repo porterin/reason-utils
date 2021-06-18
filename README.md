@@ -1,4 +1,13 @@
 ### Release Notes
++ **2.7.5**
+  - Extra packages removed
+
++ **2.7.4**
+  - Changes for premium partner view for crm
+
++ **2.7.3**
+  - Version Fix.
+
 + **2.7.2**
   - Colors bug fix.
 
