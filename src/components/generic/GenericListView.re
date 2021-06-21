@@ -93,11 +93,15 @@ module Make = (Cmp: Record) => {
       {switch (state.data) {
        | Live(data) =>
          <Scrollable height="100%" onScrollEndCallback>
-           <TableComponent columns className="order-table" rowData={data.recs} />
+            <div className="table-wrapper">
+              <TableComponent columns className="customTable" rowData={data.recs} />
+            </div>
          </Scrollable>
        | FetchLoadable.Loading(Some(data)) =>
          <Scrollable height="100%" onScrollEndCallback={() => ()}>
-           <TableComponent columns className="order-table" rowData={data.recs} />
+          <div className="table-wrapper">
+            <TableComponent columns className="customTable" rowData={data.recs} />
+          </div>
          </Scrollable>
        | Loading(_data) => <LoadingViewComponent />
        | Error(error) => <ErrorDisplayComponent error />
