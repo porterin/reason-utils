@@ -10,8 +10,12 @@
       margin-right: 2rem;
     }
     border-radius: 0.8rem;
+    min-height: 4.8rem !important;
   }
   .expanded-header {
     color: $primary;
+    .Mui-expanded {
+      margin: 0;
+    }
   }
 }
