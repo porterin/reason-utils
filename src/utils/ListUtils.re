@@ -40,9 +40,8 @@ let rec calculateSum = (l: list(int)) =>
 let rec calculateSumForFloats = (l: list(float)) =>
   switch (l) {
   | [] => 0.
-  | [head, ...tail] => head +. calculateSumForFloats(tail);
+  | [head, ...tail] => head +. calculateSumForFloats(tail)
   };
-
 
 /* changing lists */
 let rec removeItem = (~value: 'a, l: list('a)) =>
@@ -111,4 +110,15 @@ let pop = (value: 't, lst: list('t), comparisonFunction: ('t, 't) => bool): list
   };
 
   popItem(value, lst, comparisonFunction);
+};
+
+let toString = (~lst: list('a), ~convertFun: 'a => string, ~delimeter=",", ()): string => {
+  let rec join = (lst, delimeter) => {
+    switch (lst) {
+    | [] => ""
+    | [head] => convertFun(head)
+    | [head, ...tail] => convertFun(head) ++ delimeter ++ " " ++ join(tail, delimeter)
+    };
+  };
+  join(lst, delimeter);
 };
