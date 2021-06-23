@@ -16,11 +16,10 @@ let useStepper =
   let (active, setActive) = React.useState(_ => defaultActive);
   let (completed, setCompleted) = React.useState(_ => []);
 
-  let activeStep = List.find((a: ProgressStepper.t('a)) => a.name == active, steppers).name;
   let steppers =
     <ProgressStepper
       steps=steppers
-      activeStep
+      activeStep={active}
       isCompleted={stepper_id => List.exists(s => s == stepper_id, completed)}
       classes
     />;
