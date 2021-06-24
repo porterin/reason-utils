@@ -1,8 +1,6 @@
-let complete_tick = AssetsManager.getImage("white-tick.svg");
-
 type t('a) = {
-  label: ViewText.t,
-  subtitle: option(ViewText.t),
+  label: StepperText.t,
+  subtitle: option(StepperText.t),
   name: 'a,
 };
 
@@ -40,8 +38,8 @@ module Classes = {
 
 [@react.component]
 let make = (~steps: list(t('a)), ~isCompleted: 'a => bool, ~activeStep: 'a, ~classes: Classes.t) => {
-  <div className={"progress-bar-wrapper " ++ classes.root}>
-    <ul className="step-progress-bar">
+  <div className={"progress-stepper-root" ++ classes.root}>
+    <ul className="progress-stepper">
       {steps
        |> List.mapi((index, step) => {
             <li
@@ -51,34 +49,20 @@ let make = (~steps: list(t('a)), ~isCompleted: 'a => bool, ~activeStep: 'a, ~cla
                 ++ (isCompleted(step.name) ? "completed " : "")
                 ++ (step.name === activeStep ? " current" : "")
               }>
-              <div>
-                {isCompleted(step.name)
-                   ? <span className="step-icon"> <img src=complete_tick /> </span> : React.null}
-                {!isCompleted(step.name)
-                   ? <span className="step-index"> {React.int(index + 1)} </span> : React.null}
-              </div>
+              <StepIcon is_completed={isCompleted(step.name)} index />
               {List.length(steps) === index + 1
                  ? React.null
-                 : <div
-                     className={
-                       "progress-bar "
-                       ++ classes.progress_bar
-                       ++ (
-                         isCompleted(step.name) && step.name !== activeStep
-                           ? " progress-bar-completed" : ""
-                       )
-                     }
+                 : <StepProgressbar
+                     progress_bar_class={classes.progress_bar}
+                     is_completed={isCompleted(step.name)}
+                     is_in_active={step.name !== activeStep}
                    />}
-              <div className={"step-label " ++ classes.step_label}>
-                {ViewText.resolve(step.label)}
-                {switch (step.subtitle) {
-                 | None => React.null
-                 | Some(sub_title) =>
-                   <div className={"step-label-subtitle " ++ classes.step_subtitle}>
-                     {ViewText.resolve(sub_title)}
-                   </div>
-                 }}
-              </div>
+              <StepperLabel
+                label={step.label}
+                subtitle={step.subtitle}
+                label_class={classes.step_label}
+                subtitle_class={classes.step_subtitle}
+              />
             </li>
           })
        |> ReasonReactUtils.listToReactArray}

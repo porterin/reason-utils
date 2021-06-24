@@ -11,7 +11,7 @@ type steps =
   | Sixth;
 
 let progressProps: list(ProgressStepper.t(steps)) = [
-  {label: Text("First"), subtitle: None, name: First},
+  {label: Text("First"), subtitle: Some(Text("(First Subtitle)")), name: First},
   {label: Text("Second"), subtitle: None, name: Second},
   {label: Text("Third"), subtitle: None, name: Third},
   {label: Text("Fourth"), subtitle: None, name: Fourth},
@@ -21,10 +21,10 @@ let progressProps: list(ProgressStepper.t(steps)) = [
 
 [@react.component]
 let make = () => {
-  let {steppers, active, setActive, setCompleted, resetStepper} =
+  let {steppers_cmp, active, setActive, setCompleted, resetStepper} =
     ProgressStepperHook.useStepper(~steppers=progressProps, ~defaultActive=First, ());
   <>
-    steppers
+    steppers_cmp
     <div className="step-buttons">
       <a
         className="step-action-btn action-btn-secondary"
