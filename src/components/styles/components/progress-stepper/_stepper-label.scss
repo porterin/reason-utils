@@ -2,8 +2,7 @@
   @include crm-txt-base-style;
   margin-top: 1.2rem;
   font-size: $font-size-12;
-}
-
-.progress-step .step-label-subtitle {
-  display: block;
+  .step-label-subtitle {
+    display: block;
+  }
 }

@@ -50,11 +50,13 @@ let make = (~steps: list(t('a)), ~isCompleted: 'a => bool, ~activeStep: 'a, ~cla
                 ++ (step.name === activeStep ? " current" : "")
               }>
               <StepIcon is_completed={isCompleted(step.name)} index />
-              <StepProgressbar
-                progress_bar_class={classes.progress_bar}
-                is_completed={isCompleted(step.name)}
-                is_in_active={step.name !== activeStep}
-              />
+              {List.length(steps) === index + 1
+                 ? React.null
+                 : <StepProgressbar
+                     progress_bar_class={classes.progress_bar}
+                     is_completed={isCompleted(step.name)}
+                     is_in_active={step.name !== activeStep}
+                   />}
               <StepperLabel
                 label={step.label}
                 subtitle={step.subtitle}
