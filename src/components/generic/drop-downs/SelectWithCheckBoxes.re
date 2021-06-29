@@ -27,14 +27,18 @@ let make =
       ~onChange: ReactEvent.Form.t => unit,
       ~selected: list(string),
       ~items: list(t),
+      ~placeholder: string,
       ~renderValue: option(list(string) => string),
     ) => {
   <MaterialUi.FormControl variant=`Outlined className="form-input-select">
-    <MaterialUi.InputLabel id="select-checkbox-label-id" htmlFor="select-checkbox-label">
-      label->React.string
-    </MaterialUi.InputLabel>
+    {label == ""
+       ? React.null
+       : <MaterialUi.InputLabel id="select-checkbox-label-id" htmlFor="select-checkbox-label">
+           label->React.string
+         </MaterialUi.InputLabel>}
     <MaterialUi.Select
       labelId="select-checkbox-label-id"
+      placeholder
       label={React.string(label)}
       multiple=true
       value={MaterialUi.Select.Value.arrayOf(selected |> Array.of_list)}
