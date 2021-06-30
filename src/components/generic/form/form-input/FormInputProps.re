@@ -21,7 +21,7 @@ type t('b, 'c) = {
 let make_props =
     (
       ~label: string,
-      ~id: option(string),
+      ~id: option(string)=?,
       ~onChange: ReactEvent.Form.t => unit,
       ~isDisabled: bool=false,
       ~placeholder="",
