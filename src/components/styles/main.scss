@@ -41,8 +41,5 @@
 @import "abstract/colorPalette";
 @import "components/muiTabs";
 @import "components/navbar";
-
-
-.trans {
-  background-color: red;
-}
+@import "components/progress-stepper/stepper-main";
+@import "components/label-unit";
