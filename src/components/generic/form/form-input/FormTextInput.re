@@ -7,6 +7,7 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~textinput_props: t) => {
   let (warning, setWarning) = React.useState(_ => None);
   <FormInputWrapper className={input_props.className}>
     <MaterialUi.TextField
+      error=input_props.error
       label={React.string(input_props.label)}
       margin=`Dense
       size=`Medium

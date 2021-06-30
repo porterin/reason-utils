@@ -13,6 +13,7 @@ type t('b, 'c) = {
   warning: ReactEvent.Form.t => option(string),
   helper_text: CommonTypes.viewText,
   className: string,
+  error: bool,
   _inputProps: option(_inputProps),
 };
 
@@ -27,6 +28,7 @@ let make_props =
       ~warning=_ => None,
       ~className="",
       ~helper_text: CommonTypes.viewText=NoText,
+      ~error=false,
       ~_inputProps: option(_inputProps)=?,
       (),
     )
@@ -40,5 +42,6 @@ let make_props =
   warning,
   helper_text,
   className,
+  error,
   _inputProps,
 };
