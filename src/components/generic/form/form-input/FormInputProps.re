@@ -5,6 +5,7 @@ type _inputProps = {
 
 type t('b, 'c) = {
   label: string,
+  id: option(string),
   onChange: ReactEvent.Form.t => unit,
   isDisabled: bool,
   placeholder: string,
@@ -20,6 +21,7 @@ type t('b, 'c) = {
 let make_props =
     (
       ~label: string,
+      ~id: option(string),
       ~onChange: ReactEvent.Form.t => unit,
       ~isDisabled: bool=false,
       ~placeholder="",
@@ -34,6 +36,7 @@ let make_props =
     )
     : t('b, 'c) => {
   label,
+  id,
   onChange,
   isDisabled,
   placeholder,
