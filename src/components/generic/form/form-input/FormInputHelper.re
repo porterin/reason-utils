@@ -1,4 +1,4 @@
-let error_exclamation = AssetsManager.getImage("error-exclamation.svg");
+/* let error_exclamation = AssetsManager.getImage("error-exclamation.svg"); */
 
 let getHelperText = (helper_text: CommonTypes.viewText) => {
   switch (helper_text) {
@@ -24,7 +24,7 @@ let getWarningOrError =
        }
      | Some(result) =>
        switch (result) {
-       | Error(err) => <div className="error"> <img src=error_exclamation /> {React.string(err)} </div>
+       | Error(err) => <div className="error"> {React.string(err)} </div>
        | _ => getHelperText(helper_text)
        }
      }}
