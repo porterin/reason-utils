@@ -10,7 +10,7 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~textinput_props: t) => {
       error={switch(input_props.result) {
         | Some(result) => switch(result) {
           | Error(_) => true
-          | _ => true
+          | _ => false
           }
         | _ => false
       }}
