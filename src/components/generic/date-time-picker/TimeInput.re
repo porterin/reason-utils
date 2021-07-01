@@ -15,6 +15,7 @@ let make =
       value={
         value->Js.Null.fromOption->OptionTypeUtils.OptionMomentToMomentMap.optionMomentToMoment
       }
+      invalidDateMessage={React.null}
       format
       autoOk=true
       placeholder
