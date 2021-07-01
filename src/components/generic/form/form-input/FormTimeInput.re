@@ -1,5 +1,5 @@
 type t = {
-  value: Js.Date.t,
+  value: option(Js.Date.t),
   onChange: Js.Date.t => unit,
 };
 
@@ -10,7 +10,9 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~time_props: t) => {
       label={input_props.label}
       disabled={input_props.isDisabled}
       onChange={date => time_props.onChange(date |> MomentRe.Moment.toDate)}
-      value={time_props.value |> MomentRe.momentWithDate}
+      value={Belt.Option.mapWithDefault(time_props.value, None, d =>
+        d->MomentRe.momentWithDate->Some
+      )}
     />
     {FormInputHelper.getWarningOrError(None, input_props.result, input_props.helper_text)}
   </FormInputWrapper>;
