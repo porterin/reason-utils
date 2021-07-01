@@ -38,7 +38,7 @@ module Classes = {
 
 [@react.component]
 let make = (~steps: list(t('a)), ~isCompleted: 'a => bool, ~activeStep: 'a, ~classes: Classes.t) => {
-  <div className={"progress-stepper-root" ++ classes.root}>
+  <div className={"progress-stepper-root " ++ classes.root}>
     <ul className="progress-stepper">
       {steps
        |> List.mapi((index, step) => {
