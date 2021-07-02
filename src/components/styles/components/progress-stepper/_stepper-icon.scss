@@ -1,0 +1,30 @@
+.progress-step {
+  list-style: none;
+  text-align: center;
+  flex: 1 1;
+  position: relative;
+  .step-index,
+  .step-icon {
+    @include crm-txt-base-style;
+    background-color: $border-light;
+    color: $black;
+    border-radius: 50%;
+    height: 3.2rem;
+    width: 3.2rem;
+    display: inline-flex;
+    transform-origin: center;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 2s ease;
+  }
+}
+
+.progress-step.completed .step-icon {
+  background-color: $primary;
+  color: white;
+}
+
+.progress-step.current .step-index {
+  background-color: $primary;
+  color: white;
+}

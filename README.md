@@ -1,4 +1,8 @@
 ### Release Notes
++ **2.8.1**
+  - Stepper animation added
+  - Extra colors removed from palette
+
 + **2.8**
   - Add new georegion Lucknow
 
