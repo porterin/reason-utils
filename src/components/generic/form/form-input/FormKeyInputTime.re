@@ -2,7 +2,7 @@ type t = {
   value: option(Js.Date.t),
   onChange: option(Js.Date.t) => unit,
   format: string,
-  ampm: bool
+  ampm: bool,
 };
 
 [@react.component]
@@ -16,7 +16,10 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~time_props: t) => {
       onChange={(date: Js.Nullable.t(MomentRe.Moment.t)) =>
         switch (Js.Nullable.toOption(date)) {
         | None => time_props.onChange(None)
-        | Some(date) => time_props.onChange(Some(date |> MomentRe.Moment.toDate))
+        | Some(date) =>
+          MomentRe.Moment.isValid(date)
+            ? time_props.onChange(Some(date |> MomentRe.Moment.toDate))
+            : time_props.onChange(None)
         }
       }
       value={Belt.Option.mapWithDefault(time_props.value, None, d =>
