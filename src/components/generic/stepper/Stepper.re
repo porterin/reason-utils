@@ -1,3 +1,5 @@
+/* To Be Deprecated Soon */
+/* No Transition */
 type t('a) = {
   stepper_id: 'a,
   stepper_number: int,

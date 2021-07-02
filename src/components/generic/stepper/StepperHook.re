@@ -1,3 +1,5 @@
+/* To Be Deprecated Soon */
+/* No Transition */
 type stepperHookRt('a) = {
   steppers: React.element,
   active: 'a,
