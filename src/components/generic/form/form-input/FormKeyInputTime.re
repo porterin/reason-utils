@@ -2,6 +2,7 @@ type t = {
   value: option(Js.Date.t),
   onChange: option(Js.Date.t) => unit,
   format: string,
+  ampm: bool
 };
 
 [@react.component]
@@ -10,6 +11,7 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~time_props: t) => {
     <TimeInput
       label={input_props.label}
       format={time_props.format}
+      ampm={time_props.ampm}
       placeholder={input_props.placeholder}
       onChange={(date: Js.Nullable.t(MomentRe.Moment.t)) =>
         switch (Js.Nullable.toOption(date)) {

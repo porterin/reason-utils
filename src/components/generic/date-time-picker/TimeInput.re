@@ -6,6 +6,7 @@ let make =
       ~placeholder: string,
       ~format: string="hh:mm:ss a",
       ~value: option(MomentRe.Moment.t),
+      ~ampm: bool,
     )
     : React.element => {
   <MuiPickersUtilsProvider utils=MuiPickersUtilsProvider.utils>
@@ -15,7 +16,8 @@ let make =
       value={
         value->Js.Null.fromOption->OptionTypeUtils.OptionMomentToMomentMap.optionMomentToMoment
       }
-      invalidDateMessage={React.null}
+      ampm
+      invalidDateMessage=React.null
       format
       autoOk=true
       placeholder
