@@ -1,1 +1,1 @@
-ReactDOMRe.renderToElementWithId(<ExampleAccordionV2 />, "root");
+ReactDOMRe.renderToElementWithId(<ExampleMenuList />, "root");
