@@ -1,1 +1,1 @@
-ReactDOMRe.renderToElementWithId(<ExampleMenuList />, "root");
+ReactDOMRe.renderToElementWithId(<ExampleFormInput />, "root");
