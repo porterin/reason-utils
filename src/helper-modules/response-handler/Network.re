@@ -9,13 +9,8 @@ module NetworkUtils = {
   };
 };
 
-
 let postRequest =
-    (
-      ~requestUrl: string, 
-      ~payload: string, 
-      ~timeoutMs=maxTimeoutMs, 
-      _unit)
+    (~requestUrl: string, ~payload: string, ~timeoutMs=maxTimeoutMs, _unit)
     : Js.Promise.t(ResponseType.t) => {
   let promise =
     Fetch.fetchWithInit(

@@ -38,11 +38,11 @@ module ResponseWrapper = {
           SuccessWithNoContent(
             [%bs.raw
               {|
-                {
-                  "title": "Success",
-                  "message": "The operation was successfully completed"
-                }
-              |}
+            {
+              "title": "Success",
+              "message": "The operation was successfully completed"
+            }
+          |}
             ],
           ),
         )
