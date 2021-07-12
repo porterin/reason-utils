@@ -1,4 +1,8 @@
 ### Release Notes
++ **2.8.3**
+  - adding mui Paper
+  - handle error prop with result prop
+
 + **2.8.2**
   - Adding new get and post methods in NetworkV2 Module. To deprecate v2, v3, v4 from Network
 
