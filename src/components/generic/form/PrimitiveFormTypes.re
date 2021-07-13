@@ -6,7 +6,7 @@ type input('a) =
   | String(string): input(string)
   | Int(string): input(int)
   | Float(string): input(float)
-  | Date(string, string): input(MomentRe.Moment.t);
+  | Date(option(Js.Date.t)): input(Js.Date.t);
 
 let rec getValue: type a. input(a) => result(a, string) =
   input => {
@@ -25,12 +25,7 @@ let rec getValue: type a. input(a) => result(a, string) =
             Error("Please enter a valid number");
           }
         )
-    | Date(str, format) =>
-      str
-      ->str_opt
-      ->mapWithDefault(Error("This is a required field"), str =>
-          Ok(MomentRe.momentWithFormat(str, format))
-        )
+    | Date(date) => date->mapWithDefault(Error("This is a required field"), d => Ok(d))
     | Float(str) =>
       str
       ->str_opt

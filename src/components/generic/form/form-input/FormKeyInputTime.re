@@ -1,8 +1,8 @@
 type t = {
-  value: Js.Date.t,
-  onChange: Js.Date.t => unit,
+  value: option(Js.Date.t),
+  onChange: option(Js.Date.t) => unit,
   format: string,
-  invalidDateMessage: option(string),
+  ampm: bool,
 };
 
 [@react.component]
@@ -11,15 +11,20 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~time_props: t) => {
     <TimeInput
       label={input_props.label}
       format={time_props.format}
-      invalidDateMessage={time_props.invalidDateMessage}
+      ampm={time_props.ampm}
       placeholder={input_props.placeholder}
       onChange={(date: Js.Nullable.t(MomentRe.Moment.t)) =>
         switch (Js.Nullable.toOption(date)) {
-        | None => ()
-        | Some(date) => time_props.onChange(date |> MomentRe.Moment.toDate)
+        | None => time_props.onChange(None)
+        | Some(date) =>
+          MomentRe.Moment.isValid(date)
+            ? time_props.onChange(Some(date |> MomentRe.Moment.toDate))
+            : time_props.onChange(None)
         }
       }
-      value={time_props.value |> MomentRe.momentWithDate}
+      value={Belt.Option.mapWithDefault(time_props.value, None, d =>
+        d->MomentRe.momentWithDate->Some
+      )}
     />
     {FormInputHelper.getWarningOrError(None, input_props.result, input_props.helper_text)}
   </FormInputWrapper>;

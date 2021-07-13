@@ -5,17 +5,20 @@ let make =
       ~onChange: Js.Nullable.t(MomentRe.Moment.t) => unit,
       ~placeholder: string,
       ~format: string="hh:mm:ss a",
-      ~value: MomentRe.Moment.t,
-      ~invalidDateMessage: option(string),
+      ~value: option(MomentRe.Moment.t),
+      ~ampm: bool,
     )
     : React.element => {
   <MuiPickersUtilsProvider utils=MuiPickersUtilsProvider.utils>
     <MUITimeInput
       label
       onChange
-      value
+      value={
+        value->Js.Null.fromOption->OptionTypeUtils.OptionMomentToMomentMap.optionMomentToMoment
+      }
+      ampm
+      invalidDateMessage=React.null
       format
-      invalidDateMessage={Belt.Option.getWithDefault(invalidDateMessage, "Invalid Time Format")}
       autoOk=true
       placeholder
       variant="inline"

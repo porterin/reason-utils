@@ -30,9 +30,11 @@ let make =
       ~renderValue: option(list(string) => string),
     ) => {
   <MaterialUi.FormControl variant=`Outlined className="form-input-select">
-    <MaterialUi.InputLabel id="select-checkbox-label-id" htmlFor="select-checkbox-label">
-      label->React.string
-    </MaterialUi.InputLabel>
+    {label == ""
+       ? React.null
+       : <MaterialUi.InputLabel id="select-checkbox-label-id" htmlFor="select-checkbox-label">
+           label->React.string
+         </MaterialUi.InputLabel>}
     <MaterialUi.Select
       labelId="select-checkbox-label-id"
       label={React.string(label)}

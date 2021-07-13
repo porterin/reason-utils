@@ -11,7 +11,7 @@ external make:
     ~disableToolbar: option(bool)=?,
     ~maxDateMessage: React.element=?,
     ~minDateMessage: React.element=?,
-    ~invalidDateMessage: option(string)=?,
+    ~invalidDateMessage: option(React.element)=?,
     ~variant: option(string)=?,
     ~inputVariant: option(string)=?,
     ~minutesStep: option(int)=?,

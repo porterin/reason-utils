@@ -38,35 +38,51 @@ let make =
       ~className="",
       ~postfixIcon: postfixIcon=None,
       ~menuItems: list(menu_item),
+      ~custom_menu_button: option(React.element)=?,
     )
     : React.element => {
   let (popoverState, togglePopover) = PopoverStateManager.usePopover();
   <>
-    <PrimaryButton
-      buttonProps={ButtonUtils.getDefaultButtonProps(
-        ~label=
-          {menuButtonTitle->Belt.Option.mapWithDefault(
-             ButtonLabel.(Custom(_ => React.null)), title =>
-             Text(title)
-           )},
-        ~className,
-        ~postfixIcon=
-          {switch (postfixIcon) {
-           | Caret => <Icon.ExpandMoreIcon />
-           | Hamburger => <Icon.MoreVertIcon fontSize=`Large />
-           | None => React.null
-           }},
-        ~onSelectCB=
-          (event: ReactEvent.Mouse.t) =>
-            togglePopover(_ =>
-              {
-                anchor_el: Some(event->ReactEvent.Mouse.target->toDomElement),
-                view: buildMenuList(~menuItems, ~togglePopover),
-              }
-            ),
-        (),
-      )}
-    />
+    {switch (custom_menu_button) {
+     | None =>
+       <PrimaryButton
+         buttonProps={ButtonUtils.getDefaultButtonProps(
+           ~label=
+             {menuButtonTitle->Belt.Option.mapWithDefault(
+                ButtonLabel.(Custom(_ => React.null)), title =>
+                Text(title)
+              )},
+           ~className,
+           ~postfixIcon=
+             {switch (postfixIcon) {
+              | Caret => <Icon.ExpandMoreIcon />
+              | Hamburger => <Icon.MoreVertIcon fontSize=`Large />
+              | None => React.null
+              }},
+           ~onSelectCB=
+             (event: ReactEvent.Mouse.t) =>
+               togglePopover(_ =>
+                 {
+                   anchor_el: Some(event->ReactEvent.Mouse.target->toDomElement),
+                   view: buildMenuList(~menuItems, ~togglePopover),
+                 }
+               ),
+           (),
+         )}
+       />
+     | Some(ele) =>
+       <div
+         onClick={(event: ReactEvent.Mouse.t) =>
+           togglePopover(_ =>
+             {
+               anchor_el: Some(event->ReactEvent.Mouse.target->toDomElement),
+               view: buildMenuList(~menuItems, ~togglePopover),
+             }
+           )
+         }>
+         ele
+       </div>
+     }}
     <PopoverComponent
       className="menulist-container"
       content={popoverState.view}

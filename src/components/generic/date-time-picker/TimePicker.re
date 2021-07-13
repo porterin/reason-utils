@@ -3,7 +3,7 @@ let make =
     (
       ~label: string,
       ~onChange: MomentRe.Moment.t => unit,
-      ~value: MomentRe.Moment.t,
+      ~value: option(MomentRe.Moment.t),
       ~disabled=false,
     )
     : React.element => {
@@ -11,8 +11,9 @@ let make =
     <MUITimePicker
       label
       onChange
-      value
-      autoOk=true
+      value={
+        value->Js.Null.fromOption->OptionTypeUtils.OptionMomentToMomentMap.optionMomentToMoment
+      }
       disabled
       variant="inline"
       inputVariant="outlined"

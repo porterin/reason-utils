@@ -1,1 +1,1 @@
-ReactDOMRe.renderToElementWithId(<ExampleProgressStepper />, "root");
+ReactDOMRe.renderToElementWithId(<ExampleFormInput />, "root");

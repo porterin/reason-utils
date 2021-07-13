@@ -1,0 +1,21 @@
+.c-accordion-v2 {
+  @include crm-txt-base-style;
+  position: unset;
+  box-shadow: none !important;
+  margin-bottom: 2.4rem !important;
+  .header {
+    font-size: $font-size-14;
+    background-color: $bg-grey;
+    .expand-icon  {
+      margin-right: 2rem;
+    }
+    border-radius: 0.8rem;
+    min-height: 4.8rem !important;
+  }
+  .expanded-header {
+    color: $primary;
+    .Mui-expanded {
+      margin: 0;
+    }
+  }
+}
