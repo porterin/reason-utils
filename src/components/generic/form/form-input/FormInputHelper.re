@@ -1,5 +1,3 @@
-/* let error_exclamation = AssetsManager.getImage("error-exclamation.svg"); */
-
 let getHelperText = (helper_text: CommonTypes.viewText) => {
   switch (helper_text) {
   | NoText => React.null

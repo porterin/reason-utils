@@ -14,7 +14,6 @@ let make =
       value={
         value->Js.Null.fromOption->OptionTypeUtils.OptionMomentToMomentMap.optionMomentToMoment
       }
-      autoOk=false
       disabled
       variant="inline"
       inputVariant="outlined"

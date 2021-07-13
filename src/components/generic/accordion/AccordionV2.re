@@ -35,7 +35,7 @@ let make = (~panels: list(t), ~className: string="", ~defaultOpen: int=(-1)): Re
      |> List.mapi((index, panel) =>
           <MaterialUi.Accordion
             key={string_of_int(index)}
-            className="accordion-v2"
+            className="c-accordion-v2"
             expanded={index == expanded}
             onChange={(_, _) => handleChange(index)}>
             {getAccordionHeader(index == expanded, panel)}
