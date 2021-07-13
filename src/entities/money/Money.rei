@@ -14,7 +14,7 @@ let fromPaisa: paisa => int;
 
 let fromFixedRupee: fixedRupee => int;
 
-let paiseToRupee: paisa => rupee;
+let paisaToRupee: paisa => rupee;
 
 let rupeeToPaisa: rupee => paisa;
 

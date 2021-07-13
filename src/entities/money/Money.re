@@ -14,7 +14,7 @@ let fromPaisa = (a: paisa): int => a;
 
 let fromFixedRupee = (a: fixedRupee): int => a;
 
-let paiseToRupee = (a: paisa): rupee => float_of_int(a) /. 100.0;
+let paisaToRupee = (a: paisa): rupee => float_of_int(a) /. 100.0;
 
 let rupeeToPaisa = (a: rupee): paisa => {
   Js.Float.toFixedWithPrecision(a, ~digits=2)->Js.Float.fromString
