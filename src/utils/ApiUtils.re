@@ -32,3 +32,10 @@ let resolveRepoResponse = (handleResponse: _ => option(Js.Promise.t(Belt.Result.
     )
   };
 };
+
+let resolveRepoResponseSup = (handleResponse: _ => option(Js.Promise.t(Belt.Result.t('a, 'b))), err: 'b) => {
+  switch (handleResponse()) {
+  | Some(data) => data
+  | None =>Js.Promise.resolve(Belt.Result.Error(err))
+  };
+};
