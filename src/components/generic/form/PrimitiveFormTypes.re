@@ -25,7 +25,7 @@ let rec getValue: type a. input(a) => result(a, string) =
             Error("Please enter a valid number");
           }
         )
-    | Date(date) => date->mapWithDefault(Error("This is a required field"), d => Ok(d))
+    | Date(date) => date->mapWithDefault(Error("A vaild date/time is required"), d => Ok(d))
     | Float(str) =>
       str
       ->str_opt
