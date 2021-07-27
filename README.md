@@ -1,4 +1,15 @@
 ### Release Notes
++ **2.8.5**
+  - Accordion V2 added. (Design contraints)
+  - DateTime Input date value made optional
+  - Drag And Drop component bindings
+  - 24hr format support for time input
+  - Error icon removed from form input error
+  - Menu list custom menu button prop added
+  - Inr Value entity and helper functions 
+  - Nano bindings moved out of crm
+  - List to string function introduced in list utils
+
 + **2.8.4**
   - Add new georegion Coimbatore
 
