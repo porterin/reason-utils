@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.8.4**
+  - Add new georegion Coimbatore
+
 + **2.8.3**
   - adding mui Paper
   - handle error prop with result prop
