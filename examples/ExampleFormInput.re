@@ -2,8 +2,8 @@
 let make = () => {
   let (a, b) = React.useState(_ => None);
   <div>
-    <Catalyst.FormInput.KeyInputTime
-      input_props={Catalyst.FormInput.make_props(
+    <FormInput.KeyInputTime
+      input_props={FormInput.make_props(
         ~label="Time",
         ~onChange=_ => (),
         ~result={None},
