@@ -25,4 +25,10 @@ type viewText =
 [@decco]
 type timestamp = float;
 [@decco]
-type distance=float
+type distance=float;
+
+[@decco]
+type rupee = float;
+
+[@decco]
+type paisa = int;
