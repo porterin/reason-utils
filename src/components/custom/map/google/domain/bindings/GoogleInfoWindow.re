@@ -15,8 +15,8 @@ type config = {
 [@bs.module "@react-google-maps/api"] [@react.component]
 external make:
   (
-    ~position: option(LatLng.t)=?,
-    ~options: option(infoWindowOptions)=?,
+    ~position: option(LatLng.t),
+    ~options: option(infoWindowOptions),
     ~zIndex: option(int)=?,
     ~onCloseClick: option(unit => unit)=?,
     ~ref: option(ReactDOMRe.domRef)=?,
@@ -24,15 +24,3 @@ external make:
   ) =>
   React.element =
   "InfoWindow";
-
-// [@bs.module "@react-google-maps/api"] [@react.component]
-// external make:
-//   (
-//     ~position: LatLng.t=?,
-//     ~options: option(infoWindowOptions)=?,
-//     ~ref: option(ReactDOMRe.domRef),
-//     ~onCloseClick: option(unit => unit)=?,
-//     ~children: React.element
-//   ) =>
-//   React.element =
-//   "InfoWindow";

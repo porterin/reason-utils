@@ -1,25 +1,33 @@
-let getGoogleConfig = (config: PolylineMod.config): GooglePolyline.config => {
-  path: config.path,
-  visible: config.visible,
-  options: {
-    strokeColor: config.color,
-    strokeOpacity: config.opacity,
-    strokeWeight: config.weight,
-  },
-  ref: config.ref,
+let defaultOpacity = 1.0;
+let defaultWeight = 4;
+let defaultLineColour = "#1E90FF"; //blue colour
+let defaultVisibileStaus = true;
+
+
+type config = {
+  path: array(LatLng.t),
+  color: option(string),
+  visible: bool,
+  opacity: option(float),
+  weight: option(int),
+  ref: option(ReactDOMRe.domRef),
 };
 
-[@react.component]
-let make = (~lib_name: MapMod.lib=MapMod.GoogleMap, ~config: PolylineMod.config) => {
-  switch (lib_name) {
-  | MapMod.GoogleMap =>
-    let googleConfig = getGoogleConfig(config);
-    <GooglePolyline
-      path={googleConfig.path}
-      visible={googleConfig.visible}
-      options={googleConfig.options}
-      ref={googleConfig.ref}
-    />;
-  | MapMod.MMI => React.null
-  };
+let make_props =
+    (
+      ~path: array(LatLng.t),
+      ~visible: bool=defaultVisibileStaus,
+      ~color: option(string)=Some(defaultLineColour),
+      ~opacity: option(float)=Some(defaultOpacity),
+      ~weight: option(int)=Some(defaultWeight),
+      ~ref: option(ReactDOMRe.domRef)=?,
+      (),
+    )
+    : config => {
+  path,
+  visible,
+  color,
+  opacity,
+  weight,
+  ref,
 };

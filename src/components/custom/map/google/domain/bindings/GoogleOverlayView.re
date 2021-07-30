@@ -1,21 +1,17 @@
-type point = {
-  x: int,
-  y: int,
-};
-
 type config = {
-  position: LatLng.t,
+  position: Catalyst.LatLng.t,
   mapPaneName: string,
-  getPixelPositionOffset: option((int, int) => point),
+  getPixelPositionOffset: option((int, int) => Point.t),
+  wrappedChildren: React.element,
   ref: option(ReactDOMRe.domRef),
 };
 
 [@bs.module "@react-google-maps/api"] [@react.component]
 external make:
   (
-    ~position: LatLng.t,
+    ~position: Catalyst.LatLng.t,
     ~mapPaneName: string,
-    ~getPixelPositionOffset: option((int, int) => point),
+    ~getPixelPositionOffset: option((int, int) => Point.t),
     ~ref: option(ReactDOMRe.domRef)=?,
     ~children: React.element
   ) =>

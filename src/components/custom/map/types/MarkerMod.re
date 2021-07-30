@@ -11,7 +11,7 @@ type toolTipInfo = {
 type markerData = {
   location: LatLng.t,
   icon_data: icon,
-  tooltip: toolTipInfo, //ToolTipInfo.t is present in SpotCrm
+  tooltip: ToolTipInfo.t,
 };
 
 type config = {

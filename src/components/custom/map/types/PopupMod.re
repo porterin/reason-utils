@@ -8,7 +8,7 @@ type config = {
 
 let make_props =
     (
-      ~position: option(LatLng.t)=?,
+      ~position: option(LatLng.t)=None,
       ~zIndex: option(int)=None,
       ~anchor: option(array(int))=None,
       ~onCloseClick: option(unit => unit)=?,

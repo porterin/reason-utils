@@ -5,7 +5,7 @@ type lib =
   | MMI;
 
 type loadConfig =
-  | GoogleMap(LoadScript.load_config)
+  | GoogleMap(LoadScript.load_config) //for intialising the map
   | MMI(string)
 
 type config = {
@@ -30,6 +30,7 @@ let defaultOptions =
     ("gestureHandling", Json.Encode.string("greedy")),
     ("maxZoom", Json.Encode.int(18)),
     ("minZoom", Json.Encode.int(9)),
+    ("streetViewControl", Json.Encode.bool(false)),
   ]);
 
 let make_props =
