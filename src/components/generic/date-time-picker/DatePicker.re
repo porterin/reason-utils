@@ -3,7 +3,7 @@ let make =
     (
       ~label: string,
       ~onChange: MomentRe.Moment.t => unit,
-      ~value: MomentRe.Moment.t,
+      ~value: option(MomentRe.Moment.t),
       ~minDate: option(MomentRe.Moment.t),
       ~maxDate: option(MomentRe.Moment.t),
       ~format: string="DD/MM/YYYY",
@@ -15,13 +15,15 @@ let make =
   <MuiPickersUtilsProvider utils=MuiPickersUtilsProvider.utils>
     <MUIDatePicker
       onChange
-      value
+      value={
+        value->Js.Null.fromOption->OptionTypeUtils.OptionMomentToMomentMap.optionMomentToMoment
+      }
       minDate
       format
       maxDate
       disableFuture
       disablePast
-      autoOk=true
+      autoOk=false
       disableToolbar=true
       disabled
       variant="inline"
