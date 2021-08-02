@@ -3,7 +3,7 @@ type mapInst = Js.Json.t; //TODO to be kept in MapMod.lib payload
 
 type config = {
   map_elem_id: string,
-  center: Catalyst.LatLng.t,
+  center: LatLng.t,
   zoom: int,
   mapContainerClassName: option(string),
   clickableIcons: option(bool),
@@ -19,7 +19,7 @@ type config = {
 [@bs.module "@react-google-maps/api"] [@react.component]
 external make:
   (
-    ~center: Catalyst.LatLng.t,
+    ~center: LatLng.t,
     ~zoom: int,
     ~id: option(string)=?,
     ~mapContainerClassName: option(string),

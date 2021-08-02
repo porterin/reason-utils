@@ -5,7 +5,7 @@ type polylineOptions = {
 };
 
 type config = {
-  path: array(Catalyst.LatLng.t),
+  path: array(LatLng.t),
   visible: bool,
   options: polylineOptions,
   ref: option(ReactDOMRe.domRef),
@@ -14,7 +14,7 @@ type config = {
 [@bs.module "@react-google-maps/api"] [@react.component]
 external make:
   (
-    ~path: array(Catalyst.LatLng.t),
+    ~path: array(LatLng.t),
     ~visible: option(bool)=?,
     ~options: polylineOptions=?,
     ~ref: option(ReactDOMRe.domRef)

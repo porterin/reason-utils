@@ -6,7 +6,7 @@ type icon = {
 type marker = Js.Json.t;
 
 type config = {
-  position: Catalyst.LatLng.t,
+  position: LatLng.t,
   clickable: option(bool),
   visible: option(bool),
   zIndex: option(int),
@@ -22,7 +22,7 @@ type config = {
 [@bs.module "@react-google-maps/api"] [@react.component]
 external make:
   (
-    ~position: Catalyst.LatLng.t,
+    ~position: LatLng.t,
     ~clickable: option(bool),
     ~visible: option(bool),
     ~zIndex: option(int),

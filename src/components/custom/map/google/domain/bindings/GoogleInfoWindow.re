@@ -6,7 +6,7 @@ type size = {
   type infoWindowOptions = {pixelOffset: size};
   
   type config = {
-    position: option(Catalyst.LatLng.t),
+    position: option(LatLng.t),
     options: option(infoWindowOptions),
     ref: option(ReactDOMRe.domRef),
     onCloseClick: option(unit => unit),
@@ -15,7 +15,7 @@ type size = {
   [@bs.module "@react-google-maps/api"] [@react.component]
   external make:
     (
-      ~position: option(Catalyst.LatLng.t),
+      ~position: option(LatLng.t),
       ~options: option(infoWindowOptions),
       ~zIndex: option(int)=?,
       ~onCloseClick: option(unit => unit)=?,

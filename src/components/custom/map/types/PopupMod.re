@@ -1,5 +1,5 @@
 type config = {
-  position: option(Catalyst.LatLng.t),
+  position: option(LatLng.t),
   anchor: option(array(int)),
   zIndex: option(int),
   onCloseClick: option(unit => unit),
@@ -8,7 +8,7 @@ type config = {
 
 let make_props =
     (
-      ~position: option(Catalyst.LatLng.t)=None,
+      ~position: option(LatLng.t)=None,
       ~zIndex: option(int)=None,
       ~anchor: option(array(int))=None,
       ~onCloseClick: option(unit => unit)=?,

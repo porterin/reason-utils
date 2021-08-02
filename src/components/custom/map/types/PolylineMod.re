@@ -5,7 +5,7 @@ let defaultVisibileStaus = true;
 
 
 type config = {
-  path: array(Catalyst.LatLng.t),
+  path: array(LatLng.t),
   color: option(string),
   visible: bool,
   opacity: option(float),
@@ -15,7 +15,7 @@ type config = {
 
 let make_props =
     (
-      ~path: array(Catalyst.LatLng.t),
+      ~path: array(LatLng.t),
       ~visible: bool=defaultVisibileStaus,
       ~color: option(string)=Some(defaultLineColour),
       ~opacity: option(float)=Some(defaultOpacity),

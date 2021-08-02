@@ -16,7 +16,7 @@ let getWrappedChildren =
 let getPixelPositionOffset = (width: int, height: int): Point.t => {x: - (width / 2), y: - height};
 
 type config = {
-  position: Catalyst.LatLng.t,
+  position: LatLng.t,
   mapPaneName: option(string),
   children: React.element,
   wrappedChildren: React.element,
@@ -26,7 +26,7 @@ type config = {
 
 let make_props =
     (
-      ~position: Catalyst.LatLng.t,
+      ~position: LatLng.t,
       ~mapPaneName: option(string)=Some("overlayMouseTarget"),
       ~onMouseOver: option(ReactEvent.Mouse.t => unit)=None,
       ~onMouseOut: option(ReactEvent.Mouse.t => unit)=None,
