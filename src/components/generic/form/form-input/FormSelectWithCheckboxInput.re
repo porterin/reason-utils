@@ -14,6 +14,8 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~select_props: t) => {
       items={select_props.options}
       renderValue={select_props.renderValue}
       onBlur={input_props.onBlur}
+      onClose={input_props.onClose}
+      onOpen={input_props.onOpen}
     />
     {FormInputHelper.getWarningOrError(None, input_props.result)}
   </FormInputWrapper>;

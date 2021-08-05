@@ -20,6 +20,8 @@ let make =
       ~items: list(t),
       ~isNoneRequired: bool,
       ~onBlur: unit => unit,
+      ~onClose: unit => unit,
+      ~onOpen: unit => unit,
     ) => {
   let selectedValue = Belt.Option.getWithDefault(value, defaultSelectItem);
 
@@ -33,7 +35,9 @@ let make =
       defaultValue={MaterialUi_Types.Any(defaultSelectItem.value)}
       value={MaterialUi.Select.Value.string(selectedValue.value)}
       onChange={(e, _) => onChange(e)}
-      onBlur={_ => onBlur()}>
+      onBlur={_ => onBlur()}
+      onClose={_ => onClose()}
+      onOpen={_ => onOpen()}>
       {isNoneRequired
          ? <MaterialUi.MenuItem
              value={MaterialUi_MenuItem.Value.string(defaultSelectItem.value)}>

@@ -26,6 +26,8 @@ let make =
       ~label: string,
       ~onChange: ReactEvent.Form.t => unit,
       ~onBlur: unit => unit,
+      ~onClose: unit => unit,
+      ~onOpen: unit => unit,
       ~selected: list(string),
       ~items: list(t),
       ~renderValue: option(list(string) => string),
@@ -41,6 +43,8 @@ let make =
       value={MaterialUi.Select.Value.arrayOf(selected |> Array.of_list)}
       onChange={(event, _) => onChange(event)}
       onBlur={_ => onBlur()}
+      onClose={_ => onClose()}
+      onOpen={_ => onOpen()}
       renderValue={(selected: MaterialUi_Types.any) =>
         switch (renderValue) {
         | None =>
