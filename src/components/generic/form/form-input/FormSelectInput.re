@@ -20,7 +20,7 @@ module SelectProps = {
       : t => {
     value,
     items,
-    isNoneRequired,
+    isNoneRequired
   };
 };
 
@@ -34,6 +34,9 @@ let make =
       onChange={input_props.onChange}
       items={select_props.items}
       isNoneRequired={select_props.isNoneRequired}
+      onBlur={input_props.onBlur}
+      onClose={input_props.onClose}
+      onOpen={input_props.onOpen}
     />
     {FormInputHelper.getWarningOrError(None, input_props.result)}
   </FormInputWrapper>;
