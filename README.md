@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.9.0**
+  - Adding mobile and tablet views
+
 + **2.8.5**
   - Accordion V2 added. (Design contraints)
   - DateTime Input date value made optional
