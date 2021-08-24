@@ -1,1 +1,1 @@
-ReactDOMRe.renderToElementWithId(<ExampleFormInput />, "root");
+ReactDOMRe.renderToElementWithId(<ExampleResponsiveness />, "root");

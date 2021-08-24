@@ -1,4 +1,4 @@
 [@react.component]
 let make = (~children: React.element) => {
-  <Breakpoint medium=true down=true> children </Breakpoint>;
+  <Breakpoint customQuery="(max-width: 576px)"> children </Breakpoint>;
 };
