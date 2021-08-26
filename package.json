@@ -37,6 +37,7 @@
     "bs-platform": "^8.4.2",
     "bs-webapi": "^0.17.1",
     "decco": "^1.1.1",
+    "materialui-daterange-picker": "^1.1.92",
     "moment": "^2.24.0",
     "nanoid": "^3.1.23",
     "papaparse": "5.1.0",
