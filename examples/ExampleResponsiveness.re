@@ -2,9 +2,9 @@
 let make = () => {
     <Responsive>
         <DesktopView>
-            <Scrollable height="100vh" onScrollEndCallback={ _ => ()}>
+            <ScrollableV2 height="100vh" onScrollEndCallback={ _ => ()}>
             <div style=(ReactDOMRe.Style.make(~height="100rem", ()))>("desktop" -> React.string)</div>
-            </Scrollable>
+            </ScrollableV2>
         </DesktopView>
         <TabletView>
             <div>("tablet" -> React.string)</div>
