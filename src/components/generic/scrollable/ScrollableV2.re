@@ -1,21 +1,3 @@
-// type scrollViewOptions = {
-//   behavior: string,
-//   top: int,
-//   left: int,
-// };
-
-// let scrollToTop = (refrence: React.ref('a)) => {
-//   let scrollOptions = {
-//     behavior: "smooth",
-//     top: 0,
-//     left: 0
-//   }
-//   switch (refrence.current->Js.Nullable.toOption) {
-//   | None => ()
-//   | Some(r) => ReactDOMRe.domElementToObj(r)##scroll(scrollOptions)
-//   };
-// };
-
 let scrollToTop = (refrence: React.ref('a)) => {
   switch (refrence.current->Js.Nullable.toOption) {
   | None => ()
