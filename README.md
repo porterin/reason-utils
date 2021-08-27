@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.9.1**
+  - React Modal dependency added
+
 + **2.9.0**
   - Adding mobile and tablet views
 
