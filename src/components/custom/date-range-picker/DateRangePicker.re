@@ -9,7 +9,7 @@ type definedRange = {
   label: string
 };
 
-[@bs.module "materialui-daterange-picker/src/components/DateRangePickerExporter.tsx"] [@react.component]
+[@bs.module "materialui-daterange-picker"] [@react.component]
 external make:
   (
     ~open_: bool,
@@ -23,4 +23,4 @@ external make:
     ~wrapperClassName: string=?
   ) =>
   React.element =
-  "default";
+  "DateRangePicker";
