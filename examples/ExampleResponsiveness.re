@@ -2,7 +2,7 @@
 let make = () => {
     <Responsive>
         <DesktopView>
-            <div>("desktop" -> React.string)</div>
+            <div><ExampleTable /></div>
         </DesktopView>
         <TabletView>
             <div>("tablet" -> React.string)</div>
