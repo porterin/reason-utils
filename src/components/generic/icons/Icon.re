@@ -56,12 +56,12 @@ module NavigateNextRoundedIcon =
 
 module KeyboardArrowUpIconIcon =
   Make({
-    [@bs.module "@material-ui/icons/KeyboardArrowUpIcon"]
+    [@bs.module "@material-ui/icons/KeyboardArrowUp"]
     external reactClass: React.component('a) = "default";
   });
 
 module KeyboardArrowDownIconIcon =
   Make({
-    [@bs.module "@material-ui/icons/KeyboardArrowDownIcon"]
+    [@bs.module "@material-ui/icons/KeyboardArrowDown"]
     external reactClass: React.component('a) = "default";
   });
