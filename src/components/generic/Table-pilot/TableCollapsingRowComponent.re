@@ -57,12 +57,11 @@ let make =
          |> List.mapi((key, (rData, collapsing_cell_data)) =>
               <>
                 <TableRow className="" key={key->string_of_int}>
-                    <TableCellComponent cell=Custom(_ => <Icon.KeyboardArrowDownIconIcon />) colSpan=7 />
+                    <TableCellComponent cell=Custom(_ => <Icon.KeyboardArrowDownIconIcon />) colSpan=1 />
                   {getTableRow(rData, columns)}
                 </TableRow>
                 <TableRow className="">
-                  {getTableRow(rData, columns)}
-                  <TableCellComponent cell=collapsing_cell_data colSpan=7 />
+                  <TableCellComponent cell=collapsing_cell_data colSpan={columns->List.length + 1} />
                 </TableRow>
               </>
             )
