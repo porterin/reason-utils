@@ -51,6 +51,7 @@ let make =
     (
       ~columns: list(TableSchema.t('a)),
       ~rowData: list(('a, TableCell.t)),
+      ~stickyHeader: bool=false,
       ~className: string="",
       ~row_class_name: string="",
       ~header_class_name: string="",
@@ -65,13 +66,13 @@ let make =
     };
 
   <>
-    <Table className={"table " ++ className}>
+    <Table className={"table " ++ className} stickyHeader>
       <TableHeader className={"table-header" ++ header_class_name} columns />
       <TableBody className="table-body">
         {rowData
          |> List.mapi((key, (rData, collapsing_cell_data)) =>
               <>
-                <TableRow className=row_class_name key={key->string_of_int}>
+                <TableRow className=row_class_name key={key->string_of_int} onClick={_ => toggleFaqDisplay(key)}>
                   <TableCellComponent
                     cell={
                       Custom(
