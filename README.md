@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.9.2**
+  - Indore City added to GeoRegions
+
 + **2.9.1**
   - React Modal dependency added
 
