@@ -25,6 +25,20 @@ let toCurrencyString = (a: t): string => {
   |> (value => prefix ++ {j| ₹|j} ++ value);
 };
 
+let toRoundedString = (a: t): string => {
+  let prefix = a < 0.0 ? "-" : "";
+  a->Js.Math.abs_float->Js.Float.toFixedWithPrecision(~digits=0)
+  |> Js.String.replaceByRe([%re "/\B(?=(\d{3})+(?!\d))/g"], ",")
+  |> (value => prefix ++ {j| ₹|j} ++ value);
+};
+
+let toTwoDigitPrecisionString = (a: t): string => {
+  let prefix = a < 0.0 ? "-" : "";
+  a->Js.Math.abs_float->Js.Float.toFixedWithPrecision(~digits=0)
+  |> Js.String.replaceByRe([%re "/\B(?=(\d{3})+(?!\d))/g"], ",")
+  |> (value => prefix ++ {j| ₹|j} ++ value);
+};
+
 let toString = (a: t): string => a->Js.Float.toString;
 
 let fromString = (a: string): t =>
