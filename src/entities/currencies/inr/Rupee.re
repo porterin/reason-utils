@@ -34,7 +34,7 @@ let toRoundedString = (a: t): string => {
 
 let toTwoDigitPrecisionString = (a: t): string => {
   let prefix = a < 0.0 ? "-" : "";
-  a->Js.Math.abs_float->Js.Float.toFixedWithPrecision(~digits=0)
+  a->Js.Math.abs_float->Js.Float.toFixedWithPrecision(~digits=2)
   |> Js.String.replaceByRe([%re "/\B(?=(\d{3})+(?!\d))/g"], ",")
   |> (value => prefix ++ {j| ₹|j} ++ value);
 };
