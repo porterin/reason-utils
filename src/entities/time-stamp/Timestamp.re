@@ -10,3 +10,7 @@ let now = (): t => {
 let toString = (~value: t, ~format): string => {
   MomentUtils.formatFromFloat(~format, ~timestamp=value);
 };
+
+let utcToIst = (~value: t): t => {
+  value +. 19800000.0;
+};
