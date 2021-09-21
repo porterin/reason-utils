@@ -1,4 +1,8 @@
 ### Release Notes
++ **2.9.3**
+  - Rupee precision functions added
+  - utcToIst timestamp function added
+
 + **2.9.2**
   - Indore City added to GeoRegions
 
