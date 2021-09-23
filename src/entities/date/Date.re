@@ -7,7 +7,8 @@ let fromJsDate = (d: Js.Date.t): t => d;
 let make = (~value: string, ~format: string): t =>
   MomentUtils.fromString(~date=value, ~format)->MomentUtils.toJsDate;
 
-let toString = (~format: string, ~date: t) => MomentUtils.formatFromJsDate(~format, ~date);
+let toString = (~format: string, ~date: t) =>
+  MomentUtils.formatFromJsDate(~format, ~date);
 
 let now = (): t => MomentUtils.now()->MomentUtils.toJsDate;
 
@@ -25,7 +26,8 @@ let isAfter = (~first_date: t, ~second_date: t) => {
   );
 };
 
-let getDateTimeAfterElapsedTime = (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: t) => {
+let getDateTimeAfterElapsedTime =
+    (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: t) => {
   MomentUtils.getDateTimeAfterElapsedTime(
     ~elapsed_time,
     ~time_unit,
