@@ -21,42 +21,18 @@ let getTableSchema = () => {
 [@react.component]
 let make = () => {
   let customers: list((Customer.t, TableCell.t)) = [
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
-    (Customer.{id: 1, name: "Aman"}, Custom(_ => React.string("aman"))),
+    (Customer.{id: 1, name: "Porter"}, Custom(_ => React.string("Porter"))),
+   
+    
   ];
 
   <div>
     <div className="header"> {React.string("Header Bar")} </div>
-    <TableCollapsingRowComponent
+    <TableWithAccordions
       columns={getTableSchema()}
       className="customTable"
       rowData=customers
+      stickyHeader=true
     />
   </div>;
 };

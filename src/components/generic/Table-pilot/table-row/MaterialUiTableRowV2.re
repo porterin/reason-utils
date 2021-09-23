@@ -1,4 +1,4 @@
-//added as the jsiebern library was not supprting
+//added as the jsiebern library was not supporting onClick
 module Classes = {
     type t = {
       .
