@@ -42,3 +42,9 @@ let tomorrow = (): t => {
   )
   ->MomentUtils.toJsDate;
 };
+
+let getPreviousDateByDays = (~day: int) => {
+  (Js.Date.now() -. day->float_of_int *. 24.0 *. 60.0 *. 60.0 *. 1000.0)
+  ->Js.Date.fromFloat
+  ->fromJsDate;
+};
