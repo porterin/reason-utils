@@ -23,3 +23,7 @@ let isAfter: (~first_date: MomentRe.Moment.t, ~second_date: MomentRe.Moment.t) =
 let getDateTimeAfterElapsedTime:
   (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: MomentRe.Moment.t) =>
   MomentRe.Moment.t;
+
+let getDateTimeBeforeElapsedTime:
+  (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: MomentRe.Moment.t) =>
+  MomentRe.Moment.t;

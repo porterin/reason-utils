@@ -7,8 +7,7 @@ let fromJsDate = (d: Js.Date.t): t => d;
 let make = (~value: string, ~format: string): t =>
   MomentUtils.fromString(~date=value, ~format)->MomentUtils.toJsDate;
 
-let toString = (~format: string, ~date: t) =>
-  MomentUtils.formatFromJsDate(~format, ~date);
+let toString = (~format: string, ~date: t) => MomentUtils.formatFromJsDate(~format, ~date);
 
 let now = (): t => MomentUtils.now()->MomentUtils.toJsDate;
 
@@ -26,8 +25,7 @@ let isAfter = (~first_date: t, ~second_date: t) => {
   );
 };
 
-let getDateTimeAfterElapsedTime =
-    (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: t) => {
+let getDateTimeAfterElapsedTime = (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: t) => {
   MomentUtils.getDateTimeAfterElapsedTime(
     ~elapsed_time,
     ~time_unit,
@@ -45,8 +43,20 @@ let tomorrow = (): t => {
   ->MomentUtils.toJsDate;
 };
 
+let getDateTimeBeforeElapsedTime =
+    (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: t) => {
+  MomentUtils.getDateTimeBeforeElapsedTime(
+    ~elapsed_time,
+    ~time_unit,
+    ~initial_date=MomentUtils.fromJsDate(initial_date),
+  )
+  ->MomentUtils.toJsDate;
+};
+
 let getPreviousDateByDays = (~day: int) => {
-  (Js.Date.now() -. day->float_of_int *. 24.0 *. 60.0 *. 60.0 *. 1000.0)
-  ->Js.Date.fromFloat
-  ->fromJsDate;
+  getDateTimeBeforeElapsedTime(
+    ~elapsed_time=float_of_int(day),
+    ~time_unit=Days,
+    ~initial_date=now(),
+  );
 };
