@@ -56,3 +56,11 @@ let getDateTimeAfterElapsedTime =
   let toDuration = duration(elapsed_time, toMomentTimeUnit(time_unit));
   Moment.add(~duration=toDuration, initial_date);
 };
+
+let diffDates =
+  (
+    ~start_date: Js.Date.t,
+    ~end_date: Js.Date.t,
+    ~time_unit: TimeUnit.t
+  ) : float =>
+  diff(momentWithDate(end_date), momentWithDate(start_date), toMomentTimeUnit(time_unit));
