@@ -10,11 +10,19 @@ let toString: (~format: string, ~date: t) => string;
 
 let now: unit => t;
 
-let isBefore: (~first_date: t, ~second_date: t) => bool;
-
-let isAfter: (~first_date: t, ~second_date: t) => bool;
+let tomorrow: unit => t;
 
 let getDateTimeAfterElapsedTime:
   (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: t) => t;
 
-let tomorrow: unit => t;
+let isBefore: (~first_date: t, ~second_date: t) => bool;
+
+let isAfter: (~first_date: t, ~second_date: t) => bool;
+
+let diffDates: (
+  ~start_date: t,
+  ~end_date: t,
+  ~time_unit: TimeUnit.t
+) => float
+
+let toHoursAndMinutes: float => string
