@@ -7,14 +7,8 @@ module Customer = {
 
 let getTableSchema = () => {
   TableSchema.[
-    {
-      column: Text("Source"),
-      accessor: (apr: Customer.t) => Text(apr.id |> string_of_int),
-    },
-    {
-      column: Text("Customer"),
-      accessor: (apr: Customer.t) => Text(apr.name),
-    },
+    {column: Text("Source"), accessor: (apr: Customer.t) => Text(apr.id |> string_of_int)},
+    {column: Text("Customer"), accessor: (apr: Customer.t) => Text(apr.name)},
   ];
 };
 
@@ -22,8 +16,6 @@ let getTableSchema = () => {
 let make = () => {
   let customers: list((Customer.t, TableCell.t)) = [
     (Customer.{id: 1, name: "Porter"}, Custom(_ => React.string("Porter"))),
-   
-    
   ];
 
   <div>
@@ -33,6 +25,7 @@ let make = () => {
       className="customTable"
       rowData=customers
       stickyHeader=true
+      accordion_row_class_name="accordion-row"
     />
   </div>;
 };

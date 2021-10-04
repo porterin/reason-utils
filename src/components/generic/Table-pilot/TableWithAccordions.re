@@ -1,43 +1,39 @@
 let getTableRow = (rowData: 't, columns: list(TableSchema.t('a))) => {
   columns
-  |> List.map((columnHeader: TableSchema.t('a)) =>
-       <TableCellComponent cell={columnHeader.accessor(rowData)} />
+  |> List.mapi((key, columnHeader: TableSchema.t('a)) =>
+       <TableCellComponent key={key->string_of_int} cell={columnHeader.accessor(rowData)} />
      )
   |> ReasonReactUtils.listToReactArray;
 };
 
-let getRows =
-    (rowsData: GroupTableSchema.t('a), columns: list(TableSchema.t('a))) => {
+let getRows = (rowsData: GroupTableSchema.t('a), columns: list(TableSchema.t('a))) => {
   rowsData.rows
-  |> List.map(rData =>
-       <TableRow className=""> {getTableRow(rData, columns)} </TableRow>
+  |> List.mapi((key, rData) =>
+       <TableRow key={key->string_of_int} className=""> {getTableRow(rData, columns)} </TableRow>
      )
   |> ReasonReactUtils.listToReactArray;
 };
 
 module TableHeader = {
   //added one empty cell in header row
-  let getColumnHeaders =
-      (~columns: list(TableSchema.t('a))): ReasonReact.reactElement => {
+  let getColumnHeaders = (~columns: list(TableSchema.t('a))): ReasonReact.reactElement => {
     columns
-    |> List.map((columnHeader: TableSchema.t('a)) =>
+    |> List.mapi((key, columnHeader: TableSchema.t('a)) =>
          switch (columnHeader.column) {
          | Text(text) =>
-           <MaterialUi.TableCell> {React.string(text)} </MaterialUi.TableCell>
+           <MaterialUi.TableCell key={key->string_of_int}>
+             {React.string(text)}
+           </MaterialUi.TableCell>
          | Custom(renderFn) =>
-           <MaterialUi.TableCell> {renderFn()} </MaterialUi.TableCell>
+           <MaterialUi.TableCell key={key->string_of_int}> {renderFn()} </MaterialUi.TableCell>
          }
        )
     |> ReasonReactUtils.listToReactArray;
   };
 
-  let buildTableHeader =
-      (~className: string, ~columns: list(TableSchema.t('a))) => {
+  let buildTableHeader = (~className: string, ~columns: list(TableSchema.t('a))) => {
     <MaterialUi.TableHead>
-      <TableRow className>
-        <MaterialUi.TableCell />
-        {getColumnHeaders(~columns)}
-      </TableRow>
+      <TableRow className> <MaterialUi.TableCell /> {getColumnHeaders(~columns)} </TableRow>
     </MaterialUi.TableHead>;
   };
 
@@ -54,6 +50,7 @@ let make =
       ~stickyHeader: bool=false,
       ~className: string="",
       ~row_class_name: string="",
+      ~accordion_row_class_name: string="",
       ~header_class_name: string="",
     ) => {
   let (showRow, setShowRow) = React.useState(_ => (-1));
@@ -72,24 +69,35 @@ let make =
         {rowData
          |> List.mapi((key, (rData, collapsing_cell_data)) =>
               <>
-                <TableRow className=row_class_name key={key->string_of_int} onClick={_ => toggleFaqDisplay(key)}>
+                <TableRowV2
+                  className=row_class_name
+                  key={key->string_of_int}
+                  onClick={_ => toggleFaqDisplay(key)}>
                   <TableCellComponent
                     cell={
                       Custom(
                         _ =>
-                          <div onClick={_ => toggleFaqDisplay(key)}>
+                          <div
+                            className="accordion-row-button" onClick={_ => toggleFaqDisplay(key)}>
                             {showRow != key
                                ? <Icon.KeyboardArrowDownIconIcon />
-                               : <Icon.KeyboardArrowUpIconIcon />}
+                               : <Icon.KeyboardArrowUpIconIcon className="active" />}
                           </div>,
                       )
                     }
                     colSpan=1
                   />
                   {getTableRow(rData, columns)}
-                </TableRow>
+                </TableRowV2>
                 {showRow == key
-                   ? <TableRow className="">
+                   ? <TableRow
+                       className={
+                         accordion_row_class_name
+                         ++ {
+                           showRow == key ? "__active" : "";
+                         }
+                       }
+                       key={key->string_of_int ++ "a"}>
                        <TableCellComponent
                          cell=collapsing_cell_data
                          colSpan={columns->List.length + 1}

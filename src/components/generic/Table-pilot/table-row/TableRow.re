@@ -1,8 +1,6 @@
-let buildTableRow = (~className: string, ~children, ~onClick) => {
-  <MaterialUiTableRowV2 className={className} onClick>
-    {children}
-  </MaterialUiTableRowV2>
+let buildTableRow = (~className: string, ~children) => {
+  <MaterialUi.TableRow className> children </MaterialUi.TableRow>;
 };
 
 [@react.component]
-let make = (~className: string, ~onClick: ReactEvent.Mouse.t => unit={_ => ()}, ~children) => buildTableRow(~className, ~onClick, ~children);
+let make = (~className: string, ~children) => buildTableRow(~className, ~children);
