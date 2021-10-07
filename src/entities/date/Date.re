@@ -42,3 +42,21 @@ let tomorrow = (): t => {
   )
   ->MomentUtils.toJsDate;
 };
+
+let getDateTimeBeforeElapsedTime =
+    (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: t) => {
+  MomentUtils.getDateTimeBeforeElapsedTime(
+    ~elapsed_time,
+    ~time_unit,
+    ~initial_date=MomentUtils.fromJsDate(initial_date),
+  )
+  ->MomentUtils.toJsDate;
+};
+
+let getPreviousDateByDays = (~day: int) => {
+  getDateTimeBeforeElapsedTime(
+    ~elapsed_time=float_of_int(day),
+    ~time_unit=Days,
+    ~initial_date=now(),
+  );
+};

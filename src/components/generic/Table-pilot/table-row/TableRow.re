@@ -1,7 +1,5 @@
 let buildTableRow = (~className: string, ~children) => {
-  <MaterialUi.TableRow className={className}>
-    {children}
-  </MaterialUi.TableRow>
+  <MaterialUi.TableRow className> children </MaterialUi.TableRow>;
 };
 
 [@react.component]
