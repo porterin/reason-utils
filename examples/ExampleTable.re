@@ -22,10 +22,10 @@ let make = () => {
     <div className="header"> {React.string("Header Bar")} </div>
     <TableWithAccordions
       columns={getTableSchema()}
-      className="customTable"
-      rowData=customers
-      stickyHeader=true
-      accordion_row_class_name="accordion-row"
+      class_name="customTable"
+      rows=customers
+      is_sticky_header=true
+      collapsible_row_class_name="accordion-row"
     />
   </div>;
 };

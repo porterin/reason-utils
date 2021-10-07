@@ -8,8 +8,10 @@ let getTableRow = (rowData: 't, columns: list(TableSchema.t('a))) => {
 
 let getRows = (rowsData: GroupTableSchema.t('a), columns: list(TableSchema.t('a))) => {
   rowsData.rows
-  |> List.mapi((key, rData) =>
-       <TableRow key={key->string_of_int} className=""> {getTableRow(rData, columns)} </TableRow>
+  |> List.mapi((key, rowData) =>
+       <TableRow key={key->string_of_int} className="">
+         {getTableRow(rowData, columns)}
+       </TableRow>
      )
   |> ReasonReactUtils.listToReactArray;
 };
@@ -31,9 +33,13 @@ module TableHeader = {
     |> ReasonReactUtils.listToReactArray;
   };
 
+  let getEmptyHeaderCell = () => {
+    <MaterialUi.TableCell />;
+  };
+
   let buildTableHeader = (~className: string, ~columns: list(TableSchema.t('a))) => {
     <MaterialUi.TableHead>
-      <TableRow className> <MaterialUi.TableCell /> {getColumnHeaders(~columns)} </TableRow>
+      <TableRow className> {getEmptyHeaderCell()} {getColumnHeaders(~columns)} </TableRow>
     </MaterialUi.TableHead>;
   };
 
@@ -46,40 +52,41 @@ module TableHeader = {
 let make =
     (
       ~columns: list(TableSchema.t('a)),
-      ~rowData: list(('a, TableCell.t)),
-      ~stickyHeader: bool=false,
-      ~className: string="",
+      ~rows: list(('a, TableCell.t)),
+      ~is_sticky_header: bool=false,
+      ~class_name: string="",
       ~row_class_name: string="",
-      ~accordion_row_class_name: string="",
+      ~collapsible_row_class_name: string="",
       ~header_class_name: string="",
     ) => {
-  let (showRow, setShowRow) = React.useState(_ => (-1));
+  let (openRowIndex, setOpenRowIndex) = React.useState(_ => (-1));
 
-  let toggleFaqDisplay = (ind: int) =>
-    if (showRow == ind) {
-      setShowRow(_ => (-1));
+  let toggleRow = (index: int) =>
+    if (openRowIndex == index) {
+      setOpenRowIndex(_ => (-1));
     } else {
-      setShowRow(_ => ind);
+      setOpenRowIndex(_ => index);
     };
 
+  let shouldToggle = (index: int): bool => {
+    openRowIndex == index;
+  };
+
   <>
-    <Table className={"table " ++ className} stickyHeader>
+    <Table className={"table " ++ class_name} is_sticky_header>
       <TableHeader className={"table-header" ++ header_class_name} columns />
       <TableBody className="table-body">
-        {rowData
-         |> List.mapi((key, (rData, collapsing_cell_data)) =>
+        {rows
+         |> List.mapi((key, (rowData, collapsible_row_data)) =>
               <>
                 <TableRowV2
-                  className=row_class_name
-                  key={key->string_of_int}
-                  onClick={_ => toggleFaqDisplay(key)}>
+                  className=row_class_name key={key->string_of_int} onClick={_ => toggleRow(key)}>
                   <TableCellComponent
                     cell={
                       Custom(
                         _ =>
-                          <div
-                            className="accordion-row-button" onClick={_ => toggleFaqDisplay(key)}>
-                            {showRow != key
+                          <div className="accordion-row-button" onClick={_ => toggleRow(key)}>
+                            {openRowIndex != key
                                ? <Icon.KeyboardArrowDownIconIcon />
                                : <Icon.KeyboardArrowUpIconIcon className="active" />}
                           </div>,
@@ -87,19 +94,19 @@ let make =
                     }
                     colSpan=1
                   />
-                  {getTableRow(rData, columns)}
+                  {getTableRow(rowData, columns)}
                 </TableRowV2>
-                {showRow == key
+                {shouldToggle(key)
                    ? <TableRow
                        className={
-                         accordion_row_class_name
+                         collapsible_row_class_name
                          ++ {
-                           showRow == key ? "__active" : "";
+                           shouldToggle(key) ? "__active" : "";
                          }
                        }
                        key={key->string_of_int ++ "a"}>
                        <TableCellComponent
-                         cell=collapsing_cell_data
+                         cell=collapsible_row_data
                          colSpan={columns->List.length + 1}
                        />
                      </TableRow>
