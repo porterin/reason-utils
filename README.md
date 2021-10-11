@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.9.5**
+  - Nagpur City added to GeoRegions
+
 + **2.9.3**
   - Rupee precision functions added
   - utcToIst timestamp function added
