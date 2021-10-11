@@ -1,5 +1,5 @@
-let buildTableCell = (~cell: TableCell.t, ~className: string) => {
-  <MaterialUi.TableCell className>
+let buildTableCell = (~cell: TableCell.t,  ~colSpan: int, ~className: string,) => {
+  <MaterialUi.TableCell className colSpan>
     {
       switch cell {
       | Date({format, date}) => Date.toString(~format, ~date) -> React.string;
@@ -19,4 +19,4 @@ let buildTableCell = (~cell: TableCell.t, ~className: string) => {
 };
 
 [@react.component] 
-let make = (~cell: TableCell.t, ~className="") => buildTableCell(~cell, ~className);
+let make = (~cell: TableCell.t, ~className="",  ~colSpan: int=1) => buildTableCell(~cell, ~colSpan, ~className);

@@ -56,3 +56,10 @@ let getDateTimeAfterElapsedTime =
   let toDuration = duration(elapsed_time, toMomentTimeUnit(time_unit));
   Moment.add(~duration=toDuration, initial_date);
 };
+
+let getDateTimeBeforeElapsedTime =
+    (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: MomentRe.Moment.t)
+    : MomentRe.Moment.t => {
+  let toDuration = duration(elapsed_time, toMomentTimeUnit(time_unit));
+  Moment.subtract(~duration=toDuration, initial_date);
+};
