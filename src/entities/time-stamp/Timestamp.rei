@@ -1,11 +1,12 @@
+[@decco]
 type t;
 
-let make: (float) => t;
+let make: float => t;
 
-let now : unit => t;
+let now: unit => t;
 
 let toString: (~value: t, ~format: string) => string;
 
 let utcToIst: (~value: t) => t;
 
-let toFloat:  (t) => float;
+let toFloat: t => float;
