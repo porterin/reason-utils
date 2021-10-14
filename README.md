@@ -1,4 +1,11 @@
 ### Release Notes
++ **2.9.5**
+  - Checkbox added 
+  - Sticky Header added in Table 
+
++ **2.9.4**
+  - Table with Accordion Row added
+
 + **2.9.3**
   - Rupee precision functions added
   - utcToIst timestamp function added

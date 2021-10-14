@@ -1,13 +1,13 @@
 [@react.component]
 let make =
-    (~is_selected: bool=false, ~toggle: bool => unit, ~class_name: string="", ~text: string) => {
+    (~is_selected: bool=false, ~onClick: bool => unit, ~class_name: string="", ~text: string) => {
   let checkBoxItems: list(CheckBoxGroup.t) = [{id: "0", value: text, label: text}];
 
   <FormInput.CheckBox
     input_props={FormInput.make_props(
       ~className=class_name,
       ~label="",
-      ~onChange=_ => toggle(!is_selected),
+      ~onChange=_ => onClick(!is_selected),
       ~result=None,
       (),
     )}
