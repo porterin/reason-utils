@@ -1,4 +1,5 @@
 /* Milliseconds */
+[@decco]
 type t = float;
 
 let make = (v: float): t => v;
