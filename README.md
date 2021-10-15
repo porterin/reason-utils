@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.9.6**
+  - Nagpur City added to GeoRegions
+
 + **2.9.5**
   - Checkbox added 
   - Sticky Header added in Table 
