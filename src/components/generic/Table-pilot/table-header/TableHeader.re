@@ -1,9 +1,13 @@
 let getColumnHeaders = (~columns: list(TableSchema.t('a))): array(ReasonReact.reactElement) => {
   columns
-  |> List.map((columnHeader: TableSchema.t('a)) =>
+  |> List.mapi((index, columnHeader: TableSchema.t('a)) =>
        switch (columnHeader.column) {
-       | Text(text) => <MaterialUi.TableCell> {React.string(text)} </MaterialUi.TableCell>
-       | Custom(renderFn) => <MaterialUi.TableCell> {renderFn()} </MaterialUi.TableCell>
+       | Text(text) =>
+         <MaterialUi.TableCell key={index->string_of_int}>
+           {React.string(text)}
+         </MaterialUi.TableCell>
+       | Custom(renderFn) =>
+         <MaterialUi.TableCell key={index->string_of_int}> {renderFn()} </MaterialUi.TableCell>
        }
      )
   |> Array.of_list;
