@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.9.7**
+  - upgraded @sentry/browser to ^6.14.1
+
 + **2.9.6**
   - Nagpur City added to GeoRegions
 
