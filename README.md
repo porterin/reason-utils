@@ -1,5 +1,8 @@
 ### Release Notes
 + **2.9.3**
+  - upgraded @sentry/browser to ^6.14.1
+
++ **2.9.3**
   - Rupee precision functions added
   - utcToIst timestamp function added
 
