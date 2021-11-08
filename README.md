@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.9.7**
+  - upgraded @sentry/browser to ^6.14.1
+
 + **2.9.6**
   - Nagpur City added to GeoRegions
 
@@ -8,9 +11,6 @@
 
 + **2.9.4**
   - Table with Accordion Row added
-
-+ **2.9.3**
-  - upgraded @sentry/browser to ^6.14.1
 
 + **2.9.3**
   - Rupee precision functions added
