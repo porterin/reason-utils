@@ -24,7 +24,7 @@ let make =
       variant="inline"
       inputVariant="outlined"
       className="form-input-date-time"
-      views=[|"hours", "minutes", "seconds"|]
+      views=[|"hours", "minutes"|]
     />
   </MuiPickersUtilsProvider>;
 };

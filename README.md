@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.9.8**
+  - Date time input props changes
+
 + **2.9.7**
   - upgraded @sentry/browser to ^6.14.1
 
