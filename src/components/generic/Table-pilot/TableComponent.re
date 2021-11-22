@@ -10,9 +10,15 @@ let getTableRow = (rowData: 't, columns: list(TableSchema.t('a))) => {
 };
 
 [@react.component]
-let make = (~columns: list(TableSchema.t('a)), ~rowData: list('a), ~className: string="") => {
+let make =
+    (
+      ~columns: list(TableSchema.t('a)),
+      ~rowData: list('a),
+      ~className: string="",
+      ~is_sticky_header: bool=false,
+    ) => {
   <>
-    <Table className={"table " ++ className}>
+    <Table className={"table " ++ className} is_sticky_header>
       <TableHeader className="table-header" columns />
       <TableBody className="table-body">
         {rowData

@@ -21,4 +21,8 @@ let toString: t => string;
 
 let toCurrencyString: t => string;
 
+let toRoundedString: t => string;
+
+let toTwoDigitPrecisionString: t => string;
+
 let fromString: string => t;

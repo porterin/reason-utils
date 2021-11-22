@@ -1,4 +1,33 @@
 ### Release Notes
++ **2.9.8**
+  - Date time input props changes
+
++ **2.9.7**
+  - upgraded @sentry/browser to ^6.14.1
+
++ **2.9.6**
+  - Nagpur City added to GeoRegions
+
++ **2.9.5**
+  - Checkbox added 
+  - Sticky Header added in Table 
+
++ **2.9.4**
+  - Table with Accordion Row added
+
++ **2.9.3**
+  - Rupee precision functions added
+  - utcToIst timestamp function added
+
++ **2.9.2**
+  - Indore City added to GeoRegions
+
++ **2.9.1**
+  - React Modal dependency added
+
++ **2.9.0**
+  - Adding mobile and tablet views
+
 + **2.8.5**
   - Accordion V2 added. (Design contraints)
   - DateTime Input date value made optional

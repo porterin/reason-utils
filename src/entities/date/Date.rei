@@ -18,3 +18,8 @@ let getDateTimeAfterElapsedTime:
   (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: t) => t;
 
 let tomorrow: unit => t;
+
+let getDateTimeBeforeElapsedTime:
+  (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: t) => t;
+
+let getPreviousDateByDays: (~day: int) => t;
