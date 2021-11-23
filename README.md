@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.9.9**
+  - Web-Worker Bindings added
+
 + **2.9.8**
   - Date time input props changes
 
