@@ -5,7 +5,7 @@ module.exports = () => {
   return {
     mode: "development",
     devServer: {
-      port: 8000,
+      port: 8080,
       open: true,
       historyApiFallback: true,
       liveReload: true,
@@ -57,7 +57,7 @@ module.exports = () => {
       new HtmlWebpackPlugin({
         filename: "index.html",
         template: "index.html",
-      })
+      }),
     ],
   };
 };
