@@ -14,14 +14,12 @@ module ExpandLessIcon =
 
 module CloseIcon =
   Make({
-    [@bs.module "@material-ui/icons/Close"]
-    external reactClass: React.component('a) = "default";
+    [@bs.module "@material-ui/icons/Close"] external reactClass: React.component('a) = "default";
   });
 
 module NavigateIcon =
   Make({
-    [@bs.module "@material-ui/icons/Launch"]
-    external reactClass: React.component('a) = "default";
+    [@bs.module "@material-ui/icons/Launch"] external reactClass: React.component('a) = "default";
   });
 
 module WarningIcon =
@@ -32,8 +30,7 @@ module WarningIcon =
 
 module PersonIcon =
   Make({
-    [@bs.module "@material-ui/icons/Person"]
-    external reactClass: React.component('a) = "default";
+    [@bs.module "@material-ui/icons/Person"] external reactClass: React.component('a) = "default";
   });
 
 module EditIcon =
@@ -63,5 +60,17 @@ module KeyboardArrowUpIconIcon =
 module KeyboardArrowDownIconIcon =
   Make({
     [@bs.module "@material-ui/icons/KeyboardArrowDown"]
+    external reactClass: React.component('a) = "default";
+  });
+
+module ArrowBackIcon =
+  Make({
+    [@bs.module "@material-ui/icons/ArrowBackIos"]
+    external reactClass: React.component('a) = "default";
+  });
+
+module AccountIcon =
+  Make({
+    [@bs.module "@material-ui/icons/AccountCircle"]
     external reactClass: React.component('a) = "default";
   });
