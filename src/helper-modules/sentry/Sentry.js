@@ -12,7 +12,7 @@ export function init(dsn, suppressErrors) {
   Sentry.init({
     dsn,
     attachStackTrace: true,
-    errors
+    ignoreErrors: errors
   })
 }
 
