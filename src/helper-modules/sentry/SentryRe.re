@@ -6,7 +6,7 @@ type static;
 external capturePromiseError: Js.Promise.error => static = "capturePromiseError";
 [@bs.module "./Sentry.js"] external captureMessage: string => string = "captureMessage";
 
-let initSentry = (~environment: Environment.t, ~suppressErrors: array(Js_re.t)=[||], ~dsn: string) => {
+let initSentry = (~environment: Environment.t, ~dsn: string, ~suppressErrors: array(Js_re.t)=[||], ()) => {
   switch (environment) {
   | Production => init(dsn, suppressErrors)
   | _ => ()
