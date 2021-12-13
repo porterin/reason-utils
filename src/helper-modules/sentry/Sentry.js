@@ -7,11 +7,12 @@ let ignoreErrors = [
   /ibFindAllVideos is not defined/i,
 ]
 
-export function init(dsn) {
+export function init(dsn, suppressErrors) {
+  let errors = ignoreErrors.concat(suppressErrors);
   Sentry.init({
     dsn,
     attachStackTrace: true,
-    ignoreErrors
+    errors
   })
 }
 
