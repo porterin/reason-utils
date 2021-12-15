@@ -1,19 +1,20 @@
-type t = {
-  value: string
-};
+type t = {value: string};
 
 [@react.component]
 let make = (~input_props: FormInputProps.t('b, 'c), ~textinput_props: t) => {
   let (warning, setWarning) = React.useState(_ => None);
   <FormInputWrapper className={input_props.className}>
     <MaterialUi.TextField
-      error={switch(input_props.result) {
-        | Some(result) => switch(result) {
+      error={
+        switch (input_props.result) {
+        | Some(result) =>
+          switch (result) {
           | Error(_) => true
           | _ => false
           }
         | _ => false
-      }}
+        }
+      }
       label={React.string(input_props.label)}
       margin=`Dense
       size=`Medium
@@ -26,6 +27,7 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~textinput_props: t) => {
         setWarning(_ => input_props.warning(event));
         input_props.onChange(event);
       }}
+      multiline={input_props.isMultiline}
       placeholder={input_props.placeholder}
       variant=`Outlined
       className="form-input"
