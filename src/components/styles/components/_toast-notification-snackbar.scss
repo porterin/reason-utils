@@ -1,0 +1,18 @@
+.c-toast-notification-snackbar {
+  @include crm-txt-base-style;
+  padding: 1.2rem;
+  display: flex;
+  align-items: center;
+  color: $white;
+  font-size: $font-size-12;
+  border-radius: 0.4rem;
+  > img {
+    margin-right: 1.2rem;
+  }
+  &.success {
+    background-color: $green-dark;
+  }
+  &.error {
+    background-color: $status-red;
+  }
+}
