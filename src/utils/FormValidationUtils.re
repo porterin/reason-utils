@@ -40,7 +40,7 @@ let validateEmail = (email: string): Belt.Result.t(string, string) => {
     [%re
       "/^[A-Z0-9._%+-/!#$%&'*=?^_`{|}~]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i"
     ],
-    Js.String.toUpperCase(email),
+    email,
   )
     ? Belt.Result.Ok(email) : Belt.Result.Error("Enter valid Email");
 };
