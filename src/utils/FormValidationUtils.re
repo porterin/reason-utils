@@ -38,9 +38,9 @@ let validateCRN = (crn: string): Belt.Result.t(string, string) => {
 let validateEmail = (email: string): Belt.Result.t(string, string) => {
   Js_re.test_(
     [%re
-      "/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])(\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9]))+$/i"
+      "/^[A-Z0-9._%+-/!#$%&'*=?^_`{|}~]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i"
     ],
-    email,
+    Js.String.toUpperCase(email),
   )
     ? Belt.Result.Ok(email) : Belt.Result.Error("Enter valid Email");
 };
