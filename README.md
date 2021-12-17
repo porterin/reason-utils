@@ -1,4 +1,16 @@
 ### Release Notes
++ **2.9.13**
+  - onClose, onOpen, Input Adornment added, Toast bug-fix
+
++ **2.9.12**
+  - Toast Cmp, Multiline Input added
+
++ **2.9.11**
+  - Suppress specific errors
+
++ **2.9.10**
+  - BackIcon, AccountIcon added
+
 + **2.9.9**
   - Web-Worker Bindings added
 
