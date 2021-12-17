@@ -9,8 +9,8 @@ let useSnackbar = (~duration: int=3000, ()) => {
   let (snackbar, toggle_snackbar) = React.useState(_ => false);
   let (message, setMessage) = React.useState(_ => Success(""));
   let snackbarComp =
-    <Catalyst.Snackbar
-      position=(Catalyst.Snackbar.PositionV.Bottom, Catalyst.Snackbar.PositionH.Left)
+    <Snackbar
+      position=(Snackbar.PositionV.Bottom, Snackbar.PositionH.Left)
       autoHideDuration=duration
       is_open=snackbar
       onClose={(_, _) => toggle_snackbar(_ => false)}>
@@ -28,7 +28,7 @@ let useSnackbar = (~duration: int=3000, ()) => {
            </div>
          }}
       </div>
-    </Catalyst.Snackbar>;
+    </Snackbar>;
   (
     snackbarComp,
     message => {
