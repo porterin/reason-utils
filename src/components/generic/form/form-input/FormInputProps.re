@@ -15,6 +15,7 @@ type t('b, 'c) = {
   warning: ReactEvent.Form.t => option(string),
   helper_text: CommonTypes.viewText,
   className: string,
+  isMultiline: bool,
   _inputProps: option(_inputProps),
 };
 
@@ -30,6 +31,7 @@ let make_props =
       ~result: option(Belt.Result.t('b, 'c)),
       ~warning=_ => None,
       ~className="",
+      ~isMultiline: bool=false,
       ~helper_text: CommonTypes.viewText=NoText,
       ~_inputProps: option(_inputProps)=?,
       (),
@@ -46,5 +48,6 @@ let make_props =
   warning,
   helper_text,
   className,
+  isMultiline,
   _inputProps,
 };
