@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.9.15**
+  - Select Component CSS fixes
+
 + **2.9.14**
   - Email Validation Regex Update
 
