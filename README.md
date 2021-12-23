@@ -1,4 +1,10 @@
 ### Release Notes
++ **2.9.15**
+  - Select Component CSS fixes
+
++ **2.9.14**
+  - Email Validation Regex Update
+
 + **2.9.13**
   - onClose, onOpen, Input Adornment added, Toast bug-fix
 
