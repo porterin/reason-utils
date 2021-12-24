@@ -28,6 +28,10 @@ let make =
       ~selected: list(string),
       ~items: list(t),
       ~renderValue: option(list(string) => string),
+      ~onBlur: unit => unit = _=>(),
+      ~onClose: unit => unit = _=>(),
+      ~onOpen: unit => unit = _=>(),
+
     ) => {
   <MaterialUi.FormControl variant=`Outlined className="form-input-select">
     {label == ""
@@ -41,6 +45,9 @@ let make =
       multiple=true
       value={MaterialUi.Select.Value.arrayOf(selected |> Array.of_list)}
       onChange={(event, _) => onChange(event)}
+      onBlur={_ => onBlur()}
+      onClose={_ => onClose()}
+      onOpen={_ => onOpen()}
       renderValue={(selected: MaterialUi_Types.any) =>
         switch (renderValue) {
         | None =>
