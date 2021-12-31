@@ -13,13 +13,15 @@ external toDomElement: 'a => Dom.element = "%identity";
 let buildMenuList =
     (
       ~menuItems: list(menu_item),
+      ~menu_list_className="",
+      ~menu_item_className="",
       ~togglePopover: (PopoverStateManager.config => PopoverStateManager.config) => unit,
     ) => {
-  <MaterialUi.MenuList className="menu-list">
+  <MaterialUi.MenuList className={"menu-list " ++ menu_list_className}>
     {menuItems
      |> List.map(item =>
           <MaterialUi.MenuItem
-            className="menu-item"
+            className={"menu-item " ++ menu_item_className}
             onClick={_ => {
               togglePopover(_ => {view: React.null, anchor_el: None});
               item.item_cb();
@@ -36,6 +38,8 @@ let make =
     (
       ~menuButtonTitle: option(string)=?,
       ~className="",
+      ~menu_list_className="",
+      ~menu_item_className="",
       ~postfixIcon: postfixIcon=None,
       ~menuItems: list(menu_item),
       ~custom_menu_button: option(React.element)=?,
@@ -64,7 +68,13 @@ let make =
                togglePopover(_ =>
                  {
                    anchor_el: Some(event->ReactEvent.Mouse.target->toDomElement),
-                   view: buildMenuList(~menuItems, ~togglePopover),
+                   view:
+                     buildMenuList(
+                       ~menuItems,
+                       ~togglePopover,
+                       ~menu_list_className,
+                       ~menu_item_className,
+                     ),
                  }
                ),
            (),
@@ -76,7 +86,13 @@ let make =
            togglePopover(_ =>
              {
                anchor_el: Some(event->ReactEvent.Mouse.target->toDomElement),
-               view: buildMenuList(~menuItems, ~togglePopover),
+               view:
+                 buildMenuList(
+                   ~menuItems,
+                   ~togglePopover,
+                   ~menu_list_className,
+                   ~menu_item_className,
+                 ),
              }
            )
          }>
