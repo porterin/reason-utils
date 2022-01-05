@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.9.16**
+  - Menu list className added
+
 + **2.9.15**
   - Select Component CSS fixes
 
