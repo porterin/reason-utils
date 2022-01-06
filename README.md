@@ -1,4 +1,28 @@
 ### Release Notes
++ **2.9.16**
+  - Menu list className added
+
++ **2.9.15**
+  - Select Component CSS fixes
+
++ **2.9.14**
+  - Email Validation Regex Update
+
++ **2.9.13**
+  - onClose, onOpen, Input Adornment added, Toast bug-fix
+
++ **2.9.12**
+  - Toast Cmp, Multiline Input added
+
++ **2.9.11**
+  - Suppress specific errors
+
++ **2.9.10**
+  - BackIcon, AccountIcon added
+
++ **2.9.9**
+  - Web-Worker Bindings added
+
 + **2.9.8**
   - Date time input props changes
 

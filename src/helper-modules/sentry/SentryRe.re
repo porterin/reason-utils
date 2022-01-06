@@ -1,14 +1,14 @@
 type static;
 
-[@bs.module "./Sentry.js"] external init: string => unit = "init";
+[@bs.module "./Sentry.js"] external init: (string, array(Js_re.t)) => unit = "init";
 [@bs.module "./Sentry.js"] external captureException: Js.Exn.t => static = "captureException";
 [@bs.module "./Sentry.js"]
 external capturePromiseError: Js.Promise.error => static = "capturePromiseError";
 [@bs.module "./Sentry.js"] external captureMessage: string => string = "captureMessage";
 
-let initSentry = (~environment: Environment.t, ~dsn: string) => {
+let initSentry = (~environment: Environment.t, ~dsn: string, ~suppressErrors: array(Js_re.t)=[||], ()) => {
   switch (environment) {
-  | Production => init(dsn)
+  | Production => init(dsn, suppressErrors)
   | _ => ()
   };
 };
