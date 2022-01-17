@@ -8,11 +8,43 @@ module Customer = {
   };
 };
 
+module MenuListBuilder = {
+  type t = {
+    item: React.element,
+    action_cb: unit => unit,
+  };
+
+  let execute = (items: list(t)) => {
+    items
+    |> List.map(({item, action_cb}) => {
+         Catalyst.MenuList.{item_label: Custom(() => item), item_cb: () => action_cb()}
+       });
+  };
+};
+
 let getTableSchema = () => {
   TableSchemaV2.[
     make_props(
       ~column=Text("Source"),
-      ~accessor=(apr: Customer.t) => Text(apr.id |> string_of_int),
+      ~accessor=
+        (apr: Customer.t) =>
+          Custom(
+            _ =>
+              <Catalyst.MenuList
+                custom_menu_button={React.string({j|…|j})}
+                menuItems={
+                  [
+                    {
+                      item: React.string("Reactivate"),
+                      action_cb: () => {
+                        Js.log(apr.id);
+                      },
+                    },
+                  ]
+                  ->MenuListBuilder.execute
+                }
+              />,
+          ),
       ~is_visible_only_on_hover=true,
       (),
     ),
