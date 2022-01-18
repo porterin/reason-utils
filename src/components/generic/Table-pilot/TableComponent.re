@@ -16,7 +16,11 @@ let make =
     ) => {
   <>
     <Table className={"table " ++ className} is_sticky_header>
-      <TableHeader className="table-header" columns />
+      <TableHeader 
+        className="table-header" 
+        columns 
+        buildHeaderCell=HeaderCellBuilder.execute
+      />
       <TableBody className="table-body">
         {rowData
          |> List.mapi((index, rData) =>

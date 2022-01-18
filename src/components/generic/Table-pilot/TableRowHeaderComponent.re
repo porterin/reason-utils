@@ -47,7 +47,11 @@ let make =
     ) => {
   <>
     <Table className={"table " ++ className}>
-      <TableHeader className="table-header" columns />
+      <TableHeader 
+        className="table-header" 
+        columns 
+        buildHeaderCell=HeaderCellBuilder.execute
+      />
       <TableBody className="table-body">
         {getTableBody(rowData, columns)}
       </TableBody>
