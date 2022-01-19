@@ -21,7 +21,20 @@ let make =
   let (showVisible, setShowVisible) = React.useState(_ => (-1));
   <>
     <Table className={"table " ++ className} is_sticky_header>
-      <TableHeaderV2 className="table-header" columns />
+      <TableHeader
+        className="table-header" 
+        columns 
+        buildHeaderCell=((~columnHeader: TableSchemaV2.t('a), ~index) => {
+          switch (columnHeader.column) {
+          | Text(text) =>
+            <MaterialUi.TableCell key={index->string_of_int}>
+              {React.string(text)}
+            </MaterialUi.TableCell>
+          | Custom(renderFn) =>
+            <MaterialUi.TableCell key={index->string_of_int}> {renderFn()} </MaterialUi.TableCell>
+          }
+        })
+      />
       <TableBody className="table-body">
         {rowData
          |> List.mapi((index, rData) =>
