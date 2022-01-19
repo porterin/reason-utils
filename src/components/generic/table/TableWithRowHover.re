@@ -1,6 +1,28 @@
-let getTableRow = (rowData: 't, columns: list(TableSchemaV2.t('a)), showVisible) => {
+module Schema = {
+  type columnAccessor('a) = 'a => TableCell.t;
+
+  type t('a) = {
+    column: TableColumnHeader.t,
+    accessor: columnAccessor('a),
+    is_visible_only_on_hover: bool,
+  };
+
+  let make_props =
+      (
+        ~column: TableColumnHeader.t,
+        ~accessor: columnAccessor('a),
+        ~is_visible_only_on_hover: bool=false,
+        (),
+      )
+      : t('a) => {
+    column,
+    accessor,
+    is_visible_only_on_hover,
+  };
+};
+let getTableRow = (rowData: 't, columns: list(Schema.t('a)), showVisible) => {
   columns
-  |> List.mapi((index, columnHeader: TableSchemaV2.t('a)) =>
+  |> List.mapi((index, columnHeader: Schema.t('a)) =>
        <TableCellComponent
          key={index->string_of_int}
          cell={columnHeader.accessor(rowData)}
@@ -13,7 +35,7 @@ let getTableRow = (rowData: 't, columns: list(TableSchemaV2.t('a)), showVisible)
 [@react.component]
 let make =
     (
-      ~columns: list(TableSchemaV2.t('a)),
+      ~columns: list(Schema.t('a)),
       ~rowData: list('a),
       ~className: string="",
       ~is_sticky_header: bool=false,
@@ -22,9 +44,9 @@ let make =
   <>
     <Table className={"table " ++ className} is_sticky_header>
       <TableHeader
-        className="table-header" 
-        columns 
-        buildHeaderCell=((~columnHeader: TableSchemaV2.t('a), ~index) => {
+        className="table-header"
+        columns
+        buildHeaderCell={(~columnHeader: Schema.t('a), ~index) => {
           switch (columnHeader.column) {
           | Text(text) =>
             <MaterialUi.TableCell key={index->string_of_int}>
@@ -33,18 +55,18 @@ let make =
           | Custom(renderFn) =>
             <MaterialUi.TableCell key={index->string_of_int}> {renderFn()} </MaterialUi.TableCell>
           }
-        })
+        }}
       />
       <TableBody className="table-body">
         {rowData
          |> List.mapi((index, rData) =>
-              <TableRowV2
+              <TableRowWithMouseCb
                 className=""
                 key={index->string_of_int}
                 onMouseEnter={_ => setShowVisible(_ => index)}
                 onMouseLeave={_ => setShowVisible(_ => (-1))}>
                 {getTableRow(rData, columns, index == showVisible)}
-              </TableRowV2>
+              </TableRowWithMouseCb>
             )
          |> ReasonReactUtils.listToReactArray}
       </TableBody>

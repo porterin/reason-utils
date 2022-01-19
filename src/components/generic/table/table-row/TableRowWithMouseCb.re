@@ -1,0 +1,76 @@
+module TableRowWithMouseCb = {
+  //added as the jsiebern library was not supporting onClick
+  module Classes = {
+    type t = {
+      .
+      "root": option(string),
+      "selected": option(string),
+      "hover": option(string),
+      "head": option(string),
+      "footer": option(string),
+    };
+    [@bs.obj]
+    external make:
+      (
+        ~root: string=?,
+        ~selected: string=?,
+        ~hover: string=?,
+        ~head: string=?,
+        ~footer: string=?,
+        unit
+      ) =>
+      t;
+  };
+
+  module Component: {
+    type t;
+    let string: string => t;
+    let callback: (unit => React.element) => t;
+    let element: React.element => t;
+  } = {
+    [@unboxed]
+    type t =
+      | Any('a): t;
+    let string = (v: string) => Any(v);
+    let callback = (v: unit => React.element) => Any(v);
+    let element = (v: React.element) => Any(v);
+  };
+
+  [@react.component] [@bs.module "@material-ui/core"]
+  external make:
+    (
+      ~children: 'children=?,
+      ~classes: Classes.t=?,
+      ~className: string=?,
+      ~component: Component.t=?,
+      ~hover: bool=?,
+      ~selected: bool=?,
+      ~id: string=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~onClick: ReactEvent.Mouse.t => unit=?, //added as the jsiebern library was not supprting
+      ~onMouseEnter: ReactEvent.Mouse.t => unit=?, //added as the jsiebern library was not supprting
+      ~onMouseLeave: ReactEvent.Mouse.t => unit=?, //added as the jsiebern library was not supprting
+      ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
+      ~key: string=?,
+      ~ref: ReactDOMRe.domRef=?
+    ) =>
+    React.element =
+    "TableRow";
+};
+
+let buildTableRow = (~className: string, ~children, ~onClick, ~onMouseEnter, ~onMouseLeave) => {
+  <TableRowWithMouseCb className onClick onMouseEnter onMouseLeave>
+    children
+  </TableRowWithMouseCb>;
+};
+
+[@react.component]
+let make =
+    (
+      ~className: string,
+      ~onClick: ReactEvent.Mouse.t => unit=_ => (),
+      ~onMouseEnter: ReactEvent.Mouse.t => unit=_ => (),
+      ~onMouseLeave: ReactEvent.Mouse.t => unit=_ => (),
+      ~children,
+    ) =>
+  buildTableRow(~className, ~onClick, ~onMouseEnter, ~onMouseLeave, ~children);

@@ -17,13 +17,13 @@ module MenuListBuilder = {
   let execute = (items: list(t)) => {
     items
     |> List.map(({item, action_cb}) => {
-         Catalyst.MenuList.{item_label: Custom(() => item), item_cb: () => action_cb()}
+         MenuList.{item_label: Custom(() => item), item_cb: () => action_cb()}
        });
   };
 };
 
 let getTableSchema = () => {
-  TableSchemaV2.[
+  TableWithRowHover.Schema.[
     make_props(
       ~column=Text("Source"),
       ~accessor=
@@ -61,7 +61,7 @@ let make = () => {
   <div>
     <div className="header"> {React.string("Header Bar")} </div>
     snackbarCmp
-    <TableComponentV2 columns={getTableSchema()} className="customTable" rowData=customers />
+    <TableWithRowHover columns={getTableSchema()} className="customTable" rowData=customers />
     <button onClick={_ => openSnackbar(Success("fdfdf"))}> {React.string("Success")} </button>
     <button onClick={_ => openSnackbar(Error("fdfdf"))}> {React.string("Error")} </button>
   </div>;

@@ -1,11 +1,3 @@
-let getTableRow = (rowData: 't, columns: list(TableSchema.t('a))) => {
-  columns
-  |> List.mapi((index, columnHeader: TableSchema.t('a)) =>
-       <TableCellComponent key={index->string_of_int} cell={columnHeader.accessor(rowData)} />
-     )
-  |> ReasonReactUtils.listToReactArray;
-};
-
 [@react.component]
 let make =
     (
@@ -16,16 +8,12 @@ let make =
     ) => {
   <>
     <Table className={"table " ++ className} is_sticky_header>
-      <TableHeader 
-        className="table-header" 
-        columns 
-        buildHeaderCell=HeaderCellBuilder.execute
-      />
+      <TableHeader className="table-header" columns buildHeaderCell=HeaderCellBuilder.execute />
       <TableBody className="table-body">
         {rowData
          |> List.mapi((index, rData) =>
               <TableRow className="" key={index->string_of_int}>
-                {getTableRow(rData, columns)}
+                {TableRowBuilder.execute(rData, columns)}
               </TableRow>
             )
          |> ReasonReactUtils.listToReactArray}

@@ -1,16 +1,8 @@
-let getTableRow = (rowData: 't, columns: list(TableSchema.t('a))) => {
-  columns
-  |> List.mapi((key, columnHeader: TableSchema.t('a)) =>
-       <TableCellComponent key={key->string_of_int} cell={columnHeader.accessor(rowData)} />
-     )
-  |> ReasonReactUtils.listToReactArray;
-};
-
 let getRows = (rowsData: GroupTableSchema.t('a), columns: list(TableSchema.t('a))) => {
   rowsData.rows
   |> List.mapi((key, rowData) =>
        <TableRow key={key->string_of_int} className="">
-         {getTableRow(rowData, columns)}
+         {TableRowBuilder.execute(rowData, columns)}
        </TableRow>
      )
   |> ReasonReactUtils.listToReactArray;
@@ -79,7 +71,7 @@ let make =
         {rows
          |> List.mapi((key, (rowData, collapsible_row_data)) =>
               <>
-                <TableRowV2
+                <TableRowWithMouseCb
                   className=row_class_name key={key->string_of_int} onClick={_ => toggleRow(key)}>
                   <TableCellComponent
                     cell={
@@ -94,8 +86,8 @@ let make =
                     }
                     colSpan=1
                   />
-                  {getTableRow(rowData, columns)}
-                </TableRowV2>
+                  {TableRowBuilder.execute(rowData, columns)}
+                </TableRowWithMouseCb>
                 {shouldToggle(key)
                    ? <TableRow
                        className={
