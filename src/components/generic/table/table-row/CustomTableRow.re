@@ -1,4 +1,4 @@
-module TableRowWithMouseCb = {
+module MaterialUi_CustomTableRow = {
   //added as the jsiebern library was not supporting onClick
   module Classes = {
     type t = {
@@ -59,9 +59,9 @@ module TableRowWithMouseCb = {
 };
 
 let buildTableRow = (~className: string, ~children, ~onClick, ~onMouseEnter, ~onMouseLeave) => {
-  <TableRowWithMouseCb className onClick onMouseEnter onMouseLeave>
+  <MaterialUi_CustomTableRow className onClick onMouseEnter onMouseLeave>
     children
-  </TableRowWithMouseCb>;
+  </MaterialUi_CustomTableRow>;
 };
 
 [@react.component]

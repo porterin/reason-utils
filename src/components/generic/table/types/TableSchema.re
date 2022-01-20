@@ -1,6 +1,6 @@
 type columnAccessor('a) = 'a => TableCell.t;
 
 type t('a) = {
-  column: TableColumnHeader.t,
+  column: TableColumn.t,
   accessor: columnAccessor('a),
 };

@@ -8,19 +8,12 @@ let getRows = (rowsData: GroupTableSchema.t('a), columns: list(TableSchema.t('a)
   |> ReasonReactUtils.listToReactArray;
 };
 
-module TableHeader = {
+module TableHeaderWithEmptyCell = {
   //added one empty cell in header row
   let getColumnHeaders = (~columns: list(TableSchema.t('a))): ReasonReact.reactElement => {
     columns
-    |> List.mapi((key, columnHeader: TableSchema.t('a)) =>
-         switch (columnHeader.column) {
-         | Text(text) =>
-           <MaterialUi.TableCell key={key->string_of_int}>
-             {React.string(text)}
-           </MaterialUi.TableCell>
-         | Custom(renderFn) =>
-           <MaterialUi.TableCell key={key->string_of_int}> {renderFn()} </MaterialUi.TableCell>
-         }
+    |> List.mapi((index, columnHeader: TableSchema.t('a)) =>
+         HeaderCellBuilder.execute(~columnHeader, ~index)
        )
     |> ReasonReactUtils.listToReactArray;
   };
@@ -66,12 +59,12 @@ let make =
 
   <>
     <Table className={"table " ++ class_name} is_sticky_header>
-      <TableHeader className={"table-header" ++ header_class_name} columns />
+      <TableHeaderWithEmptyCell className={"table-header" ++ header_class_name} columns />
       <TableBody className="table-body">
         {rows
          |> List.mapi((key, (rowData, collapsible_row_data)) =>
               <>
-                <TableRowWithMouseCb
+                <CustomTableRow
                   className=row_class_name key={key->string_of_int} onClick={_ => toggleRow(key)}>
                   <TableCellComponent
                     cell={
@@ -87,7 +80,7 @@ let make =
                     colSpan=1
                   />
                   {TableRowBuilder.execute(rowData, columns)}
-                </TableRowWithMouseCb>
+                </CustomTableRow>
                 {shouldToggle(key)
                    ? <TableRow
                        className={

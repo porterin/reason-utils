@@ -2,14 +2,14 @@ module Schema = {
   type columnAccessor('a) = 'a => TableCell.t;
 
   type t('a) = {
-    column: TableColumnHeader.t,
+    column: TableColumn.t,
     accessor: columnAccessor('a),
     is_visible_only_on_hover: bool,
   };
 
   let make_props =
       (
-        ~column: TableColumnHeader.t,
+        ~column: TableColumn.t,
         ~accessor: columnAccessor('a),
         ~is_visible_only_on_hover: bool=false,
         (),
@@ -60,13 +60,13 @@ let make =
       <TableBody className="table-body">
         {rowData
          |> List.mapi((index, rData) =>
-              <TableRowWithMouseCb
+              <CustomTableRow
                 className=""
                 key={index->string_of_int}
                 onMouseEnter={_ => setShowVisible(_ => index)}
                 onMouseLeave={_ => setShowVisible(_ => (-1))}>
                 {getTableRow(rData, columns, index == showVisible)}
-              </TableRowWithMouseCb>
+              </CustomTableRow>
             )
          |> ReasonReactUtils.listToReactArray}
       </TableBody>
