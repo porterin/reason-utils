@@ -39,6 +39,7 @@ let make =
       ~rowData: list('a),
       ~className: string="",
       ~is_sticky_header: bool=false,
+      ~row_class_name: string="",
     ) => {
   let (showVisible, setShowVisible) = React.useState(_ => (-1));
   <>
@@ -61,7 +62,7 @@ let make =
         {rowData
          |> List.mapi((index, rData) =>
               <CustomTableRow
-                className=""
+                className=row_class_name
                 key={index->string_of_int}
                 onMouseEnter={_ => setShowVisible(_ => index)}
                 onMouseLeave={_ => setShowVisible(_ => (-1))}>
