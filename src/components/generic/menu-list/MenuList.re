@@ -82,6 +82,7 @@ let make =
        />
      | Some(ele) =>
        <div
+         className
          onClick={(event: ReactEvent.Mouse.t) =>
            togglePopover(_ =>
              {
