@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.9.17**
+  - Marathi Language Added
+
 + **2.9.16**
   - Menu list className added
 
