@@ -2,7 +2,7 @@ module UnprocessedErrorHandler = {
   let execute = (~json: Js.Json.t): Error.t => {
     Error.DefaultError(
       Json.Decode.{
-        title: UnprocessedEntity,
+        title: UnprocessedEntity(json |> optional(field("title", string))),
         message:
           Belt.Option.getWithDefault(
             json |> optional(field("message", string)),
@@ -31,10 +31,7 @@ module NotAcceptableErrorHandler = {
 module ForbiddenErrorHandler = {
   let execute = (~json: Js.Json.t): Error.t => {
     Error.DefaultError(
-      Json.Decode.{
-        title: Forbidden,
-        message: json |> field("message", string),
-      },
+      Json.Decode.{title: Forbidden, message: json |> field("message", string)},
     );
   };
 };
@@ -42,62 +39,41 @@ module ForbiddenErrorHandler = {
 module DataConflictErrorHandler = {
   let execute = (~json: Js.Json.t): Error.t => {
     Error.DefaultError(
-      Json.Decode.{
-        title: DataConflict,
-        message: json |> field("message", string),
-      },
+      Json.Decode.{title: DataConflict, message: json |> field("message", string)},
     );
   };
 };
 
 module RequestTimeoutHandler = {
   let execute = (): Error.t => {
-    Error.DefaultError({
-      title: RequestTimeout,
-      message: "Request timed out",
-    });
+    Error.DefaultError({title: RequestTimeout, message: "Request timed out"});
   };
 };
 
 module FailedToFetchErrorHandler = {
   let execute = (): Error.t => {
-    Error.DefaultError({
-      title: FailedToFetch,
-      message: "Failed to fetch.",
-    });
+    Error.DefaultError({title: FailedToFetch, message: "Failed to fetch."});
   };
 };
 
 module RequestCancelledErrorHandler = {
   let execute = (): Error.t => {
-    Error.DefaultError({
-      title: RequestCancelled,
-      message: "Request Cancelled",
-    });
+    Error.DefaultError({title: RequestCancelled, message: "Request Cancelled"});
   };
 };
 
 module OperationAbortedHandler = {
   let execute = (): Error.t => {
-    Error.DefaultError({
-      title: OperationAborted,
-      message: "Operation Aborted"
-    });
+    Error.DefaultError({title: OperationAborted, message: "Operation Aborted"});
   };
 };
 
 module CorsHandler = {
   let execute = (data: string): Error.t => {
-    switch(Env.getWorkingEnv()) {
-      | Production => Error.DefaultError({
-            title: FailedToFetch,
-            message: "Failed to fetch.",
-          })
-      | _  => Error.DefaultError({
-            title: CorsError,
-            message: data,
-        })
-    }
+    switch (Env.getWorkingEnv()) {
+    | Production => Error.DefaultError({title: FailedToFetch, message: "Failed to fetch."})
+    | _ => Error.DefaultError({title: CorsError, message: data})
+    };
   };
 };
 
