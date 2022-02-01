@@ -2,7 +2,7 @@ module UnprocessedErrorHandler = {
   let execute = (~json: Js.Json.t): Error.t => {
     Error.DefaultError(
       Json.Decode.{
-        title: UnprocessedEntity(None),
+        title: UnprocessedEntity(json |> optional(field("title", string))),
         message:
           Belt.Option.getWithDefault(
             json |> optional(field("message", string)),
