@@ -1,34 +1,19 @@
-let getTableRow = (rowData: 't, columns: list(TableSchema.t('a))) => {
-  columns
-  |> List.mapi((key, columnHeader: TableSchema.t('a)) =>
-       <TableCellComponent key={key->string_of_int} cell={columnHeader.accessor(rowData)} />
-     )
-  |> ReasonReactUtils.listToReactArray;
-};
-
 let getRows = (rowsData: GroupTableSchema.t('a), columns: list(TableSchema.t('a))) => {
   rowsData.rows
   |> List.mapi((key, rowData) =>
        <TableRow key={key->string_of_int} className="">
-         {getTableRow(rowData, columns)}
+         {TableRowBuilder.execute(rowData, columns)}
        </TableRow>
      )
   |> ReasonReactUtils.listToReactArray;
 };
 
-module TableHeader = {
+module TableHeaderWithEmptyCell = {
   //added one empty cell in header row
   let getColumnHeaders = (~columns: list(TableSchema.t('a))): ReasonReact.reactElement => {
     columns
-    |> List.mapi((key, columnHeader: TableSchema.t('a)) =>
-         switch (columnHeader.column) {
-         | Text(text) =>
-           <MaterialUi.TableCell key={key->string_of_int}>
-             {React.string(text)}
-           </MaterialUi.TableCell>
-         | Custom(renderFn) =>
-           <MaterialUi.TableCell key={key->string_of_int}> {renderFn()} </MaterialUi.TableCell>
-         }
+    |> List.mapi((index, columnHeader: TableSchema.t('a)) =>
+         HeaderCellBuilder.execute(~columnHeader, ~index)
        )
     |> ReasonReactUtils.listToReactArray;
   };
@@ -74,12 +59,12 @@ let make =
 
   <>
     <Table className={"table " ++ class_name} is_sticky_header>
-      <TableHeader className={"table-header" ++ header_class_name} columns />
+      <TableHeaderWithEmptyCell className={"table-header" ++ header_class_name} columns />
       <TableBody className="table-body">
         {rows
          |> List.mapi((key, (rowData, collapsible_row_data)) =>
               <>
-                <TableRowV2
+                <CustomTableRow
                   className=row_class_name key={key->string_of_int} onClick={_ => toggleRow(key)}>
                   <TableCellComponent
                     cell={
@@ -94,8 +79,8 @@ let make =
                     }
                     colSpan=1
                   />
-                  {getTableRow(rowData, columns)}
-                </TableRowV2>
+                  {TableRowBuilder.execute(rowData, columns)}
+                </CustomTableRow>
                 {shouldToggle(key)
                    ? <TableRow
                        className={
