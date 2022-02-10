@@ -4,7 +4,8 @@ type language =
   | Hindi
   | Kannada
   | Tamil
-  | Telugu;
+  | Telugu
+  | Marathi;
 
 let fromString = (language: string) => {
   switch (language) {
@@ -13,6 +14,7 @@ let fromString = (language: string) => {
   | "kn" => Kannada
   | "ta" => Tamil
   | "te" => Telugu
+  | "mr" => Marathi
   | _ => raise(SupportedLanguages_fromString_Not_found)
   };
 };

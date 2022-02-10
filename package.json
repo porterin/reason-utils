@@ -1,6 +1,6 @@
 {
   "name": "catalyst",
-  "version": "2.9.16",
+  "version": "2.9.18",
   "description": "common frontend modules",
   "keywords": [
     "reason"
