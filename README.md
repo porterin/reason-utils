@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.9.19**
+  - Table Key Added, VisibilityIcon, tap
+
 + **2.9.18**
   - Storing option(string) in UnprocessedEntity
 

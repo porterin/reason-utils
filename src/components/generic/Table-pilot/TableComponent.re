@@ -1,7 +1,10 @@
 let getTableRow = (rowData: 't, columns: list(TableSchema.t('a))) => {
   columns
   |> List.mapi((index, columnHeader: TableSchema.t('a)) =>
-       <TableCellComponent key={index->string_of_int} cell={columnHeader.accessor(rowData)} />
+       <TableCellComponent
+         key={"table-cell" ++ string_of_int(index)}
+         cell={columnHeader.accessor(rowData)}
+       />
      )
   |> ReasonReactUtils.listToReactArray;
 };
@@ -20,7 +23,7 @@ let make =
       <TableBody className="table-body">
         {rowData
          |> List.mapi((index, rData) =>
-              <TableRow className="" key={index->string_of_int}>
+              <TableRow key={"table-row" ++ string_of_int(index)} className="">
                 {getTableRow(rData, columns)}
               </TableRow>
             )
