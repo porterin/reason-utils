@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.9.20**
+  - DateTimePicker format bug fix
+
 + **2.9.19**
   - Table Key Added, VisibilityIcon, tap
 
