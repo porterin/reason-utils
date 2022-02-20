@@ -32,18 +32,17 @@ let make =
       ~navbar_item_fourth: option(navbar_item)=?,
       ~navbar_item_fifth: option(navbar_item)=?,
       ~actions: list(navbar_action)=[],
+      ~visible_actions_limit=4
     ) => {
   let infoList = [navbar_item_first, navbar_item_second, navbar_item_third, navbar_item_fourth, navbar_item_fifth];
 
-  let visibleActionsLimit = 4;
-
   let visibleActions =
-    List.length(actions) > visibleActionsLimit
-      ? actions->ReasonReactUtils.sliceList(visibleActionsLimit) : actions;
+    List.length(actions) > visible_actions_limit
+      ? actions->ReasonReactUtils.sliceList(visible_actions_limit) : actions;
 
   let menuActions: list(MenuList.menu_item) =
-    List.length(actions) > visibleActionsLimit
-      ? actions->ReasonReactUtils.sliceList(~start=visibleActionsLimit, List.length(actions))
+    List.length(actions) > visible_actions_limit
+      ? actions->ReasonReactUtils.sliceList(~start=visible_actions_limit, List.length(actions))
         |> List.map(action => MenuList.{item_label: action.label, item_cb: action.on_select_cb})
       : [];
 
