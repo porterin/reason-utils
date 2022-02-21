@@ -60,3 +60,9 @@ let getPreviousDateByDays = (~day: int) => {
     ~initial_date=now(),
   );
 };
+
+let toStringWithTz = (~date: t, ~offset: float, ~format: string) => {
+  let utc = Js.Date.getTime(date) +. Js.Date.getTimezoneOffset(date) *. 60000.0;
+  let new_date = Js.Date.fromFloat(utc +. 3600000.0 *. offset);
+  MomentRe.momentWithDate(new_date) |> MomentRe.Moment.format(format);
+};
