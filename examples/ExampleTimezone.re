@@ -4,8 +4,7 @@ let unixToMs = (u: int) => {
 
 [@react.component]
 let make = () => {
-  let ts_initial = TimestampV2.utc();
-  let _date = Date.make(~value="2021-04-07", ~format="YYYY-MM-DD");
+  let ts_initial = 1645554600000.0->TimestampV2.make;
 
   let tomorrow = TimestampV2.tomorrow();
 

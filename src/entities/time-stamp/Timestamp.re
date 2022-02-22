@@ -19,10 +19,3 @@ let utcToIst = (~value: t): t => {
 let toFloat = (timestamp: t): float => {
   timestamp;
 };
-
-let toStringWithTz = (~ts: t, ~offset: float, ~format: string) => {
-  let date = Js.Date.fromFloat(ts);
-  let utc = Js.Date.getTime(date) +. Js.Date.getTimezoneOffset(date) *. 60000.0;
-  let nd = Js.Date.fromFloat(utc +. 3600000.0 *. offset);
-  MomentRe.momentWithDate(nd) |> MomentRe.Moment.format(format);
-};
