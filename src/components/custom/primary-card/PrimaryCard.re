@@ -1,7 +1,13 @@
 let getHeader =
-    (~title: string, ~action: option(ButtonTypes.buttonProps)): React.element => {
+    (~title: CommonTypes.viewText, ~action: option(ButtonTypes.buttonProps)): React.element => {
   <div className="header">
-    <div className="title"> {React.string(title)} </div>
+    <div className="title">
+      {switch (title) {
+       | Text(t) => React.string(t)
+       | NoText => React.null
+       | Custom(fn) => fn()
+       }}
+    </div>
     {switch (action) {
      | None => React.null
      | Some(action) => <RoundedPrimaryButton buttonProps=action />
@@ -12,7 +18,7 @@ let getHeader =
 [@react.component]
 let make =
     (
-      ~title: string,
+      ~title: CommonTypes.viewText,
       ~action: option(ButtonTypes.buttonProps),
       ~className: string="",
       ~children,
