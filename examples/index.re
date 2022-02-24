@@ -1,1 +1,1 @@
-ReactDOMRe.renderToElementWithId(<ExampleMomentTimezone />, "root");
+ReactDOMRe.renderToElementWithId(<div />, "root");
