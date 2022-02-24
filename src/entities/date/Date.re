@@ -1,5 +1,9 @@
 type t = Js.Date.t;
 
+let setTz = (tz: string) => {
+  MomentUtils.setTz(tz);
+};
+
 let toJsDate = (d): Js.Date.t => d;
 
 let fromJsDate = (d: Js.Date.t): t => d;

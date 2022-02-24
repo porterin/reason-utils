@@ -1,5 +1,7 @@
 type timeUnit;
 
+let setTz: string => unit;
+
 let now: unit => MomentRe.Moment.t;
 
 let toFloat: MomentRe.Moment.t => float;

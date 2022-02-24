@@ -1,4 +1,4 @@
-open MomentRe;
+open MomentTz;
 
 type timeUnit = [
   | `years
@@ -10,6 +10,14 @@ type timeUnit = [
   | `minutes
   | `seconds
   | `milliseconds
+];
+
+let setTz: string => unit = [%bs.raw
+  {|
+      function (tz) {
+        MomentTimezone.tz.setDefault(tz);
+      }
+  |}
 ];
 
 let now = () => momentNow();
@@ -51,15 +59,15 @@ let toMomentTimeUnit = (t: TimeUnit.t): timeUnit => {
 };
 
 let getDateTimeAfterElapsedTime =
-    (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: MomentRe.Moment.t)
-    : MomentRe.Moment.t => {
+    (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: MomentTz.Moment.t)
+    : MomentTz.Moment.t => {
   let toDuration = duration(elapsed_time, toMomentTimeUnit(time_unit));
   Moment.add(~duration=toDuration, initial_date);
 };
 
 let getDateTimeBeforeElapsedTime =
-    (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: MomentRe.Moment.t)
-    : MomentRe.Moment.t => {
+    (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: MomentTz.Moment.t)
+    : MomentTz.Moment.t => {
   let toDuration = duration(elapsed_time, toMomentTimeUnit(time_unit));
   Moment.subtract(~duration=toDuration, initial_date);
 };
