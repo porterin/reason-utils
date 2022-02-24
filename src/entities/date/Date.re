@@ -60,3 +60,11 @@ let getPreviousDateByDays = (~day: int) => {
     ~initial_date=now(),
   );
 };
+
+let fromTimestamp = (~instant: Timestamp.t): t => {
+  instant->Timestamp.toFloat->Js.Date.fromFloat->fromJsDate;
+};
+
+let toTimestamp = (~date: t): Timestamp.t => {
+  date->toJsDate->Js.Date.valueOf->Timestamp.make;
+};
