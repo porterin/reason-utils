@@ -1,5 +1,7 @@
 type t;
 
+let setTz: string => unit;
+
 let toJsDate: t => Js.Date.t;
 
 let fromJsDate: Js.Date.t => t;
