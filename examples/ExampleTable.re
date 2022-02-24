@@ -22,7 +22,7 @@ let make = () => {
   ];
 
   let (snackbarCmp, openSnackbar) = ToastSnackbarHook.useSnackbar(~duration=1000, ());
-
+  Js.log(Date.fromTimestamp(~instant=Timestamp.now()));
   <div>
     <div className="header"> {React.string("Header Bar")} </div>
     snackbarCmp
