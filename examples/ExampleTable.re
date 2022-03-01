@@ -21,6 +21,21 @@ let make = () => {
     (Customer.{id: 1, name: "Porter"}, Custom(_ => React.string("Porter"))),
   ];
 
+  let accordionPanels: list(AccordionTypes.t) = [
+    {
+      header: Text("test"),
+      footer: <div />,
+      body: <div />,
+      onOpen: _ => Js.log("Accordion working")
+    },
+    {
+      header: Text("test2"),
+      footer: <div />,
+      body: <div />,
+      onOpen: _ => Js.log("Accordion working 2")
+    }
+  ]
+
   let (snackbarCmp, openSnackbar) = ToastSnackbarHook.useSnackbar(~duration=1000, ());
 
   <div>
@@ -35,5 +50,7 @@ let make = () => {
     />
     <button onClick={_ => openSnackbar(Success("fdfdf"))}> {React.string("Success")} </button>
     <button onClick={_ => openSnackbar(Error("fdfdf"))}> {React.string("Error")} </button>
+
+    <Accordion panels=accordionPanels />
   </div>;
 };

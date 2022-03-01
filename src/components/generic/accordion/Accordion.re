@@ -3,6 +3,7 @@ open AccordionTypes;
 let getAccordionHeader = (expanded: bool, panel: t) => {
   <MaterialUi.AccordionSummary
     className={"header " ++ (expanded ? "expanded-header" : "")}
+    onClick={_ => !expanded ? panel.onOpen() : ()}
     expandIcon={
       <Icon.ExpandMoreIcon className="expand-icon" fontSize=`Large />
     }>
