@@ -3,7 +3,6 @@ open AccordionTypes;
 let getAccordionHeader = (expanded: bool, panel: t) => {
   <MaterialUi.AccordionSummary
     className={"header " ++ (expanded ? "expanded-header" : "")}
-    onClick={_ => !expanded ? panel.onOpen() : ()}
     expandIcon={
       <Icon.ExpandMoreIcon className="expand-icon" fontSize=`Large />
     }>
@@ -28,8 +27,11 @@ let make =
      and -1 is used in case no accordion object is opened.
    */
   let (expanded, setExpanded) = React.useState(_ => defaultOpen);
-  let handleChange = index => {
+
+  let handleChange = (index, panel: t) => {
     setExpanded(_ => expanded == index ? (-1) : index);
+
+    expanded != index ? panel.onOpen() : ()
   };
 
   <div className>
@@ -39,7 +41,7 @@ let make =
             key={string_of_int(index)}
             className="accordion"
             expanded={index == expanded}
-            onChange={(_, _) => handleChange(index)}>
+            onChange={(_, _) => handleChange(index, panel)}>
             {getAccordionHeader(index == expanded, panel)}
             {getAccordionBody(panel.body)}
             {panel.footer}
