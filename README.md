@@ -1,5 +1,5 @@
 ### Release Notes
-+ **2.9.20**
++ **2.10.1**
   - DateTimePicker format bug fix
 
 + **2.9.19**

@@ -1,6 +1,6 @@
 type t = Js.Date.t;
 
-let toJsDate = (d): Js.Date.t => d;
+let toJsDate = (d: t): Js.Date.t => d;
 
 let fromJsDate = (d: Js.Date.t): t => d;
 
@@ -59,4 +59,14 @@ let getPreviousDateByDays = (~day: int) => {
     ~time_unit=Days,
     ~initial_date=now(),
   );
+};
+
+//Decode
+let t_decode = json => {
+  Decco.stringFromJson(json)->Belt.Result.map(date => date |> Js.Date.fromString |> fromJsDate);
+};
+
+//Encode
+let t_encode = date => {
+  date->toJsDate->Js.Date.toJSONUnsafe->Decco.stringToJson;
 };
