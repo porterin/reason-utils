@@ -64,3 +64,7 @@ let getPreviousDateByDays = (~day: int) => {
     ~initial_date=now(),
   );
 };
+
+let toFloat = (date: t): float => {
+  MomentUtils.fromJsDate(date) -> MomentUtils.toFloat
+}

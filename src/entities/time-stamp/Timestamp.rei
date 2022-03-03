@@ -11,6 +11,8 @@ let toString: (~value: t, ~format: string) => string;
 
 let toFloat: t => float;
 
+let toJsDate: t => Js.Date.t;
+
 let isBefore: (~first_date: t, ~second_date: t) => bool;
 
 let isAfter: (~first_date: t, ~second_date: t) => bool;
