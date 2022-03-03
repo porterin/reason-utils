@@ -29,6 +29,10 @@ let toJsDate = (timestamp: t): Js.Date.t => {
   MomentUtils.fromTimestampMs(timestamp)->MomentUtils.toJsDate;
 };
 
+let fromJsDate = (date: Js.Date.t):  t => {
+  MomentUtils.fromJsDate(date) -> MomentUtils.toFloat;
+};
+
 let isBefore = (~first_date: t, ~second_date: t) => {
   MomentUtils.isBefore(
     ~first_date=MomentUtils.fromTimestampMs(first_date),
