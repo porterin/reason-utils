@@ -23,3 +23,7 @@ let getDateTimeBeforeElapsedTime:
   (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: t) => t;
 
 let getPreviousDateByDays: (~day: int) => t;
+
+let t_decode: Js.Json.t => Belt.Result.t(t, Decco.decodeError);
+
+let t_encode: t => Js.Json.t;
