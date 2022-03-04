@@ -9,6 +9,7 @@
       "reason-react",
       "@jsiebern/bs-material-ui",
       "bs-moment",
+      "bs-moment-timezone",
       "decco",
       "bs-webapi",
       "reason-promise"
@@ -24,6 +25,7 @@
       },
       {
         "dir": "examples",
+        "subdirs": true,
         "type": "dev"
       }
     ],

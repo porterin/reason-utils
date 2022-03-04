@@ -1,5 +1,7 @@
 type t;
 
+let setTz: string => unit;
+
 let toJsDate: t => Js.Date.t;
 
 let fromJsDate: Js.Date.t => t;
@@ -27,3 +29,4 @@ let getPreviousDateByDays: (~day: int) => t;
 let t_decode: Js.Json.t => Belt.Result.t(t, Decco.decodeError);
 
 let t_encode: t => Js.Json.t;
+let toFloat: t => float;

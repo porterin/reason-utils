@@ -1,5 +1,9 @@
 type t = Js.Date.t;
 
+let setTz = (tz: string) => {
+  MomentUtils.setTz(tz);
+};
+
 let toJsDate = (d: t): Js.Date.t => d;
 
 let fromJsDate = (d: Js.Date.t): t => d;
@@ -69,4 +73,8 @@ let t_decode = json => {
 //Encode
 let t_encode = date => {
   date->toJsDate->Js.Date.toJSONUnsafe->Decco.stringToJson;
+};
+
+let toFloat = (date: t): float => {
+  MomentUtils.fromJsDate(date)->MomentUtils.toFloat;
 };

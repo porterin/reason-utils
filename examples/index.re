@@ -1,1 +1,1 @@
-ReactDOMRe.renderToElementWithId(<ExampleResponsiveness />, "root");
+ReactDOMRe.renderToElementWithId(<div />, "root");
