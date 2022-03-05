@@ -29,3 +29,7 @@ let getDateTimeAfterElapsedTime:
 let getDateTimeBeforeElapsedTime:
   (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: MomentTz.Moment.t) =>
   MomentTz.Moment.t;
+
+let startOf: (MomentTz.Moment.t, ScaleUnit.t) => MomentTz.Moment.t;
+
+let endOf: (MomentTz.Moment.t, ScaleUnit.t) => MomentTz.Moment.t;

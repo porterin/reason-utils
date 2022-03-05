@@ -12,6 +12,19 @@ type timeUnit = [
   | `milliseconds
 ];
 
+type scaleUnit = [
+  | `year
+  | `quarter
+  | `month
+  | `week
+  | `isoWeek
+  | `day
+  | `hour
+  | `minute
+  | `second
+  | `millisecond
+];
+
 let setTz: string => unit = [%bs.raw
   {|
       function (tz) {
@@ -58,6 +71,21 @@ let toMomentTimeUnit = (t: TimeUnit.t): timeUnit => {
   };
 };
 
+let toMomentScaleUnit = (t: ScaleUnit.t): scaleUnit => {
+  switch (t) {
+  | Year => `year
+  | Quarter => `quarter
+  | Month => `month
+  | Week => `week
+  | IsoWeek => `isoWeek
+  | Day => `day
+  | Hour => `hour
+  | Minute => `minute
+  | Second => `second
+  | Millisecond => `millisecond
+  };
+};
+
 let getDateTimeAfterElapsedTime =
     (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: MomentTz.Moment.t)
     : MomentTz.Moment.t => {
@@ -70,4 +98,12 @@ let getDateTimeBeforeElapsedTime =
     : MomentTz.Moment.t => {
   let toDuration = duration(elapsed_time, toMomentTimeUnit(time_unit));
   Moment.subtract(~duration=toDuration, initial_date);
+};
+
+let startOf = (moment, scale: ScaleUnit.t) => {
+  moment |> Moment.startOf(toMomentScaleUnit(scale));
+};
+
+let endOf = (moment, scale: ScaleUnit.t) => {
+  moment |> Moment.endOf(toMomentScaleUnit(scale));
 };

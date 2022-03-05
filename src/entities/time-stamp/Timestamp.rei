@@ -31,3 +31,7 @@ let getPreviousDateByDays: (~day: int) => t;
 
 /* To Deprecate */
 let utcToIst: (~value: t) => t;
+
+let startOf: (~ts: t, ~scale_unit: ScaleUnit.t) => t;
+
+let endOf: (~ts: t, ~scale_unit: ScaleUnit.t) => t;

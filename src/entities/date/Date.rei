@@ -27,3 +27,7 @@ let getDateTimeBeforeElapsedTime:
 let getPreviousDateByDays: (~day: int) => t;
 
 let toFloat: t => float;
+
+let startOf: (~date: t, ~scale_unit: ScaleUnit.t) => t;
+
+let endOf: (~date: t, ~scale_unit: ScaleUnit.t) => t;
