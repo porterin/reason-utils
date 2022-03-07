@@ -29,4 +29,9 @@ let getPreviousDateByDays: (~day: int) => t;
 let t_decode: Js.Json.t => Belt.Result.t(t, Decco.decodeError);
 
 let t_encode: t => Js.Json.t;
+
 let toFloat: t => float;
+
+let startOf: (~date: t, ~scale_unit: ScaleUnit.t) => t;
+
+let endOf: (~date: t, ~scale_unit: ScaleUnit.t) => t;

@@ -29,8 +29,8 @@ let toJsDate = (timestamp: t): Js.Date.t => {
   MomentUtils.fromTimestampMs(timestamp)->MomentUtils.toJsDate;
 };
 
-let fromJsDate = (date: Js.Date.t):  t => {
-  MomentUtils.fromJsDate(date) -> MomentUtils.toFloat;
+let fromJsDate = (date: Js.Date.t): t => {
+  MomentUtils.fromJsDate(date)->MomentUtils.toFloat;
 };
 
 let isBefore = (~first_date: t, ~second_date: t) => {
@@ -47,7 +47,8 @@ let isAfter = (~first_date: t, ~second_date: t) => {
   );
 };
 
-let getDateTimeAfterElapsedTime = (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: t): t => {
+let getDateTimeAfterElapsedTime =
+    (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: t): t => {
   MomentUtils.getDateTimeAfterElapsedTime(
     ~elapsed_time,
     ~time_unit,
@@ -81,4 +82,12 @@ let getPreviousDateByDays = (~day: int): t => {
     ~time_unit=Days,
     ~initial_date=now(),
   );
+};
+
+let startOf = (~ts: t, ~scale_unit: ScaleUnit.t): t => {
+  ts->MomentUtils.fromTimestampMs->MomentUtils.startOf(scale_unit)->MomentUtils.toFloat;
+};
+
+let endOf = (~ts: t, ~scale_unit: ScaleUnit.t): t => {
+  ts->MomentUtils.fromTimestampMs->MomentUtils.endOf(scale_unit)->MomentUtils.toFloat;
 };
