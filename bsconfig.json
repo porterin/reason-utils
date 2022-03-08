@@ -8,8 +8,6 @@
       "@glennsl/bs-json",
       "reason-react",
       "@jsiebern/bs-material-ui",
-      "bs-moment",
-      "bs-moment-timezone",
       "decco",
       "bs-webapi",
       "reason-promise"

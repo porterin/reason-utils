@@ -1,8 +1,8 @@
 [@bs.module "@material-ui/pickers"] [@react.component]
 external make:
   (
-    ~onChange: Js.Nullable.t(MomentRe.Moment.t) => unit,
-    ~value: MomentRe.Moment.t,
+    ~onChange: Js.Nullable.t(MomentTz.Moment.t) => unit,
+    ~value: MomentTz.Moment.t,
     ~ampm: option(bool)=?,
     ~autoOk: option(bool)=?,
     ~disabled: option(bool)=?,

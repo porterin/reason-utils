@@ -918,11 +918,6 @@ bs-fetch@^0.6.2:
   resolved "https://registry.yarnpkg.com/bs-fetch/-/bs-fetch-0.6.2.tgz#37d982e9f79b9bc44c23e87ae78ccbee1f869adf"
   integrity sha512-VXEjp8kY3vHPckaoy3d96Bx0KYjJAPLNISBwfpwMN26K6DtuZYwI2HKhx7zeHBajz1bRArfx7O8OOLcdtujMvg==
 
-bs-moment-timezone@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/bs-moment-timezone/-/bs-moment-timezone-0.6.0.tgz#bc28d41dd54a4dec4cb2238fdd6430528dd2ae6a"
-  integrity sha512-S0xneD5ufo0lRDXrw2WSg6sU8M5bX/0Y8eo+DdR9T/GXIf4pqlMKzU1DlNstHjmafW3gBFwZvn3TVD7JG0N0hQ==
-
 bs-moment@^0.4.4:
   version "0.4.5"
   resolved "https://registry.yarnpkg.com/bs-moment/-/bs-moment-0.4.5.tgz#3f84fed55c2a70d25b0b6025e4e8d821fcdd4dc8"

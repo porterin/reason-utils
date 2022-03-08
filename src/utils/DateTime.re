@@ -1,6 +1,6 @@
 type t = Js.Date.t;
 
-open MomentRe;
+open MomentTz;
 
 type moment = Moment.t;
 

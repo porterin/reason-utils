@@ -2,8 +2,8 @@
 let make =
     (
       ~label: string,
-      ~onChange: MomentRe.Moment.t => unit,
-      ~value: option(MomentRe.Moment.t),
+      ~onChange: MomentTz.Moment.t => unit,
+      ~value: option(MomentTz.Moment.t),
       ~disabled=false,
     )
     : React.element => {

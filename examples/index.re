@@ -1,1 +1,1 @@
-ReactDOMRe.renderToElementWithId(<div />, "root");
+ReactDOMRe.renderToElementWithId(<ExampleButtons />, "root");

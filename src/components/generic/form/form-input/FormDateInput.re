@@ -12,15 +12,15 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~date_props: t) => {
     <DatePicker
       label={input_props.label}
       disabled={input_props.isDisabled}
-      onChange={date => date_props.onChange(date |> MomentRe.Moment.toDate)}
+      onChange={date => date_props.onChange(date |> MomentTz.Moment.toDate)}
       value={Belt.Option.mapWithDefault(date_props.value, None, d =>
-        d->MomentRe.momentWithDate->Some
+        d->MomentTz.momentWithDate->Some
       )}
       minDate={Belt.Option.mapWithDefault(date_props.minDate, None, v =>
-        Some(v |> MomentRe.momentWithDate)
+        Some(v |> MomentTz.momentWithDate)
       )}
       maxDate={Belt.Option.mapWithDefault(date_props.maxDate, None, v =>
-        Some(v |> MomentRe.momentWithDate)
+        Some(v |> MomentTz.momentWithDate)
       )}
       format={date_props.format}
     />
