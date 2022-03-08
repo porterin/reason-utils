@@ -3,7 +3,9 @@ module ClearButton = {
 
   [@react.component]
   let make = (~className: string="", ~cb: unit => unit): React.element => {
-    <button className onClick={_ => cb()}> <img src=closeIcon /> </button>;
+    <span className={className ++ " close-btn"} onClick={(_event: ReactEvent.Mouse.t) => cb()}>
+      <Icon.CloseIcon fontSize=`Small />
+    </span>;
   };
 };
 
@@ -22,7 +24,7 @@ let make =
     )
     : React.element => {
   <MuiPickersUtilsProvider utils=MuiPickersUtilsProvider.utils>
-    <ClearButton className="date-time-picker-cross-btn" cb={_ => onClear()} />
+    <ClearButton className="date-time-clear-btn" cb={_ => onClear()} />
     <MUIDateTimePicker
       onChange
       value={
