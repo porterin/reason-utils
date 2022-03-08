@@ -10,6 +10,7 @@
   min-width: 17.6rem;
   display: flex;
   flex-direction: column;
+  position: relative;
 
   > .form-input {
     @include form-font;
@@ -55,6 +56,27 @@
     }
     > .helper-text {
       color: $txt-semi-dark;
+    }
+  }
+
+  > .date-time-clear {
+    position: absolute;
+    right: 1rem;
+    transform: translateY(50%);
+    z-index: 1;
+
+    &.close-btn {
+      background-color: $color-tab-container;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: fit-content;
+      border-radius: 50%;
+      padding: 0.2rem;
+      cursor: pointer;
+      &:hover {
+        background-color: $color-grey-2;
+      }
     }
   }
 }
