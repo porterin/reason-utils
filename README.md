@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.11.0**
+  - Using make_props for Accordion Panels
+
 + **2.9.19**
   - Table Key Added, VisibilityIcon, tap
 
