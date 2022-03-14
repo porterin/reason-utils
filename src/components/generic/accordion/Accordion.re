@@ -17,7 +17,7 @@ let getAccordionBody = (body: React.element) => {
   <MaterialUi.AccordionDetails> body </MaterialUi.AccordionDetails>;
 };
 
-module AccordionModule = {
+module AccordionWrapper = {
   [@react.component]
   let make =
       (
@@ -64,7 +64,7 @@ let make =
   <div className>
     {panels
      |> List.mapi((index, panel) =>
-          <AccordionModule index panel handleChange expanded />
+          <AccordionWrapper index panel handleChange expanded />
         )
      |> ReasonReactUtils.listToReactArray}
   </div>;

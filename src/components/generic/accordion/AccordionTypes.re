@@ -11,7 +11,7 @@ type t = {
 
 let make_props =
     (
-      ~header,
+      ~header: header,
       ~footer: React.element=React.null,
       ~body: React.element,
       ~onOpen: unit => unit=() => (),
