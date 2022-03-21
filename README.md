@@ -2,6 +2,9 @@
 + **2.11.0**
   - Using make_props for Accordion Panels
 
++ **2.10.0**
+  - Non Live Order page Migration
+
 + **2.9.19**
   - Table Key Added, VisibilityIcon, tap
 
