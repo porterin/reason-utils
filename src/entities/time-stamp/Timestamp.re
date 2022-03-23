@@ -19,3 +19,11 @@ let utcToIst = (~value: t): t => {
 let toFloat = (timestamp: t): float => {
   timestamp;
 };
+
+let toJsDate = (timestamp: t): Js.Date.t => {
+  MomentUtils.fromTimestampMs(timestamp)->MomentUtils.toJsDate;
+};
+
+let fromJsDate = (date: Js.Date.t): t => {
+  MomentUtils.fromJsDate(date)->MomentUtils.toFloat;
+};
