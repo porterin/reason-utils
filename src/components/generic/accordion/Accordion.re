@@ -3,9 +3,7 @@ open AccordionTypes;
 let getAccordionHeader = (expanded: bool, panel: t) => {
   <MaterialUi.AccordionSummary
     className={"header " ++ (expanded ? "expanded-header" : "")}
-    expandIcon={
-      <Icon.ExpandMoreIcon className="expand-icon" fontSize=`Large />
-    }>
+    expandIcon={<Icon.ExpandMoreIcon className="expand-icon" fontSize=`Large />}>
     {switch (panel.header) {
      | Text(title) => <div> {React.string(title)} </div>
      | Custom(fn) => fn()
@@ -45,9 +43,7 @@ module AccordionWrapper = {
 };
 
 [@react.component]
-let make =
-    (~panels: list(t), ~className: string="", ~defaultOpen: int=(-1))
-    : React.element => {
+let make = (~panels: list(t), ~className: string="", ~defaultOpen: int=(-1)): React.element => {
   /*
       Expanded represents the index of accordion that is expanded.
       Intial state is set to 0 as to open the first accordion object
@@ -63,9 +59,7 @@ let make =
 
   <div className>
     {panels
-     |> List.mapi((index, panel) =>
-          <AccordionWrapper index panel handleChange expanded />
-        )
+     |> List.mapi((index, panel) => <AccordionWrapper index panel handleChange expanded />)
      |> ReasonReactUtils.listToReactArray}
   </div>;
 };
