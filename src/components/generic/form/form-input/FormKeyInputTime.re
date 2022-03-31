@@ -13,17 +13,17 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~time_props: t) => {
       format={time_props.format}
       ampm={time_props.ampm}
       placeholder={input_props.placeholder}
-      onChange={(date: Js.Nullable.t(MomentRe.Moment.t)) =>
+      onChange={(date: Js.Nullable.t(MomentTz.Moment.t)) =>
         switch (Js.Nullable.toOption(date)) {
         | None => time_props.onChange(None)
         | Some(date) =>
-          MomentRe.Moment.isValid(date)
-            ? time_props.onChange(Some(date |> MomentRe.Moment.toDate))
+          MomentTz.Moment.isValid(date)
+            ? time_props.onChange(Some(date |> MomentTz.Moment.toDate))
             : time_props.onChange(None)
         }
       }
       value={Belt.Option.mapWithDefault(time_props.value, None, d =>
-        d->MomentRe.momentWithDate->Some
+        d->MomentTz.momentWithDate->Some
       )}
     />
     {FormInputHelper.getWarningOrError(None, input_props.result, input_props.helper_text)}

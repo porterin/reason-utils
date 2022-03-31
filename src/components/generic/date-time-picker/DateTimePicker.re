@@ -11,10 +11,10 @@ module ClearButton = {
 let make =
     (
       ~label: string,
-      ~onChange: MomentRe.Moment.t => unit,
-      ~value: option(MomentRe.Moment.t),
-      ~minDate: option(MomentRe.Moment.t),
-      ~maxDate: option(MomentRe.Moment.t),
+      ~onChange: MomentTz.Moment.t => unit,
+      ~value: option(MomentTz.Moment.t),
+      ~minDate: option(MomentTz.Moment.t),
+      ~maxDate: option(MomentTz.Moment.t),
       ~format: string="DD/MM/YYYY hh:mm A",
       ~disableFuture: option(bool)=?,
       ~disablePast: option(bool)=?,

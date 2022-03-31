@@ -9,9 +9,9 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~time_props: t) => {
     <TimePicker
       label={input_props.label}
       disabled={input_props.isDisabled}
-      onChange={date => time_props.onChange(date |> MomentRe.Moment.toDate)}
+      onChange={date => time_props.onChange(date |> MomentTz.Moment.toDate)}
       value={Belt.Option.mapWithDefault(time_props.value, None, d =>
-        d->MomentRe.momentWithDate->Some
+        d->MomentTz.momentWithDate->Some
       )}
     />
     {FormInputHelper.getWarningOrError(None, input_props.result, input_props.helper_text)}

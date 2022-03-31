@@ -8,7 +8,6 @@
       "@glennsl/bs-json",
       "reason-react",
       "@jsiebern/bs-material-ui",
-      "bs-moment",
       "decco",
       "bs-webapi",
       "reason-promise"
@@ -24,6 +23,7 @@
       },
       {
         "dir": "examples",
+        "subdirs": true,
         "type": "dev"
       }
     ],
