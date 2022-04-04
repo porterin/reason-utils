@@ -1,5 +1,7 @@
 type t;
 
+let setTz: string => unit;
+
 let toJsDate: t => Js.Date.t;
 
 let fromJsDate: Js.Date.t => t;
@@ -23,3 +25,9 @@ let getDateTimeBeforeElapsedTime:
   (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: t) => t;
 
 let getPreviousDateByDays: (~day: int) => t;
+
+let toFloat: t => float;
+
+let startOf: (~date: t, ~scale_unit: ScaleUnit.t) => t;
+
+let endOf: (~date: t, ~scale_unit: ScaleUnit.t) => t;

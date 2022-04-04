@@ -18,12 +18,13 @@ let make =
     (
       ~className: string="",
       ~aria_labelledby: string="",
-      ~valueLabelComponent: valueLabelProps => React.element,
+      ~valueLabelComponent: option(valueLabelProps => React.element)=?,
       ~min: int,
       ~max: int,
       ~marks: list(marks),
       ~onChange: (ReactEvent.Form.t, int) => unit,
       ~value: int,
+      ~valueLabelFormat: string=""
     ) => {
   <MaterialUi.Slider
     className
@@ -37,6 +38,7 @@ let make =
     marks={MaterialUi.Slider.Marks.array(marks |> marksToAny |> Array.of_list)}
     onChange
     value={MaterialUi.Slider.Value.int(value)}
+    valueLabelFormat={MaterialUi.Slider.ValueLabelFormat.string(valueLabelFormat)}
     classes={MaterialUi.Slider.Classes.make(
       ~root="slider-root",
       ~thumb="slider-thumb",

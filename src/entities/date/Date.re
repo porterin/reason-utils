@@ -1,5 +1,9 @@
 type t = Js.Date.t;
 
+let setTz = (tz: string) => {
+  MomentUtils.setTz(tz);
+};
+
 let toJsDate = (d): Js.Date.t => d;
 
 let fromJsDate = (d: Js.Date.t): t => d;
@@ -59,4 +63,16 @@ let getPreviousDateByDays = (~day: int) => {
     ~time_unit=Days,
     ~initial_date=now(),
   );
+};
+
+let toFloat = (date: t): float => {
+  MomentUtils.fromJsDate(date)->MomentUtils.toFloat;
+};
+
+let startOf = (~date: t, ~scale_unit: ScaleUnit.t): t => {
+  date->MomentUtils.fromJsDate->MomentUtils.startOf(scale_unit)->MomentUtils.toJsDate;
+};
+
+let endOf = (~date: t, ~scale_unit: ScaleUnit.t): t => {
+  date->MomentUtils.fromJsDate->MomentUtils.endOf(scale_unit)->MomentUtils.toJsDate;
 };

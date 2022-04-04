@@ -2,10 +2,10 @@
 let make =
     (
       ~label: string,
-      ~onChange: Js.Nullable.t(MomentRe.Moment.t) => unit,
+      ~onChange: Js.Nullable.t(MomentTz.Moment.t) => unit,
       ~placeholder: string,
       ~format: string="hh:mm:ss a",
-      ~value: option(MomentRe.Moment.t),
+      ~value: option(MomentTz.Moment.t),
       ~ampm: bool,
     )
     : React.element => {

@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.13.0**
+  - Timezone integration for international
+
 + **2.11.0**
   - Using make_props for Accordion Panels
 

@@ -1,4 +1,4 @@
-open MomentRe;
+open MomentTz;
 [@bs.module "rc-time-picker"] [@react.component]
 external make:
   (
