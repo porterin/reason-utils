@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.13.1**
+  - DateTime Picker Clear Btn Fix, Timestamp to Js.Date.t Added
+
 + **2.13.0**
   - Timezone integration for international
 

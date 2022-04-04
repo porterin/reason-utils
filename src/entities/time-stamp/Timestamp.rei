@@ -9,12 +9,6 @@ let now: unit => t;
 
 let toString: (~value: t, ~format: string) => string;
 
-let toFloat: t => float;
-
-let toJsDate: t => Js.Date.t;
-
-let fromJsDate: Js.Date.t => t;
-
 let isBefore: (~first_date: t, ~second_date: t) => bool;
 
 let isAfter: (~first_date: t, ~second_date: t) => bool;
@@ -31,6 +25,12 @@ let getPreviousDateByDays: (~day: int) => t;
 
 /* To Deprecate */
 let utcToIst: (~value: t) => t;
+
+let toFloat: t => float;
+
+let toJsDate: t => Js.Date.t;
+
+let fromJsDate: Js.Date.t => t;
 
 let startOf: (~ts: t, ~scale_unit: ScaleUnit.t) => t;
 
