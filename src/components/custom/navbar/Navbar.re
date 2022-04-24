@@ -6,7 +6,7 @@ type navbar_item = {
 type navbar_action = {
   label: ButtonLabel.t,
   on_select_cb: unit => unit,
-  icon: option(string),
+  icon: option(React.element),
 };
 
 let getActionButtons = (actions_list: list(navbar_action)) => {
@@ -16,6 +16,7 @@ let getActionButtons = (actions_list: list(navbar_action)) => {
          buttonProps={ButtonUtils.getDefaultButtonProps(
            ~label=action_btn.label,
            ~onSelectCB=_ => action_btn.on_select_cb(),
+           ~postfixIcon=Belt.Option.getWithDefault(action_btn.icon, React.null),
            (),
          )}
        />
