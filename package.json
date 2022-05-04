@@ -17,6 +17,7 @@
   "author": "tejeshkonchada@porter.in",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "bs:build": "bsb -make-world",
     "bs:clean": "bsb -clean-world",
     "bs:watch": "bsb -make-world -w",
@@ -36,7 +37,7 @@
     "bs-platform": "^8.4.2",
     "bs-webapi": "^0.17.1",
     "decco": "^1.1.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.3",
     "moment-timezone": "^0.5.34",
     "nanoid": "^3.1.23",
     "papaparse": "5.1.0",
@@ -48,6 +49,7 @@
     "reason-promise": "^1.1.3"
   },
   "devDependencies": {
+    "@glennsl/bs-jest": "^0.7.0",
     "css-loader": "^3.5.3",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.5.1",
