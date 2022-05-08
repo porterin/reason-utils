@@ -51,7 +51,7 @@ let make = (~input_props: FormInputProps.t('b, 'c), ~date_props: t) => {
     <DatePickerV2
       label={input_props.label}
       disabled={input_props.isDisabled}
-      onChange={date => date_props.onChange(date |> MomentTz.Moment.toDate)}
+      onChange={date => date_props.onChange(date |> MomentTz.toJsDate)}
       value={Belt.Option.mapWithDefault(date_props.value, None, date =>
         Some(date |> MomentTz.momentWithDate)
       )}

@@ -6,12 +6,11 @@ let setTz = (tz) => {
 };
 
 let now = () => {
-  let date = new Date();
-  return momentTz(date).toString();
+  return momentTz(momentTz.now())
 };
 
 let momentWithTimestampMS = (timestamp) => {
-  momentTz(timestamp);
+  return momentTz(timestamp);
 };
 
 let format = (moment, format) => {
@@ -64,6 +63,29 @@ let getTz = () => {
   return momentTz().tz();
 };
 
+const setLocalZone = (date, timezone) => {
+  const dateWithoutZone = moment
+    .tz(date, timezone)
+    .format("YYYY-MM-DDTHH:mm:ss.SSS")
+  const localZone = moment(dateWithoutZone).format("Z")
+  const dateWithLocalZone = [dateWithoutZone, localZone].join("")
+
+  return new Date(dateWithLocalZone)
+};
+
+const setOtherZone = (date, timezone) => {
+  console.log("incoming", date, timezone);
+  const dateWithoutZone = momentTz(date).format("YYYY-MM-DDTHH:mm:ss.SSS")
+  const otherZone = momentTz.tz(date, timezone).format("Z")
+  const dateWithOtherZone = [dateWithoutZone, otherZone].join("")
+  console.log("outgoing", dateWithOtherZone, momentTz(dateWithOtherZone), new Date(dateWithOtherZone));
+  return new Date(dateWithOtherZone)
+};
+
+let isValid = (moment) => {
+  return moment.isValid()
+}
+
 export {
   setTz,
   now,
@@ -80,4 +102,7 @@ export {
   endOf,
   valueOf,
   getTz,
+  setLocalZone,
+  setOtherZone,
+  isValid
 };

@@ -16,11 +16,11 @@ let toMoment = (date: t): Moment.t => {
 };
 
 let fromMoment = (moment: Moment.t): t => {
-  Moment.toDate(moment);
+  toJsDate(moment);
 };
 
 let toString = (~format: string=defaultFormat, date: t) => {
-  Moment.format(format, momentWithDate(date));
+  MomentTz.format(momentWithDate(date), format);
 };
 
 let momentWithFormat = (date: string, format: string) => {
@@ -28,22 +28,22 @@ let momentWithFormat = (date: string, format: string) => {
 }
 
 let fromString = (~format: string=defaultFormat, dateString: string): t => {
-  Moment.toDate(momentWithFormat(dateString, format));
+  toJsDate(momentWithFormat(dateString, format));
 };
 
-let toSecond = (date: t): int => {
+/* let toSecond = (date: t): int => {
   toString(~format="HH:mm:ss", date)->durationFormat->Duration.asSeconds->int_of_float;
 };
-
-let toMinute = (date: t): int => {
+ */
+/* let toMinute = (date: t): int => {
   toString(~format="HH:mm", date)->durationFormat->Duration.asMinutes->int_of_float;
 };
-
-let fromTimeStamp = (timestamp: int) => {
-  Moment.toDate(momentWithUnix(timestamp));
+ */
+/* let fromTimeStamp = (timestamp: int) => {
+  toJsDate(momentWithUnix(timestamp));
 };
-
-let toTimeStamp = (date: t) => {
+ */
+/* let toTimeStamp = (date: t) => {
   Moment.toUnix(momentWithDate(date));
 };
 
@@ -139,3 +139,4 @@ let format = (date: Js.Date.t, format: string) => {
 let day = (date: Js.Date.t) => {
   date -> toMoment -> Moment.day
 }
+ */

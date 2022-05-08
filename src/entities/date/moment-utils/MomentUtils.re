@@ -1,7 +1,7 @@
-open MomentTzTestBindings;
+open MomentTz;
 
 let setTz = tz => {
-  MomentTzTestBindings.setTz(tz);
+  MomentTz.setTz(tz);
 };
 
 let getTz = () => getTz();
@@ -12,15 +12,17 @@ let toFloat = moment => moment->valueOf;
 
 let fromTimestampMs = (value: float): Moment.t => value->momentWithTimestampMS;
 
+let format = (value: Moment.t, format: string) => MomentTz.format(value, format);
+
 let formatFromFloat = (~format: string, ~timestamp: float) =>
-  MomentTzTestBindings.format(momentWithTimestampMS(timestamp), format);
+  MomentTz.format(momentWithTimestampMS(timestamp), format);
 
 let formatFromJsDate = (~format: string, ~date: Js.Date.t) =>
-  MomentTzTestBindings.format(momentWithDate(date), format);
+  MomentTz.format(momentWithDate(date), format);
 
 let fromJsDate = (date: Js.Date.t): Moment.t => date->momentWithDate;
 
-let toJsDate = (date: Moment.t): Js.Date.t => date->MomentTzTestBindings.toJsDate;
+let toJsDate = (date: Moment.t): Js.Date.t => date->MomentTz.toJsDate;
 
 let fromString = (~date: string, ~format: string): Moment.t => momentWithFormat(date, format);
 
@@ -60,14 +62,14 @@ let toMomentScaleUnit = (t: ScaleUnit.t): string => {
 };
 
 let getDateTimeAfterElapsedTime =
-    (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: MomentTzTestBindings.Moment.t)
-    : MomentTzTestBindings.Moment.t => {
+    (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: MomentTz.Moment.t)
+    : MomentTz.Moment.t => {
   getDateTimeAfterElapsedTime(elapsed_time, toMomentTimeUnit(time_unit), initial_date);
 };
 
 let getDateTimeBeforeElapsedTime =
-    (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: MomentTzTestBindings.Moment.t)
-    : MomentTzTestBindings.Moment.t => {
+    (~elapsed_time: float, ~time_unit: TimeUnit.t, ~initial_date: MomentTz.Moment.t)
+    : MomentTz.Moment.t => {
   getDateTimeBeforeElapsedTime(elapsed_time, toMomentTimeUnit(time_unit), initial_date);
 };
 
@@ -77,4 +79,12 @@ let startOf = (moment, scale: ScaleUnit.t) => {
 
 let endOf = (moment, scale: ScaleUnit.t) => {
   endOf(moment, toMomentScaleUnit(scale));
+};
+
+let setOtherZone = date => {
+  setOtherZone(date, getTz());
+};
+
+let setLocalZone = date => {
+  setLocalZone(date, getTz());
 };
