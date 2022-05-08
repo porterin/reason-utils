@@ -9,6 +9,9 @@ module Moment = {
 [@bs.module "./MomentTzTest"]
 external momentWithTimestampMS: float => Moment.t = "momentWithTimestampMS";
 
+[@bs.module "./MomentTzTest"]
+external momentWithTimestampUnix: int => Moment.t = "momentWithTimestampUnix";
+
 [@bs.module "./MomentTzTest"] external format: (Moment.t, string) => string = "format";
 [@bs.module "./MomentTzTest"] external momentWithDate: Js.Date.t => Moment.t = "momentWithDate";
 [@bs.module "./MomentTzTest"] external toJsDate: Moment.t => Js.Date.t = "toJsDate";

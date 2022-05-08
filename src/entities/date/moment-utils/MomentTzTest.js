@@ -13,6 +13,11 @@ let momentWithTimestampMS = (timestamp) => {
   return momentTz(timestamp);
 };
 
+
+let momentWithTimestampUnix = (timestamp) => {
+  return momentTz(timestamp);
+}
+
 let format = (moment, format) => {
   return moment.format(format);
 };
@@ -104,5 +109,6 @@ export {
   getTz,
   setLocalZone,
   setOtherZone,
-  isValid
+  isValid,
+  momentWithTimestampUnix
 };
