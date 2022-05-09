@@ -22,25 +22,32 @@ module A = {
   };
 };
 
-/* module B = {
-  open MaterialUIPickerV4Bindings;
+module B = {
+
   [@react.component]
-  let make = (~label="") => {
+  let make = () => {
     MomentTz.setTz("Asia/Kolkata");
     let (date, setdate) = React.useState(_ => Some(MomentUtils.now()));
-    Js.log(date);
-    let handleDateChange = (d: MomentTz.Moment.t) => {
-      setdate(_ => Some(d));
-    };
-    <LocalizationProvider dateAdapter=getMomentAdapter()>
-      <TimePicker
-        renderInput={props => TextField.make(~props, ~label)}
-        value={date}
-        onChange={date => handleDateChange(date)}
-        ampm=false
-      />
-    </LocalizationProvider>;
+
+    <FormKeyInputTime
+      input_props={FormInput.make_props(
+        ~label="",
+        ~onChange=_ => (),
+        ~result={Some(Ok(None))},
+        ~helper_text=Text("Enter time in 24 Hour format (HH:MM)"),
+        (),
+      )}
+      time_props={
+        value: date->Belt.Option.mapWithDefault(None, v => v->MomentTz.toJsDate->Some),
+        onChange: date =>
+          setdate(_ =>
+            date->Belt.Option.mapWithDefault(None, v => v->MomentTz.momentWithDate->Some)
+          ),
+        format: "HH:mm",
+        ampm: false,
+      }
+    />;
   };
 };
- */
-ReactDOMRe.renderToElementWithId(<A />, "root");
+
+ReactDOMRe.renderToElementWithId(<B />, "root");
