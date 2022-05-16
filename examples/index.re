@@ -27,7 +27,8 @@ module B = {
   [@react.component]
   let make = () => {
     MomentTz.setTz("Asia/Kolkata");
-    let (date, setdate) = React.useState(_ => Some(MomentUtils.now()));
+    Js.log(MomentTz.getTz());
+    let (date, setdate) = React.useState(_ => None);
 
     <FormKeyInputTime
       input_props={FormInput.make_props(
@@ -40,9 +41,10 @@ module B = {
       time_props={
         value: date->Belt.Option.mapWithDefault(None, v => v->MomentTz.valueOf->Some),
         onChange: date =>
-          setdate(_ =>
-            date->Belt.Option.mapWithDefault(None, v => v->MomentTz.momentWithTimestampMS->Some)
-          ),
+          setdate(_ => {
+            Js.log(date);
+            date->Belt.Option.mapWithDefault(None, v => v->MomentTz.momentWithTimestampMS->Some);
+          }),
         format: "HH:mm",
         ampm: false,
       }
@@ -50,4 +52,17 @@ module B = {
   };
 };
 
-ReactDOMRe.renderToElementWithId(<B />, "root");
+module C = {
+  [@react.component]
+  let make = () => {
+    let (date, setDate) = React.useState(_ => None);
+    Belt.Option.forEach(date, d => Js.log(MomentTz.valueOf(d)));
+    <DatePickerTzBinding
+      tz="Asia/Kolkata"
+      date
+      handleDateChange={date => setDate(_ => date->Some)}
+    />;
+  };
+};
+
+ReactDOMRe.renderToElementWithId(<C />, "root");

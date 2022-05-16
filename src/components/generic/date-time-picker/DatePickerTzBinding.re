@@ -1,1 +1,5 @@
-[@bs.module "./DatePickerTz"] [@react.component] external make: unit => React.element = "default";
+[@bs.module "mui-pickers/dist"] [@react.component]
+external make:
+  (~date: option(MomentTz.Moment.t), ~handleDateChange: MomentTz.Moment.t => unit, ~tz: string) =>
+  React.element =
+  "TimePickerBinding";
