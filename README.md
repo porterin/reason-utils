@@ -1,4 +1,7 @@
 ### Release Notes
++ **2.14.0**
+  - Added support for Sentry feature: Adding tags
+
 + **2.13.1**
   - DateTime Picker Clear Btn Fix, Timestamp to Js.Date.t Added
 
