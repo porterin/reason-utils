@@ -1,6 +1,7 @@
 type t =
   | Custom(string)
   | UnprocessedEntity(option(string))
+  | BadRequest
   | NotAcceptableEntity
   | Unauthorized
   | Forbidden
