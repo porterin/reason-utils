@@ -20,6 +20,12 @@ module ResponseWrapper = {
     |> Js.Promise.then_(result => Js.Promise.resolve(ResponseType.NotAcceptableEntity(result)));
   };
 
+  let parseBadRequestError = (response: Fetch.response) => {
+    response
+    |> Fetch.Response.json
+    |> Js.Promise.then_(result => Js.Promise.resolve(ResponseType.BadRequest(result)));
+  };
+
   let parseDataConflictError = (response: Fetch.response) => {
     response
     |> Fetch.Response.json
@@ -48,6 +54,7 @@ module ResponseWrapper = {
         )
       | 422 => parseUnprocessedError(response)
       | 406 => parseNotAcceptableError(response)
+      | 400 => parseBadRequestError(response)
       | 401 =>
         Js.Promise.resolve(
           Unauthorized(
