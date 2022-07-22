@@ -36,9 +36,9 @@ module ResponseWrapper = {
     ResponseType.(
       switch (Fetch.Response.status(response)) {
       | 200
-      | 201
+      | 201 => parseSuccess(response)
       | 301
-      | 302 => parseSuccess(response)
+      | 302 
       | 204 =>
         Js.Promise.resolve(
           SuccessWithNoContent(
