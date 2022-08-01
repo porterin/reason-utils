@@ -23,7 +23,7 @@ let iOSBrowserRegex = "/safari/";
 
 let isWebView = ():bool =>{ 
   let userAgent = Js.String2.toLowerCase(JsBindings.userAgent); 
-  let isStandalone = bool_of_string(Js.String2.toLowerCase(JsBindings.standalone)); 
+  let isStandalone = Js.undefinedToOption(JsBindings.standalone)->Belt.Option.getWithDefault("false")->bool_of_string; 
   let isIosDevice = userAgent->Js.String2.search(Js.Re.fromString(iOSDeviceRegex))>=0
   let isSafari = userAgent->Js.String2.search(Js.Re.fromString(iOSBrowserRegex))>=0
 
