@@ -18,8 +18,8 @@ let androidRegex = "(android.*wv)";
 /*
 Regex required to find web view for iOS devices
 */
-let iOSDeviceRegex = "/iphone|ipod|ipad/";
-let iOSBrowserRegex = "/safari/";
+let iOSDeviceRegex = "(iphone|ipod|ipad)";
+let iOSBrowserRegex = "(safari)";
 
 let isWebView = ():bool =>{ 
   let userAgent = Js.String2.toLowerCase(JsBindings.userAgent); 
