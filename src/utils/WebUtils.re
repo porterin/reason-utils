@@ -9,8 +9,29 @@ let debounce = (fn: 'a => unit, time) => {
   };
 };
 
-let androidRegex = "(android.*wv)"; // Work for Android Lollipop and above versions 
+
+/* 
+Below regex ork for Android Lollipop and above versions 
+*/
+let androidRegex = "(android.*wv)";
+
+/*
+Regex required to find web view for iOS devices
+*/
+let iOSDeviceRegex = "/iphone|ipod|ipad/";
+let iOSBrowserRegex = "/safari/";
+
 let isWebView = ():bool =>{ 
   let userAgent = Js.String2.toLowerCase(JsBindings.userAgent); 
-  userAgent->Js.String2.search(Js.Re.fromString(androidRegex))>=0
+  let isStandalone = bool_of_string(Js.String2.toLowerCase(JsBindings.standalone)); 
+  let isIosDevice = userAgent->Js.String2.search(Js.Re.fromString(iOSDeviceRegex))>=0
+  let isSafari = userAgent->Js.String2.search(Js.Re.fromString(iOSBrowserRegex))>=0
+
+  switch(isIosDevice){
+    |true=> switch(isStandalone,isSafari){
+      |(false,false)=>true
+      |(_,_)=>false
+    }
+    |_=>userAgent->Js.String2.search(Js.Re.fromString(androidRegex))>=0
   }
+}

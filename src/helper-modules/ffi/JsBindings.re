@@ -24,6 +24,9 @@ external decodeURIComponent: string => string = "decodeURIComponent";
 [@bs.val] [@bs.scope "document"] external cookie: string = "cookie";
 
 [@bs.val] [@scope ("window", "navigator")] external userAgent: string = "userAgent"
+[@bs.val] [@scope ("window", "navigator")] external standalone: string = "standalone"
+
+
 
 [@bs.deriving abstract]
 type naivgatorShareOptions = {
