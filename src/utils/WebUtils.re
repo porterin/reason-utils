@@ -8,3 +8,9 @@ let debounce = (fn: 'a => unit, time) => {
     last := Some(Js.Global.setTimeout(() => fn(v), time));
   };
 };
+
+let androidRegex = "(android.*wv)"; // Work for Android Lollipop and above versions 
+let isWebView = ():bool =>{ 
+  let userAgent = Js.String2.toLowerCase(JsBindings.userAgent); 
+  userAgent->Js.String2.search(Js.Re.fromString(androidRegex))>=0
+  }
