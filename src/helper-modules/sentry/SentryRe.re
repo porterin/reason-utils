@@ -19,6 +19,7 @@ type init_options = {
 external capturePromiseError: Js.Promise.error => static = "captureException";
 [@bs.module "@sentry/browser"] external captureMessage: string => string = "captureMessage";
 [@bs.module "@sentry/browser"] external setTag: (string, string) => unit = "setTag";
+[@bs.module "@sentry/browser"] external setContext: (string, Js.t('a)) => unit = "setContext";
 
 let initSentry =
     (~environment: Environment.t, ~dsn: string, ~suppressErrors: array(Js_re.t)=[||], ()) => {
