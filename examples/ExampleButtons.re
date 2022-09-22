@@ -4,6 +4,13 @@
 [@react.component]
 let make = () => {
   <>
+    <MaterialUi_Lab.Autocomplete
+      options=[|Any("text"), Any("text1")|]
+      renderInput={sone => {
+        Js.log(sone);
+        React.string("text");
+      }}
+    />
     <PrimaryButton
       buttonProps={ButtonUtils.getDefaultButtonProps(
         ~label=Text("Okay"),

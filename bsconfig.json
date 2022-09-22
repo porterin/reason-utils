@@ -1,41 +1,42 @@
 {
-    "name": "catalyst",
-    "reason": {
-      "react-jsx": 3
+  "name": "catalyst",
+  "reason": {
+    "react-jsx": 3
+  },
+  "bs-dependencies": [
+    "bs-fetch",
+    "@glennsl/bs-json",
+    "reason-react",
+    "@jsiebern/bs-material-ui",
+    "@jsiebern/bs-material-ui-lab",
+    "decco",
+    "bs-webapi",
+    "reason-promise"
+  ],
+  "ppx-flags": [
+    "decco/ppx"
+  ],
+  "bs-dev-dependencies": [],
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
     },
-    "bs-dependencies": [
-      "bs-fetch",
-      "@glennsl/bs-json",
-      "reason-react",
-      "@jsiebern/bs-material-ui",
-      "decco",
-      "bs-webapi",
-      "reason-promise"
-    ],
-    "ppx-flags": [
-      "decco/ppx"
-    ],
-    "bs-dev-dependencies": [],
-    "sources": [
-      {
-        "dir": "src",
-        "subdirs": true
-      },
-      {
-        "dir": "examples",
-        "subdirs": true,
-        "type": "dev"
-      }
-    ],
-    "warnings": {
-      "number": "-44",
-      "error": "+27"
-    },
-    "package-specs": {
-      "module": "es6-global",
-      "in-source": true
-    },
-    "namespace": true,
-    "suffix": ".bs.js",
-    "refmt": 3
-  }
+    {
+      "dir": "examples",
+      "subdirs": true,
+      "type": "dev"
+    }
+  ],
+  "warnings": {
+    "number": "-44",
+    "error": "+27"
+  },
+  "package-specs": {
+    "module": "es6-global",
+    "in-source": true
+  },
+  "namespace": true,
+  "suffix": ".bs.js",
+  "refmt": 3
+}
