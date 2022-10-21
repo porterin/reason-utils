@@ -23,6 +23,16 @@ let make = () => {
 
   let (snackbarCmp, openSnackbar) = ToastSnackbarHook.useSnackbar(~duration=1000, ());
 
+  let (progress, setProgress) = React.useState(_ => 10.0);
+
+  React.useEffect0(() => {
+    let t = Js.Global.setInterval(() => {
+      setProgress(prevProgress => prevProgress >= 100.0 ? 10.0 : prevProgress +. 10.0)
+    }, 1000)
+
+    Some(_ => Js.Global.clearInterval(t))
+  });
+
   <div>
     <div className="header"> {React.string("Header Bar")} </div>
     snackbarCmp
@@ -35,5 +45,12 @@ let make = () => {
     />
     <button onClick={_ => openSnackbar(Success("fdfdf"))}> {React.string("Success")} </button>
     <button onClick={_ => openSnackbar(Error("fdfdf"))}> {React.string("Error")} </button>
-  </div>;
+    <ProgressBar
+      value=progress
+      bottom_left_content={<div> {React.string("0")} </div>}
+      top_left_content={<div> {React.string("CREDIT USAGE")} </div>}
+      bottom_right_content={<div> {React.string("1000")} </div>}
+      top_right_content={<div> {React.string("CREDIT USAGE")} </div>}
+    />
+  </div>
 };

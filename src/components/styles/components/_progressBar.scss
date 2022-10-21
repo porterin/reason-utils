@@ -1,0 +1,30 @@
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .top-text-container, .bottom-text-container {
+    justify-content: space-between;
+  }
+
+  .progress-box {
+    width: 100%;
+
+    .progress-bar,
+    .progress-bar > * {
+      height: 0.8rem !important;
+      border-top-left-radius: 0.8rem;
+      border-bottom-left-radius: 0.8rem;
+      border-top-right-radius: 0.8rem;
+      border-bottom-right-radius: 0.8rem;
+    }
+
+    .progress-bar > * {
+      background-color: #27ae60 !important;
+    }
+
+    .progress-bar {
+      background-color: #eef1ee !important;
+    }
+  }
+}
