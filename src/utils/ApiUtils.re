@@ -32,3 +32,20 @@ let resolveRepoResponse = (handleResponse: _ => option(Js.Promise.t(Belt.Result.
     )
   };
 };
+
+let resolveRepoResponseV2 = (~handleResponse: _ => option(Js.Promise.t(Belt.Result.t('a, 'b))), ~onNoResponse: option('b)) => {
+  switch (handleResponse()) {
+  | Some(data) => data
+  | None => switch(onNoResponse){
+    | Some(err) =>   Js.Promise.resolve(Belt.Result.Error(err))
+    | None => Js.Promise.resolve(
+      Belt.Result.Error(
+        Error.DefaultError({
+          title: InternalServerError,
+          message: "Something went wrong",
+        }),
+      ),
+    )
+  }
+  };
+};
