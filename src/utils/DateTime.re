@@ -1,6 +1,6 @@
 type t = Js.Date.t;
 
-open MomentTz;
+open Deprecated_MomentTz;
 
 type moment = Moment.t;
 
@@ -24,8 +24,8 @@ let toString = (~format: string=defaultFormat, date: t) => {
 };
 
 let momentWithFormat = (date: string, format: string) => {
-  date -> momentWithFormat(format)
-}
+  date->momentWithFormat(format);
+};
 
 let fromString = (~format: string=defaultFormat, dateString: string): t => {
   Moment.toDate(momentWithFormat(dateString, format));
@@ -117,25 +117,25 @@ let diffDates =
   diff(momentWithDate(endDate), momentWithDate(startDate), timeUnit);
 
 let startOf = (date: Js.Date.t, scale) => {
-  date |> toMoment |> Moment.startOf(scale) |> fromMoment
+  date |> toMoment |> Moment.startOf(scale) |> fromMoment;
 };
 
 let endOf = (date: Js.Date.t, scale) => {
-  date |> toMoment |> Moment.endOf(scale) |> fromMoment
+  date |> toMoment |> Moment.endOf(scale) |> fromMoment;
 };
 
 let toUtc = (date: string) => {
-  date -> momentUtc |> fromMoment
+  date->momentUtc |> fromMoment;
 };
 
 let isValid = (date: Js.Date.t) => {
-  date |> toMoment |> Moment.isValid
+  date |> toMoment |> Moment.isValid;
 };
 
 let format = (date: Js.Date.t, format: string) => {
-  date |> toMoment |> Moment.format(format)
-}
+  date |> toMoment |> Moment.format(format);
+};
 
 let day = (date: Js.Date.t) => {
-  date -> toMoment -> Moment.day
-}
+  date->toMoment->Moment.day;
+};

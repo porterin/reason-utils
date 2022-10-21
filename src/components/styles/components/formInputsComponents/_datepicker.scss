@@ -26,3 +26,7 @@
     border-color: $primary !important;
   }
 }
+
+.MuiPickersPopper-root {
+  z-index: 10000;
+}
