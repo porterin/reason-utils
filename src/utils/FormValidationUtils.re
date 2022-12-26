@@ -31,7 +31,7 @@ let validateMobileNumber = (caller_number: string): Belt.Result.t(string, string
 };
 
 let validateCRN = (crn: string): Belt.Result.t(string, string) => {
-  Js_re.test_(%re("/^(CRN)(\d{8}|\d{10})$/i"), crn)
+  Js_re.test_([%re("/^(CRN)(\d{8}|\d{10})$/i")], crn)
     ? Belt.Result.Ok(crn) : Belt.Result.Error("Enter valid CRN");
 };
 
