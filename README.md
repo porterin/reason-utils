@@ -225,4 +225,4 @@
   + Exception-Handling fix for *Exception-Catalyst.PromiseException*
 
 + **1.1.0**
-  + First Release
+  + First Release 
