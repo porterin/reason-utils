@@ -209,6 +209,7 @@
 + **2.0.2**
   + Compilation to es6-global
 
+
 + **2.0.1**
   + Bug fix for change in Js encoding of exceptions for bs-platoform version 8.0.0
 
